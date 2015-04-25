@@ -6,7 +6,7 @@
  * developed by shaurya
  */
 //=============Mysql MACRO definations
-	/*.mysqlhost*/$db_MYSQL_SERVER = '';
+	/*.mysqlhost*/$db_MYSQL_SERVER = $_SERVER["HTTP_HOST"];
 	/*.mysqluser*/$db_MYSQL_USER= ''; 					
 	/*.mysqlpass*/$db_MYSQL_Pass= ''; 	
 	
@@ -66,6 +66,7 @@
 	
 //config
 	/*+config.php*/$config="elib_config"._Ds_."config.php";
+	/*+html base dir*/$htmBase="http://".$_SERVER["HTTP_HOST"]."/Digilib_net/";
 
 //depend
 	/*+jquery*/					$jquery=		"elib_depend"._Ds_."jquery"._Ds_."jquery-2.1.3.js";

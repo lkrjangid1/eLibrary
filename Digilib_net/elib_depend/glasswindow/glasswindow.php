@@ -203,6 +203,9 @@ class glaswid{
 		dev("title",$this->head["title"]);
 		echo '<title>'.$this->head["title"].'</title>';
 		
+		dev("setting base html dir...");
+		echo '<base href="'.$GLOBALS["htmBase"].'" target="_blank">';
+		
 		$this->meta();
 		echo '</head>';
 		echo '<body>';
@@ -230,6 +233,8 @@ class glaswid{
 	public function include_files(){
 		dev("including files...");
 		if(empty($this->include_files["binery_parm"])){
+			
+			
 			dev("include_file() parameter not specified:using default...");
 			
 			dev("included none_style.css");
