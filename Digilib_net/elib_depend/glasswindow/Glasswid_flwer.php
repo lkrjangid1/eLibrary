@@ -30,17 +30,17 @@ require_once "elib_depend/glasswindow/classes/gwid.inc";
 	 */
 	
 	/*.function digilib_twister128($token)
-	 	*description:	security function-md5s the given 
+	 	* description:	security function-md5s the given 
 	 	*				string and returns the value.
-	 	*parameters:	string $token
+	 	* parameters:	string $token
 	 	*					~pure string:converts the given 
 	 	*					 string to md5
-	 	*return:		string: (md5)ed with random salt text
-	 	*warning:			DONOT CHANGE TO KEEP THE SQL STORAGE INTEGRITY
+	 	* return:		string: (md5)ed with random salt text
+	 	* warning:			DONOT CHANGE TO KEEP THE SQL STORAGE INTEGRITY
 	 	*				EVERYTHING IS SAVED VIA THIS HASH FUNCTION
 	 	*				LOSING THIS SALT TEXT WILL BLACKOUT THE SQL
 	 	*				USER DATA FOREVER!!!
-	 	*notes:			no further changes required
+	 	* notes:			no further changes required
 	 */
 	 
 	/*.function sec_strip($string,$data,$replacer)
@@ -68,14 +68,14 @@ require_once "elib_depend/glasswindow/classes/gwid.inc";
 	 */
 	 
 	/*.function dev($obj1, $obj2)
-	 	*description:	developer window function.
+	 	* description:	developer window function.
 	 	*				requires $developer_mode=1.
 	 	*				uses $prt_dev var but not to be changed 
 	 	*				manually.
 	 	*				prints a log window in html which prints 
 	 	*				given parameters passed.
 	 	*				used for error handling.
-	 	*parameters:	no parameters
+	 	* parameters:	no parameters
 	 	*					~prints a line/divider in dev window.
 	 	*				string: $obj1
 	 	*					~prints the given input with cursor 
@@ -87,124 +87,175 @@ require_once "elib_depend/glasswindow/classes/gwid.inc";
 	 	*					IF $obj2=="error", prints $obj1 in special style.
 	 	*					optional:default(nothing)
 	 	*				
-	 	*return:		void
-	 	*notes:			function is in state of working but further 
+	 	* return:		void
+	 	* notes:			function is in state of working but further 
 	 	*				development is welcome.
 	 */
 
 //=============Query Functions
     /*.function trifx_Login()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_Signup()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_ForgotPass()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_inputchk()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_capGen()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_serialGen()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_elib_srch()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_elib_getBook()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_elib_getAuthor()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
      /*.function trifx_elib_doDcq()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function trifx_elib_doGuestBook()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
 
 //=============Display Functions
     /*.function digilib_Navibar()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function digilib_Sidebar()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function digilib_Footer()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function digilib_Meta()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function digilib_Include_Files()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
     /*.function digilib_form()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
 
 
 //=============Normalize Functions
     /*.function digilib_normalize()
-        *description:
-        *parameters:
-        *return:
-        *notes:
+        * description:
+        * parameters:
+        * return:
+        * notes:
     */
+
+//=============CLASS digibook_M 
+    //public:
+        /*.function __construct()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function search_book_server()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function search_book_list()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function getbook()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function showbook()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function reloadBook()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function error()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
+        /*.function __destruct()
+             *  decription:
+             *  parameters:
+             *  return:
+             *  notes:
+         */
 
 ?>

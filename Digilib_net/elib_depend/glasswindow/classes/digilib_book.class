@@ -1,3 +1,46 @@
 <?php
+// CLASS digibook
+
+//class defination
+class digibook_M{
+    
+    //functions
+    public function __construct(){
+    }
+    public function search_book_server(){
+    }
+    public function search_book_list(){
+    }
+    public function getbook(){
+    }
+    public function showbook(){
+    }
+    public function reloadBook(){
+    }
+    public function getLink(){
+    }
+    public function error(){
+    }
+    public function __destruct(){
+    }
+    
+    //variables
+    protected $m_id;
+    protected $m_title;
+    
+    protected $m_chapters;
+    protected $m_pages;
+    
+    protected $m_isHard;
+    protected $m_isSoft;
+    
+    protected $m_description;
+    
+    protected $m_published;
+    protected $m_rating;
+    
+    protected $m_countLinks;
+    protected $m_serverId;
+};
 
 ?>

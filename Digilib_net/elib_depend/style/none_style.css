@@ -50,3 +50,95 @@ html, body{
     width:100%;
     height:100%;
 }
+
+
+.gwcol-main-page{
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+.gwcol{
+	background-clip: padding-box;
+}
+.gwcol.fxd{
+	position: fixed;
+}
+.gwcol.abs{
+	position: absolute;
+}
+.gwcol.rel{
+	position: relative;
+}
+.gwcol.Dynamic{
+	display: inline-block;
+}
+.gwcol.fill{
+	left:0;
+	right:0;
+}
+.gwcol.border{
+	border:solid thin;
+}
+.gwcol.borderSmooth{
+	border-radius:10px;
+}
+
+.gwcol.pg-gmargin{
+}
+.gwcol.pg-rfull{
+	left:0; width:100%;
+}
+.gwcol.pg-afull{
+	left:0; right:0; bottom:0; top:0;
+}
+.gwcol.txt-noselect{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+/*color swatches*/
+.gwcol .gwcol.color-off-Drkbg{
+	background:#024;
+}
+.gwcol .gwcol.color-off-org{
+	background:rgba(255,177,60,1);
+}
+.gwcol .gwcol.color-off-blue{
+	background: #1f9edd;
+}
+.gwcol.Navibar .gwcol.color-navi-lay3{
+	background:rgba(184,61,36,1);
+}
+.gwcol.Navibar .gwcol.color-navi-lay3-br{
+	background:rgba(255,204,0,1);
+}
+
+/*
+ * __________ Default Media Queries __________
+ */
+
+
+/* Smartphones*/@media only screen and (min-device-width : 320px) and (max-device-width : 640px) , (min-width : 320px) and (max-width : 640px) {
+
+}
+
+/* iPads*/@media only screen and (min-device-width : 640px) and (max-device-width : 1224px) , (min-width : 640px) and (max-width : 1024px) {
+		
+}
+
+/* Laptops*/@media only screen  and (min-width : 1224px) and (max-width: 1400px) {
+	
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1400px) {
+
+}

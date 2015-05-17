@@ -15,8 +15,7 @@ ini_set("include_path", "../../");  //sets the path to root folder
 include "elib_depend/glasswindow/Glasswid_flwer.php";   //include glaswid-flower
 ?>
 
-<?php digilib_Meta(); ?>
-<?php digilib_Include_Files(); ?>
+<?php digilib_Meta("Digital Library | Home", ""); ?>
 
 <body>
     

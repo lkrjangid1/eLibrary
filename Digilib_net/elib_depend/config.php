@@ -77,6 +77,19 @@
 	/*.mysqltable:39*/define(DB_user_student_info,"user_student_info");
 	/*.mysqltable:40*/define(DB_user_teacher_info,"user_teacher_info");
 
+//=============directories relative to index.php
 
-   
+//include
+	/*+jquery*/					$jquery=		"elib_depend"._Ds_."jquery"._Ds_."jquery-2.1.3.js";
+	/*+Gsap:TweenMax*/			$TweenMax=		"elib_depend"._Ds_."gsap"._Ds_."TweenMax.min.js";
+	/*+Gsap:TweenLite*/			$TweenLite=		"elib_depend"._Ds_."gsap"._Ds_."TweenLite.min.js";
+	/*+Gsap:TimelineMax*/		$TimelineMax=	"elib_depend"._Ds_."gsap"._Ds_."TimelineMax.min.js";
+	/*+Gsap:TimelineLite*/		$TimelineLite=	"elib_depend"._Ds_."gsap"._Ds_."TimelineLite.min.js";
+	/*+Gsap:Gsap-jquery*/		$gsap_jq=		"elib_depend"._Ds_."gsap"._Ds_."jquery.gsap.min.js";
+	/*+Gsap:Gsap-Drag*/			$gsap_drag=		"elib_depend"._Ds_."gsap"._Ds_."utils"._Ds_."Draggable.min.js";
+	
+    /*+style*/					$css=			"elib_depend"._Ds_."style"._Ds_;
+	/*+style:font*/				$css_fonts=		"elib_depend"._Ds_."style"._Ds_."fonts.css";
+	/*+style:none*/				$css_none=		"elib_depend"._Ds_."style"._Ds_."none_style.css";
+
 ?>
