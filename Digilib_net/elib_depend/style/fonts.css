@@ -1,90 +1,99 @@
+/*====================================*/
 @font-face {
-    font-family: otf_1;
-    src:url(fonts/otf_1.otf);
+    font-family: code_1_r;
+    src:url(fonts/code/gw_code_reg.otf);
 }
 @font-face {
-    font-family: otf_2;
-    src:url(fonts/otf_2.otf);
+    font-family: code_1_m;
+    src:url(fonts/code/gw_code_med.otf);
 }
 @font-face {
-    font-family: otf_3;
-    src:url(fonts/otf_3.otf);
+    font-family: code_1_b;
+    src:url(fonts/code/gw_code_bold.otf);
 }
 @font-face {
-    font-family: otf_4;
-    src:url(fonts/otf_4.otf);
-}  
-@font-face {
-    font-family: otf_5;
-    src:url(fonts/otf_5.otf);
+    font-family: code_1_sb;
+    src:url(fonts/code/gwcode_sbold.otf);
 }
 @font-face {
-    font-family: otf_6;
-    src:url(fonts/otf_6.otf);
+    font-family: code_1_l;
+    src:url(fonts/code/gw_code_light.otf);
 }
 @font-face {
-    font-family: ttf_1;
-    src:url(fonts/ttf_1.ttf);
+    font-family: code_1_el;
+    src:url(fonts/code/gw_code_elight.otf);
+}
+/*====================================*/
+@font-face {
+    font-family: display_1_r;
+    src:url(fonts/display/caver_reg.ttf);
 }
 @font-face {
-    font-family: ttf_2;
-    src:url(fonts/ttf_2.ttf);
+    font-family: display_1_i;
+    src:url(fonts/display/caver_italic.ttf);
 }
 @font-face {
-    font-family: ttf_3;
-    src:url(fonts/ttf_3.ttf);
+    font-family: display_2_r;
+    src:url(fonts/display/pt_reg.ttf);
 }
 @font-face {
-    font-family: ttf_4;
-    src:url(fonts/ttf_4.ttf);
+    font-family: display_3_r;
+    src:url(fonts/display/salbo_reg.ttf);
 }
 @font-face {
-    font-family: ttf_5;
-    src:url(fonts/ttf_5.ttf);
+    font-family: display_4_r;
+    src:url(fonts/display/sans_reg.ttf);
 }
 @font-face {
-    font-family: ttf_6;
-    src:url(fonts/ttf_6.ttf);
+    font-family: display_4_b;
+    src:url(fonts/display/sans_bold.ttf);
+}
+/*====================================*/
+@font-face {
+    font-family: class_1_ib;
+    src:url(fonts/class_text/Courier_Prime_Bold_Italic.ttf);
 }
 @font-face {
-    font-family: ttf_7;
-    src:url(fonts/ttf_7.ttf);
+    font-family: class_1_b;
+    src:url(fonts/class_text/Courier_Prime_Bold.ttf);
 }
 @font-face {
-    font-family: ttf_8;
-    src:url(fonts/ttf_8.ttf);
+    font-family: class_1_i;
+    src:url(fonts/class_text/Courier_Prime_Italic.ttf);
+}@font-face {
+    font-family: class_1_r;
+    src:url(fonts/class_text/Courier_Prime.ttf);
 }
 @font-face {
-    font-family: ttf_9;
-    src:url(fonts/ttf_9.ttf);
+    font-family: class_2_r;
+    src:url(fonts/class_text/Garogier_reg.ttf);
+}
+/*====================================*/
+@font-face {
+    font-family: mics_1_r;
+    src:url(fonts/mics/barrio_reg.otf);
 }
 @font-face {
-    font-family: ttf_10;
-    src:url(fonts/ttf_10.ttf);
+    font-family: mics_2_r;
+    src:url(fonts/mics/Bear_paw_reg.ttf);
 }
 @font-face {
-    font-family: ttf_11;
-    src:url(fonts/ttf_11.ttf);
+    font-family: mics_3_r;
+    src:url(fonts/mics/black_casper_reg.ttf);
 }
 @font-face {
-    font-family: ttf_12;
-    src:url(fonts/ttf_12.ttf);
-    
+    font-family: mics_4_r;
+    src:url(fonts/mics/girl_reg.ttf);
 }
 @font-face {
-    font-family: ttf_13;
-    src:url(fonts/ttf_13.ttf);
+    font-family: mics_5_r;
+    src:url(fonts/mics/grutch_shaded_black.ttf);
 }
 @font-face {
-    font-family: ttf_14;
-    src:url(fonts/ttf_14.ttf);
+    font-family: mics_6_b;
+    src:url(fonts/mics/sketch_reg_border.ttf);
 }
 @font-face {
-    font-family: ttf_15;
-    src:url(fonts/ttf_15.ttf);
+    font-family: mics_6_r;
+    src:url(fonts/mics/sketch_reg.ttf);
 }
-@font-face {
-    font-family: ttf_16;
-    src:url(fonts/ttf_16.ttf);
-}
-
