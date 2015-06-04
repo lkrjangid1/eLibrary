@@ -177,7 +177,7 @@ function digilib_Meta($pg_title, $bin){
     <html lang="en-US">
     <head><title>'.$pg_title.'</title>
     
-    <base href="http://localhost/Digilib_net/" target="_blank">
+    <base href="'.$GLOBALS["db_htmlBASE"].'" target="_blank">
     
     <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="keywords" content="Bal Bharati Public School, Elibrary, Students Portal, Ncert Books, Ncert Solutions, Assignments, Sample Papers, Old Question Papers, Bal Bharati Public School Ganga Ram Hospital Marg, BBPS, BBPSGRHM, Learn, exercise, skill, education, practice">
     <meta name="description" content="Learn, Practice, and Play at Bal Bharati Public School GRHM Student\'s Portal. Read books, view Ncert answers with solutions, discuss problems on school forum, solve online assignmets, see previous year question papers and more.">
@@ -185,8 +185,15 @@ function digilib_Meta($pg_title, $bin){
     <link rel="stylesheet" type="text/css" href="'.$GLOBALS["css_none"].'">
     <link rel="stylesheet" type="text/css" href="'.$GLOBALS["css_fonts"].'">
     
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
     <script src="'.$GLOBALS["jquery"].'"></script>
     <script src="'.$GLOBALS["TweenMax"].'"></script>'.$bin.'</head>';
+    
+    
+
 }
 
 ?>

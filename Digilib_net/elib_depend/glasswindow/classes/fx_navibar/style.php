@@ -78,15 +78,13 @@
     right: 0;
 }
 .header .main .Rrox .Search-form{
-    margin: 0; overflow: hidden;
-    
+    margin: 0; overflow:hidden;
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border: solid 1px #dedede;
     border-radius: 3px;
-    
     box-shadow: 0px 0px 3px rgba(200,200,200,0.3);
-    
+    text-align:left;
 }
 .header .main .Rrox .Search-form .Search-input{
     border: none;
@@ -98,14 +96,23 @@
     margin: 0;
     outline: none;
     
-    position: absolute;
-    top: 0; left: 0px; right: 30px; bottom: 0;
+    position: relative; display: inline-block;
+    top: 0; left: 0; width: calc(100% - 30px);
+    padding-left: 3px; padding-right: 3px;
+    padding-top: 8px; padding-bottom:8px;
+    
     z-index: 1;
     
     background: #ffffff;
     color: #a8a8a8;
     font-size: 12px;
     font-family: display_4_r;
+}
+@-moz-document url-prefix() {
+.header .main .Rrox .Search-form .Search-input {
+        padding-left: 3px; padding-right: 3px;
+        padding-top: 10px; padding-bottom:10px;
+    }
 }
 .header .main .Rrox .Search-form .Search-submit{
     border: none;
@@ -124,7 +131,8 @@
 }
 .header .main .Rrox .Search-form .Search-submit-image{
     background-image: url(elib_depend/graphics/interface_graphics/icons/white/serchgrey.png);
-    background-size: 35px 35px;
+    background-position:-2px 0px;
+    background-size: 38px 38px;
     background-repeat: no-repeat;
     
     position: absolute;
@@ -166,10 +174,6 @@
     background-size: contain;
     
     cursor: pointer;
-}
-.Navibar .smallctrl:hover{
-    background: url(elib_depend/graphics/interface_graphics/icons/black/plusgrey.png) center no-repeat;
-    background-size: contain;
 }
 .Navibar .main{
     display: inline-block;
@@ -232,7 +236,7 @@
     background: linear-gradient(to bottom, rgba(83,203,241,1) 0%,rgba(5,171,224,1) 100%);
     position: relative;
     bottom: 0; width: 100%;
-    
+    margin-bottom: 0;
     box-shadow: 0px -1px 5px rgba(100,100,100,0.5);
     
     -webkit-touch-callout: none;
@@ -425,17 +429,18 @@
     /*border: solid thin black;*/
     position: relative;
     top: 0; left: 0; 
-    width: 100%;
+    width: calc(100% - 20px);
     padding-left: 10px; padding-right: 10px;
     padding-top:1px; padding-bottom:1px;
     min-height: 600px; height: 100%;
 }
 
 
-/*====Media Queries ====*/
-@media only screen  and (max-width: 770px) {
+/*=========================Media Queries ==========================*/
+    
+@media only screen  and (max-width: 769px) {
 .body-cont .main{
-    width: 100%;
+    width: calc(100% - 6px);
     padding:3px;
 }
 .header .main{
@@ -504,10 +509,30 @@
     height:auto;
 }
 }
-        
+@media only screen  and (max-width: 420px){
+.Footer .lower .main{
+    height:300px;
+    width:100%;
+}
+.Footer .lower .main .chem{
+    top:220px;
+    margin-bottom: 0px;
+    height: auto; width:auto;
+    margin-right:5px;
+}
+.Footer .lower .main .hate{
+    width:calc( 100% - 5px );
+    left:5px;
+    height:240px;
+}
+.Footer .lower .main .hate .author{
+    left:0;
+    top:100px;
+}
+}       
 @media only screen  and (min-width : 770px) and (max-width: 1000px) {
 .body-cont .main{
-    width: 100%;
+   width: calc(100% - 20px);
 }
 .header .main{
     width: 100%; height:35px;
@@ -557,7 +582,7 @@
         
 @media only screen  and (min-width : 1000px) and (max-width: 1200px){
 .body-cont .main{
-    width: 1000px;
+    width: calc(1000px - 20px);
 }
 .header .main{
     width: 1000px; height:35px;
@@ -600,7 +625,7 @@
         
 @media only screen  and (min-width : 1200px) {
 .body-cont .main{
-    width: 1000px;
+    calc(1000px - 20px)
 }
 .header .main{
     width: 1000px; height:35px;

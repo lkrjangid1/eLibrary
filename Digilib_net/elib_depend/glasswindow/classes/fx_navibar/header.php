@@ -12,7 +12,7 @@
         </div>
         <div class="Rrox">
             <form id="srch-form-header-1" class="Search-form" >
-                <input class="Search-input" type="search" placeholder="Search...">
+                <input class="Search-input" type="search" value="Hello World">
                 <input class="Search-submit" type="submit" value="">
                 <div class="Search-submit-image"></div>
             </form>
