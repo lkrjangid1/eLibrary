@@ -162,15 +162,21 @@ function trifx_elib_doGuestBook(){
 
 //=============Display Functions
 function digilib_Header(){
-    include_once("elib_depend/glasswindow/classes/fx_navibar/header.php");
+    include("elib_depend/glasswindow/classes/fx_navibar/header.php");
     include_once("elib_depend/glasswindow/classes/fx_navibar/style.php");
     include_once("elib_depend/glasswindow/classes/fx_navibar/script.php");
 }
 function digilib_Sidebar(){
     
 }
+function digilib_Showcase( $bin , $Infoarr ){
+if($bin > 0){
+    include("elib_depend/glasswindow/classes/fx_showcse/Showcase.php");
+    
+    shwcse_prt($bin, $Infoarr);
+}}
 function digilib_Footer(){
-    include_once("elib_depend/glasswindow/classes/fx_navibar/footer.php");
+    include("elib_depend/glasswindow/classes/fx_navibar/footer.php");
 }
 function digilib_Meta($pg_title, $bin){
     echo '<!DOCTYPE html>

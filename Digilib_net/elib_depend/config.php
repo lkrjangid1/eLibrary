@@ -2,7 +2,7 @@
 
 /*==============================config.php==============================
  *  configuration for Digilib_net_v3  
- *  ver.5.51
+ *  ver.6.51
  *
  *  Defines basic variables and dirs
  *  contains highly sensitive configuration
@@ -18,7 +18,7 @@
 
 //=============php confing						
     $db_CHARSET= "utf8";
-    $db_htmlBASE = "http://192.168.1.18/Digilib_net/";
+    $db_htmlBASE = "http://localhost/Digilib_net/";
     $developer_mode=1;		
     $prt_dev=0;
     define(_Ds_, "/");
@@ -44,7 +44,7 @@
 	/*+style:none*/				$css_none=		"elib_depend"._Ds_."style"._Ds_."none_style.css";
 
 //official color pallet
-    /*0-Black-Grey*/            $offPal_black=       "#383838";
+    /*0-Black-Grey*/            $offPal_black=      "#383838";
     /*0-Blue-Medium*/           $offPal_blue=       "#3EC6EF";
     /*0-Blue-Med-Gradient*/     $offPal_blue_grd=   "linear-gradient(to bottom, rgba(83,203,241,1) 0%,rgba(5,171,224,1) 100%)";
     /*0-Orange-Med*/            $offPal_org=        "#FF8930";

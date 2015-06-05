@@ -161,29 +161,41 @@ require_once "elib_depend/glasswindow/classes/gwid.inc";
     */
 
 //=============Display Functions
-    /*.function digilib_Navibar()
-        * description:
-        * parameters:
-        * return:
-        * notes:
+    /*.function digilib_Header()
+        * description: Prints the Whole page header on the page
+        * parameters: none
+        * return: none
+        * notes: use in body
+    */
+    /*.function digilib_Showcase()
+        * description: Prints the Showcase on to page
+        * parameters: $bin:how many slides
+                      $Infoarr[i][j]:   i is the slide no.
+                                        j is the info for each slide
+                                        j=1 is link, j=2 is title, 
+                                        j=3 is descprition, 
+                                        j=4 is the subtitle
+        * return: none
+        * notes: use inside body body-cont main
     */
     /*.function digilib_Sidebar()
-        * description:
-        * parameters:
-        * return:
-        * notes:
+        * description: Prints the Sidebar page header on the page
+        * parameters: Na
+        * return: NA
+        * notes: NA
     */
     /*.function digilib_Footer()
-        * description:
-        * parameters:
-        * return:
-        * notes:
+        * description: prints the whole footer onto the page
+        * parameters: none
+        * return: none
+        * notes: use at end inside body
     */
     /*.function digilib_Meta()
-        * description:
-        * parameters:
-        * return:
-        * notes:
+        * description: prints the html head tag
+        * parameters: string $page_title: for page title(required),
+        *             [string $bin]:anything that will be printed inside head without checking 
+        * return: none
+        * notes: check $htmlbase in config.php
     */
     /*.function digilib_Include_Files()
         * description:

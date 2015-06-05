@@ -10,7 +10,7 @@ Please see the file called LICENSE.
 
 ##Programming Language
 -----------
-Out of the vast umber of language, we found PHP, MySql, And Apache Server to be best suited for our project needs given the need for 100% compatibility b/w different platforms.
+Out of the vast Number of language, we found PHP, MySql, And Apache Server to be best suited for our project needs given the requirement for 100% compatibility b/w different platforms(mostly 4:CentOS4, Ubuntu Utopic/velevt, Windows 7 Pro x64, OSX 10.6 and up).
 
 ##Documentation
 -----------
@@ -18,28 +18,24 @@ All of the code is heavily commented so there may not be need for a seperate doc
 
 ##Softwares and tools
 -----------
-Our dedicated team LOVES free softwares! We use Eclipse for php coding and debugging and currently targeting Html5 browsers. Project Uses and include Jquery and Gsap Libraries and code styleshet in basic CSS. We are hoping for an cross-browser, cross-platform and cross-device compatiblity by the end of the project.
+Our dedicated team LOVES open source softwares! We go by Eclipse IDE for php coding and debugging and currently targeting Html5 browsers(IE8 compatible now!). Project Uses and include Jquery and Gsap Libraries and code styleshet in basic CSS. We are hoping for an cross-browser, cross-platform and cross-device compatiblity by the end of the project.
 
 ##Contacts
 -----------
-sal64dd<Project Head in development>:
+sal64dd<Server Head:
  * sal.uncd@gmail.com
- * sal.uncd@outlook.com
+ 
+Divijjindal29<Desigining Head:
+ * divijjindal28
 
 
 ##Basic project hierarchy
 -----------
-The project uses Three core scripts to handle most of the complicated code, namely:
-
-1. glasswindow.php: handles all the graphical and html elements of the website.
-2. triforce.php: handles all the Mysql calling and authentication and responsible for the Major working of website. 
-3. dcq.php: handles the commenting, rating and points system of the website.
+glaswid.inc: This is the core script and handles all the theme and sql and boring stuff. Includes many classes in b/w. It is fully documented in glaswindow_flwr.php which automatically includes everything u need. see home.php for example of its working.
 
 These files can be found in elib_depend folder.
 
 Website supports some fonts and additions shall not be allowed but code shall be limited to use ONLY these fonts!
-
-All printable Html goes through glasswindow.php (*period*) .
 
 jquery-2.1.3.js is supported and updates are not really preffered unless crucial.
 Gsap support is also there for cool interactive presentation of content and further deatils can be found in there respective readme files.

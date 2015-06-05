@@ -30,6 +30,16 @@
     font-size: 14px;
     letter-spacing: 6px;
 }
+.flyer a .bbpsHeadlogo{
+    position: relative;
+    bottom:-4px;
+    display: inline-block;
+    width: 20px; height:20px;
+}
+.logo-off-bbps{
+    background: url(elib_depend/graphics/interface_graphics/icons/logos/offbbpslogo_white.png) center no-repeat;
+    background-size: contain;
+}
 
 .header{
     position: relative;
@@ -170,7 +180,7 @@
     left:20px; top:10px; bottom: 10px;
     height:30px; width:35px;
     
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/plusgrey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/plusgrey.png) center no-repeat;
     background-size: contain;
     
     cursor: pointer;
@@ -208,28 +218,28 @@
     width: 15px; height:15px; 
 }
 .Navibar .main .navi-elem:nth-of-type(1) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/home_3grey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/home_3grey.png) center no-repeat;
     background-size: contain;
 }
 .Navibar .main .navi-elem:nth-of-type(2) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/booksgrey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/booksgrey.png) center no-repeat;
     background-size: contain;
 }
 .Navibar .main .navi-elem:nth-of-type(3) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/book_2grey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/book_2grey.png) center no-repeat;
     background-size: contain;
 }
 .Navibar .main .navi-elem:nth-of-type(4) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/bloggrey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/bloggrey.png) center no-repeat;
     background-size: contain;
 }
 .Navibar .main .navi-elem:nth-of-type(5) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/bookgrey.png) center no-repeat;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/bookgrey.png) center no-repeat;
     background-size: contain;
 }
 .Navibar .main .navi-elem:nth-of-type(6) .icon{
-    background: url(elib_depend/graphics/interface_graphics/icons/blue/stargrey.png) center no-repeat;
-    background-size: contain;
+    background: url(elib_depend/graphics/interface_graphics/icons/blueGrad/aboutusgrey.png) bottom no-repeat;
+    background-size: cover;
 }
 
 .Footer{
@@ -332,6 +342,12 @@
 }
 .Footer .lower .main .hate .logo .bbps{
     color: #d7d7d7;
+}
+.Footer .lower .main .hate .logo .bbps .bbpsHeadlogo{
+    position: relative;
+    bottom:-1px;
+    display: inline-block;
+    width: 8px; height:8px;
 }
 .Footer .lower .main .hate .author{
     position: absolute;
@@ -444,7 +460,7 @@
     padding:3px;
 }
 .header .main{
-    width: 100%; height:150px;
+    width: 100%; height:100px;
 }
 .header .main .Ausi{
     left:0; right:0; top:0;
@@ -625,7 +641,7 @@
         
 @media only screen  and (min-width : 1200px) {
 .body-cont .main{
-    calc(1000px - 20px)
+    width: calc(1000px - 20px);
 }
 .header .main{
     width: 1000px; height:35px;
