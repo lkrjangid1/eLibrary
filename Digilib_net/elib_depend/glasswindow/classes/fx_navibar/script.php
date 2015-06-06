@@ -13,4 +13,6 @@ $( ".smallctrl" ).click(function(){
         TweenMax.to( $(".Navibar") , 0.45 , {height:"49px", ease: Power3.easein} );
     }
 });
+//fix for small to big resize
+$(window).on("resize",function(){if(NaviList_small_semaphore==1){$( ".smallctrl" ).click()}});
 </script>

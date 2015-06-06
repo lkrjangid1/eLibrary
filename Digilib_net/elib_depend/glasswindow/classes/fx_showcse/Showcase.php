@@ -11,14 +11,14 @@ function shwcse_prt($bin, $Infoarr){
     echo'
 <style>
 .body-cont .Shwcse{
-    display: block;
     position: relative;
-    top:0; left: 0;
+    top:0;left:0;
     z-index: 2;
+    padding-bottom: calc(38% + 155px);
 }
 .body-cont .Shwcse .display{
     display: block;
-    position: relative;
+    position: absolute;
     width: 100%;
     padding-bottom: 38%;
 }
@@ -44,8 +44,8 @@ function shwcse_prt($bin, $Infoarr){
 }
 .body-cont .Shwcse .card{
     display: block;
-    position: relative; top: 0; left: 0;
-    height: auto; width: 100%;
+    position: absolute; top: 100%; left: 0; right:0;
+    height: auto;
     background: #383838; z-index: 5;
     
     border-bottom-left-radius: 3px;
@@ -73,6 +73,7 @@ function shwcse_prt($bin, $Infoarr){
     padding-top: 20px;
     padding-bottom: 1px;
     font-size: 24px;
+    font-family: class_2_r;
 }
 .body-cont .Shwcse .card .descp{
     position: relative;
@@ -85,6 +86,7 @@ function shwcse_prt($bin, $Infoarr){
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 16px;
+    font-family: class_2_r;
 }
 .body-cont .Shwcse .card .linker{
     position: relative;
@@ -96,6 +98,7 @@ function shwcse_prt($bin, $Infoarr){
     font-size: 14px;
     padding-top: 5px;
     padding-bottom: 20px;
+    font-family: display_3_r;
 }
 .body-cont .Shwcse .ctrl{
     position: absolute;
@@ -104,6 +107,12 @@ function shwcse_prt($bin, $Infoarr){
     text-align: right;
     width: 100%;
     height: 25px;
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 .body-cont .Shwcse .ctrl .list{
     position: relative;
@@ -198,6 +207,9 @@ echo '
     .body-cont .Shwcse .ctrl{
         top: 175px;
     }
+    .body-cont .Shwcse{
+        padding-bottom: calc(38% + 200px);
+    }
 }
 @media only screen  and (max-width: 420px){
     .body-cont .Shwcse .card{
@@ -206,7 +218,17 @@ echo '
     .body-cont .Shwcse .ctrl{
         top: 200px;
     }
+    .body-cont .Shwcse{
+        padding-bottom: calc(38% + 230px);
+    }
 }
+@media only screen  and (min-width : 770px) and (max-width: 1000px) {
+    .body-cont .Shwcse{
+        padding-bottom: calc(38% + 180px);
+    }
+}
+
+    
 @media only screen  and (min-width : 1000px){
    .body-cont .Shwcse .card{
         max-height: 120px;
@@ -223,7 +245,9 @@ for($i1=1; $i1<=$bin; $i1++){
     echo '<a href="'.$Infoarr[$i1][1].'" id="Showcase-plane-'.$i1.'" class="plane"></a>';
 }
 
-echo '</div> </div> <div class="card"> ';
+echo '</div> 
+
+<div class="card"> ';
 
 for($i2=1; $i2<=$bin; $i2++){
     echo '<a href="'.$Infoarr[$i2][1].'" id="Showcase-card-'.$i2.'">
@@ -239,7 +263,13 @@ for($i3=1; $i3<=$bin; $i3++){
 }
 
 echo'<div class="ctrl-play" id="Showcase-ctrl-play">
-</div> </div> </div> </div> </div>
+</div> </div> </div> </div>
+
+</div>  
+    <div id="ShwcseSpacFixerFlex"></div>
+</div>
+
+
 
 <script> 
 

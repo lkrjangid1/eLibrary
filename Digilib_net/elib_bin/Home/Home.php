@@ -36,6 +36,7 @@ digilib_Meta("Digital Library | Home", '
                 digilib_Showcase(3,$Infoarr);
             ?>
             
+            <div class="MyDiv">Hello World</div>
         </div>
     </div>
     <?php digilib_Footer() ?>
