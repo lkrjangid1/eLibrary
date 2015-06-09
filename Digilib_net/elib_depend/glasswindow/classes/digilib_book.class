@@ -2,29 +2,9 @@
 // CLASS digibook
 
 //class defination
-class digibook_M{
-    
-    //functions
-    public function __construct(){
-    }
-    public function search_book_server(){
-    }
-    public function search_book_list(){
-    }
-    public function getbook(){
-    }
-    public function showbook(){
-    }
-    public function reloadBook(){
-    }
-    public function getLink(){
-    }
-    public function error(){
-    }
-    public function __destruct(){
-    }
-    
-    //variables
+class digibook{
+
+    //properties
     protected $m_id;
     protected $m_title;
     
@@ -41,6 +21,22 @@ class digibook_M{
     
     protected $m_countLinks;
     protected $m_serverId;
+    
+    //methods
+    public function __construct($aim,$anchor){
+    }
+    public function Traf_do(){
+    }
+    public function reload(){
+    }
+    public function getLink(){
+    }
+    public function digiBk_errID(){
+    }
+    public function __destruct(){
+    }
+    
+    
 };
 
 ?>

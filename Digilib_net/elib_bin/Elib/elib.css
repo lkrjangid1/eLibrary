@@ -1,0 +1,287 @@
+.body-cont .paraBox{
+    position: relative; left: 0; top: 0;
+    width: auto; height:auto;
+    text-align: left;
+}
+.body-cont .paraBox .pB-elem{
+    position: relative;
+    display: inline-block;
+    vertical-align:top;
+    margin:5px; 
+    width: 316px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+.body-cont .paraBox .lnebrk{
+    position: relative;
+    display: inline-block;
+    width: 1px;
+    height:300px;
+    vertical-align:top;
+    background: #dedede;
+    box-shadow: inset 0px 3px 3px rgba(255, 255,255,0.5);
+}
+.body-cont .paraBox .pB-elem .title{
+    position: relative;
+    top: 0;
+    width: auto;
+    display: block;
+    font-size: 28px;
+    font-family: display_4_r;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .title::after{
+    content: "";
+    position: relative;
+    display: block;
+    width: auto; height: 5px;
+    margin-top:5px; margin-bottom:5px;
+    background: #3EC6EF;
+    box-shadow: inset 1px 1px 1px rgba(100,100,100,0.3);
+}
+.body-cont .paraBox .pB-elem .more{
+    position: absolute;
+    bottom: -15px; right: 5px;
+    font-size: 12px;
+    color: #FF8930;
+}
+.body-cont .paraBox .pB-elem .list{
+    position: relative;
+    display: block;
+    top: 0; left: 0;
+    width: auto;
+    height: 250px;
+    overflow-y: scroll; overflow-x: hidden;
+}
+.body-cont .paraBox .pB-elem .list .list-elem{
+    position: relative;
+    display: block;
+    width: auto;
+    padding-top:10px; height:100px;
+    padding-left:10px;
+    padding-right:10px;
+    text-decoration: none;
+    border-bottom: solid 1px #dedede;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .list .list-elem:last-of-type{
+    border-bottom: none;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .image{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px; height:80px;
+    border: solid 1px #dedede;
+    background: url() center no-repeat;
+    background-size: cover;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .txt{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: auto; height: auto;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .tit{
+    position: relative;
+    display: block;
+    margin-left: 5px;
+    font-size: 20px;
+    font-family: class_2_r;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .auth{
+    position: relative;
+    display: block;
+    margin-left: 5px;
+    font-size: 16px;
+    font-family: class_2_r;
+    color: #686868;
+}
+.body-cont .paraBox .pB-elem .list .list-elem:hover .txt .tit{
+    color: #FF8930;
+    text-decoration: underline;
+    text-shadow: 0px 1px 5px rgba(100,100,100,0.1);
+}
+
+.body-cont .catBlock{
+    position: relative;
+    display: block;
+    width: auto; height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.body-cont .catBlock .cat-elem{
+    position: relative;
+    display: inline-block; vertical-align: top;
+    width: 230px; height:100%;
+    margin-left: 2px; margin-right: 2px;
+    text-align: center;
+}
+.body-cont .catBlock .lnebrk{
+    position: relative;
+    display: inline-block;
+    width: 1px;
+    height:100%;
+    vertical-align:top;
+    background: #dedede;
+    box-shadow: inset 0px 3px 3px rgba(255, 255,255,0.5);
+}
+.body-cont .catBlock .cat-elem .title{
+    position: relative;
+    top: 0;
+    width: auto;
+    display: block;
+    font-size: 28px;
+    font-family: display_4_r;
+    color: #383838;
+}
+.body-cont .catBlock .cat-elem .display{
+    position: relative;
+    display: block;
+    width: 100%;
+    height:100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.body-cont .catBlock .cat-elem .display .cat-bk1{
+    position: absolute;
+    z-index: 10;
+    top:0; bottom: 0; left: calc(50% - 35px); right: calc(50% - 35px);
+    border: solid 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .display .cat-bk2{
+    position: absolute;
+    z-index: 9;
+    top:10px; bottom: 10px; left: calc(50% - 35px - 30px); right: calc(50% + 35px - 30px);
+    border: solid 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .display .cat-bk3{
+    position: absolute;
+    z-index: 9;
+    top:10px; bottom: 10px; left: calc(50% + 35px - 30px); right: calc(50% - 35px - 30px);
+    border: solid 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .display .cat-bk4{
+    position: absolute;
+    z-index: 8;
+    top:20px; bottom: 20px; left: calc(50% - 35px - 30px - 25px); right: calc(50% + 35px + 30px - 25px);
+    border: solid 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .display .cat-bk5{
+    position: absolute;
+    z-index: 8;
+    top:20px; bottom: 20px; left: calc(50% + 35px + 30px - 25px); right: calc(50% - 35px - 30px - 25px);
+    border: solid 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .more{
+    position: absolute;
+    bottom: 1px; right: 5px;
+    font-size: 12px;
+    color: #FF8930;
+}
+.body-cont .catBlock .cat-elem .dtxt{
+    position: relative;
+    display: block;
+    width: auto;
+    height: 300px;
+    text-align: left;
+    overflow: hidden;
+}
+.body-cont .catBlock .cat-elem .dtxt .dtxt-elem{
+    margin-right: 25px;
+    margin-left: 25px;
+    position: relative;
+    display: block;
+    width: auto;
+    padding-top: 12px;
+    text-decoration: none;
+    color:#383838;
+    font-size: 14px;
+    font-family: display_4_r;
+}
+.body-cont .catBlock .cat-elem .dtxt .dtxt-elem::after{
+    content: "";
+    margin-top: 6px;
+    margin-bottom: 6px;
+    position: relative;
+    display: block;
+    width: auto; height: 1px;
+    border-bottom: dashed 1px #dedede;
+}
+.body-cont .catBlock .cat-elem .dtxt .dtxt-elem:hover{
+    color: #FF8930;
+}
+
+@media only screen  and (max-width: 1000px) {
+    .body-cont .paraBox .pB-elem{
+        position: relative;
+        display: block;
+        margin:5px; 
+        width: auto; height: 300px;
+        margin-bottom: 30px;
+    }
+    .body-cont .paraBox .lnebrk{
+        display: none;
+    }
+    .body-cont .catBlock .cat-elem{
+        position: relative;
+        display: block;
+        width: auto; height:auto;
+        text-align: center;
+        margin-top: 45px;
+    }
+    .body-cont .catBlock .lnebrk{
+        display: none;
+    }
+    .body-cont .catBlock .cat-elem .dtxt{
+        height: auto;
+    }
+    .body-cont .catBlock .cat-elem .more{
+        bottom: -15px;
+    }
+}
+@media only screen  and (min-width : 1000px){
+    .body-cont .paraBox .pB-elem{
+        position: relative;
+        display: inline-block;
+        vertical-align:top;
+        margin:5px; 
+        width: 310px;
+        height: 300px;
+        margin-bottom: 30px;
+    }
+    .body-cont .paraBox .lnebrk{
+        position: relative;
+        display: inline-block;
+        width: 1px;
+        height:300px;
+        vertical-align:top;
+        background: #dedede;
+        box-shadow: inset 0px 3px 3px rgba(255, 255,255,0.5);
+    }
+    
+    .body-cont .catBlock .cat-elem{
+        position: relative;
+        display: inline-block; vertical-align: top;
+        width: 230px; height:100%;
+        margin-left: 2px; margin-right: 2px;
+        text-align: center;
+    }
+    
+    .body-cont .catBlock .lnebrk{
+        position: relative;
+        display: inline-block;
+        width: 1px;
+        height:500px;
+        vertical-align:top;
+        background: #dedede;
+        box-shadow: inset 0px 3px 3px rgba(255, 255,255,0.5);
+        
+    }
+    .body-cont .catBlock .cat-elem .dtxt{
+        height: 300px;
+    }
+}

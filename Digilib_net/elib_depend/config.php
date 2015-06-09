@@ -18,7 +18,7 @@
 
 //=============php confing						
     $db_CHARSET= "utf8";
-    $db_htmlBASE = "http://localhost/Digilib_net/";
+    $db_htmlBASE = "http://192.168.1.18/Digilib_net/";
     $developer_mode=1;		
     $prt_dev=0;
     define(_Ds_, "/");

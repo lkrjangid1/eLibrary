@@ -8,7 +8,7 @@
  */
 ?>
 <div class="flyer">
-    <a href="http://www.bbpsgr.edu.in/">
+    <a href="http://www.bbpsgr.edu.in/"  target="_blank">
         <span class="bbpsHeadlogo logo-off-bbps"></span>
         <span class="bbpsHeadtext">Bal Bharati Public School Ganga Ram Hospital Marg</span>
     </a>
@@ -31,27 +31,27 @@
 <div class="Navibar">
     <div class="smallctrl"></div>
     <div class="main " id="Navibar-Slide-List">
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Home/home.php" target="_top">
             <span class="icon"></span> 
             <span class="text">Home</span> 
         </a>
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Elib/elib.php" target="_top">
             <span class="icon"></span> 
             <span class="text">Books</span> 
         </a>
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Studyzone/study_home.php" target="_top">
             <span class="icon"></span> 
             <span class="text">Studyzone</span> 
         </a>
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Blogs/blog_home.php" target="_top">
             <span class="icon"></span> 
             <span class="text">Blogs</span> 
         </a>
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Guest/guest.php" target="_top">
             <span class="icon"></span> 
             <span class="text">Guestbook</span> 
         </a>
-        <a class="navi-elem" href="#">
+        <a class="navi-elem" href="elib_bin/Aboutus/about.php" target="_top">
             <span class="icon"></span> 
             <span class="text">AboutUs</span> 
         </a>
