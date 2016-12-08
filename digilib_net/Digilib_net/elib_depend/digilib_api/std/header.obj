@@ -1,0 +1,193 @@
+<?php
+/*header.obj
+========================================
+Designed and Developed by Sal64dd
+contact: sal.uncd@gmail.com
+========================================
+*/
+global $std;
+echo '<div class="flyer"><a href="'.$std['header']['flyer']['link'].'"  target="_blank"><span class="bbpsHeadlogo"></span><span class="bbpsHeadtext">'.$std['header']['flyer']['text'].'</span></a></div><div class="header"><div class="main"><div class="Ausi"><span class="headlog"></span><span class="heada">'.$std['header']['head']['texta'].'</span><span class="headb">'.$std['header']['head']['textb'].'</span></div><div class="Rrox"><form id="srch-form-header-1" class="Search-form" action="elib_bin/Search/search.php" method="get"><input class="Search-input" type="search" value="'.$std['header']['src']['text'].'" name="q"><input class="Search-submit"  type="submit" value=""><div class="Search-submit-image" onclick="getElementById(\'srch-form-header-1\').submit()"></div></form></div></div></div>
+<style>
+.flyer{
+    position: relative;
+    top:0; left:0;
+    width: 100%;
+    display: block;
+    background: '.$std['header']['flyer']['bgcolor'].';
+    text-align: center;
+    border-bottom: solid 4px '.$std['header']['flyer']['bordercolor'].';
+    box-shadow: 0px 3px 6px rgba(100,100,100,0.5);
+    z-index: 100;
+}
+.flyer a{
+    display: inline-block;
+    text-decoration: none;
+    margin:8px;
+    
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.flyer a .bbpsHeadtext{
+    color: '.$std['header']['flyer']['textcolor'].';
+    font-family: '.$std['header']['flyer']['font'].';
+    font-size: '.$std['header']['flyer']['textsize'].';
+    letter-spacing: 6px;
+}
+.flyer a .bbpsHeadlogo{
+    position: relative;
+    bottom:-4px;
+    display: inline-block;
+    width: 20px; height:20px;
+    background: url(elib_depend/graphics/interface_graphics/icons/logos/'.$std['header']['flyer']['logo'].') center no-repeat;
+    background-size: contain;
+}
+.logo-off-bbps{
+    background: url(elib_depend/graphics/interface_graphics/icons/logos/offbbpslogo_white.png) center no-repeat;
+    background-size: contain;
+}
+.logo-off-bbps-black{
+    background: url(elib_depend/graphics/interface_graphics/icons/logos/offbbpslogo_black.png) center no-repeat;
+    background-size: contain;
+}
+
+.header{
+    position: relative;
+    top:0; left:0;
+    width: 100%;
+    display: block;
+    background: '.$std['header']['main']['bgcolor'].';
+    z-index: 90;
+    text-align: center;
+    overflow: hidden;
+}
+.header .main{
+    position: relative;
+    width: 100%; height:35px;
+    margin-top: 30px; margin-bottom: 30px;
+    display: inline-block;
+}
+.header .main .Ausi{
+    position: absolute;
+    left:0; top:-10px; bottom:-10px;
+    display: inline-block;
+    
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    cursor: pointer;
+}
+.header .headlog{
+    position: relative;
+    display: inline-block;
+    width:50px; height:50px;margin-right:10px;
+}
+.header .headlog:before{
+    content: "";
+    position: absolute;
+    top:-40px;bottom:-50px;right:0;left:-50px;
+    background: url(elib_depend/graphics/interface_graphics/icons/logos/'.$std['header']['head']['logo'].') left no-repeat;
+    background-size: contain;
+}
+
+.header .main .Ausi .heada{
+    color: '.$std['header']['head']['textcolora'].';
+    font-family: '.$std['header']['head']['fonta'].';
+    font-size: '.$std['header']['head']['sizea'].';
+}
+.header .main .Ausi .headb{
+    color: '.$std['header']['head']['textcolorb'].';
+    font-family: '.$std['header']['head']['fontb'].';
+    font-size: '.$std['header']['head']['sizeb'].';
+}
+.header .main .Rrox{
+    display: inline-block;
+    position: absolute;
+    width: 250px; height: 35px;
+    right: 0;
+}
+.header .main .Rrox .Search-form{
+    margin: 0; overflow:hidden;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: solid 1px '.$std['header']['src']['bordercolor'].';
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px 1px '.$std['header']['src']['shadowcolor'].';
+    text-align:left;
+}
+.header .main .Rrox .Search-form:hover{
+	border: solid 1px '.$std['header']['src']['hovercolor'].';
+	box-shadow: 0px 0px 5px 1px '.$std['header']['src']['hovercolor'].';
+}
+.header .main .Rrox .Search-form:hover .Search-submit{
+	background: '.$std['header']['src']['hovercolor'].';
+}
+.header .main .Rrox .Search-form .Search-input{
+    border: none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+    margin: 0;
+    outline: none;
+    position: relative; display: inline-block;
+    top: 0; left: 0; width: calc(100% - 30px);
+    padding-left: 3px; padding-right: 3px;
+    padding-top: 8px; padding-bottom:8px;
+    z-index: 1;
+    background: #ffffff;
+    color: '.$std['header']['src']['textcolor'].';
+    font-size: 12px;
+    font-family: '.$std['header']['src']['textfont'].';
+}
+@-moz-document url-prefix() {
+.header .main .Rrox .Search-form .Search-input {
+        padding-left: 3px; padding-right: 3px;
+        padding-top: 10px; padding-bottom:10px;
+    }
+}
+.header .main .Rrox .Search-form .Search-submit{
+    border: none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    appearance:none;
+    margin: 0; outline: none;
+    
+    position: absolute;
+    right: 0; bottom: 0; top: 0;
+    width: 30px;
+    z-index: 2;
+    background: '.$std['header']['src']['bordercolor'].';
+}
+.header .main .Rrox .Search-form .Search-submit-image{
+    background-image: url(elib_depend/graphics/interface_graphics/icons/white/serchgrey.png);
+    background-position:-2px 0px;
+    background-size: 38px 38px;
+    background-repeat: no-repeat;
+    
+    position: absolute;
+    right: 0; bottom: 0; top: 0;
+    width: 30px;
+    z-index: 2;
+    
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    cursor: pointer;
+}
+</style>
+';
+
+?>

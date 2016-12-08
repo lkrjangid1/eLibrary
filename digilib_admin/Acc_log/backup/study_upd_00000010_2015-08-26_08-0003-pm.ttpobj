@@ -1,0 +1,130 @@
+
+            function prt_studyNCERT(){
+                echo '<style>.body-cont .sidebar form:nth-of-type(1)
+                {background: #fff;box-shadow: 0px 0px 8px rgba(100,100,100,0.1);}
+                </style>';
+                echo '<h1>Ncert Books</h1><hr>';
+    
+            //Class 12 itemBox
+            //settings
+            $study_ncertClass12_itemBox[0][0]="Class XII";//title
+            $study_ncertClass12_itemBox[0][1]=8;//Count of items inside
+            $study_ncertClass12_itemBox[0][2]=1;//size
+            $study_ncertClass12_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+            $study_ncertClass12_itemBox[0][4]="#";//viewmore link
+            $study_ncertClass12_itemBox[0][5]=0;//viewmore link
+                <!------------>
+                $study_ncertClass12_itemBox[1][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[1][1]="";
+                $study_ncertClass12_itemBox[1][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[1][3]="";
+                $study_ncertClass12_itemBox[1][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[2][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[2][1]="";
+                $study_ncertClass12_itemBox[2][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[2][3]="";
+                $study_ncertClass12_itemBox[2][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[3][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[3][1]="";
+                $study_ncertClass12_itemBox[3][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[3][3]="";
+                $study_ncertClass12_itemBox[3][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[4][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[4][1]="";
+                $study_ncertClass12_itemBox[4][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[4][3]="";
+                $study_ncertClass12_itemBox[4][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[5][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[5][1]="";
+                $study_ncertClass12_itemBox[5][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[5][3]="";
+                $study_ncertClass12_itemBox[5][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[6][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[6][1]="";
+                $study_ncertClass12_itemBox[6][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[6][3]="";
+                $study_ncertClass12_itemBox[6][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[7][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[7][1]="";
+                $study_ncertClass12_itemBox[7][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[7][3]="";
+                $study_ncertClass12_itemBox[7][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+                <!------------>
+                $study_ncertClass12_itemBox[8][0]=Mathematics Part 1 Class XII;
+                $study_ncertClass12_itemBox[8][1]="";
+                $study_ncertClass12_itemBox[8][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000001;
+                $study_ncertClass12_itemBox[8][3]="";
+                $study_ncertClass12_itemBox[8][4]="elib_database/database_study/cover/00000001.jpg";
+                <!------------>
+                
+            //Class 11 itemBox
+            //settings
+            $study_ncertClass11_itemBox[0][0]="Class XI";//title
+            $study_ncertClass11_itemBox[0][1]=0;//Count of items inside
+            $study_ncertClass11_itemBox[0][2]=1;//size
+            $study_ncertClass11_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+            $study_ncertClass11_itemBox[0][4]="#";//viewmore link
+            $study_ncertClass11_itemBox[0][5]=0;//viewmore link
+            //Class 10 itemBox
+            //settings
+            $study_ncertClass10_itemBox[0][0]="Class X";//title
+            $study_ncertClass10_itemBox[0][1]=0;//Count of items inside
+            $study_ncertClass10_itemBox[0][2]=1;//size
+            $study_ncertClass10_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+            $study_ncertClass10_itemBox[0][4]="#";//viewmore link
+            $study_ncertClass10_itemBox[0][5]=0;//viewmore link
+            //Class 9 itemBox
+            //settings
+            $study_ncertClass9_itemBox[0][0]="Class IX";//title
+            $study_ncertClass9_itemBox[0][1]=1;//Count of items inside
+            $study_ncertClass9_itemBox[0][2]=1;//size
+            $study_ncertClass9_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+            $study_ncertClass9_itemBox[0][4]="#";//viewmore link
+            $study_ncertClass9_itemBox[0][5]=0;//viewmore link
+                <!------------>
+                $study_ncertClass10_itemBox[1][0]=Sal;
+                $study_ncertClass10_itemBox[1][1]="";
+                $study_ncertClass10_itemBox[1][2]="elib_bin/Studyzone/NcertBook.php?ncBook=00000010;
+                $study_ncertClass10_itemBox[1][3]="";
+                $study_ncertClass10_itemBox[1][4]="elib_database/database_study/cover/00000010.jpg";
+                <!------------>
+                
+                echo '<div class="paraBox">';
+                prt_para($study_ncertClass12_itemBox);
+                echo '</div>';
+
+                echo '<div class="paraBox">';
+                prt_para($study_ncertClass11_itemBox);
+                echo '</div>';
+
+                echo '<div class="paraBox">';
+                prt_para($study_ncertClass10_itemBox);
+                echo '</div>';
+
+                echo '<div class="paraBox">';
+                prt_para($study_ncertClass9_itemBox);
+                echo '</div>';
+
+                echo '<hr>';
+                prt_para_css();
+            

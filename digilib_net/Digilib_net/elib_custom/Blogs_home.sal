@@ -1,0 +1,48 @@
+<?php
+// 1. Blogs flyer
+Flyer_Blogs();
+
+// 2. Newsletter CGR
+$Newsletter_cgr[0][0]="Newsletters"; //title
+$Newsletter_cgr[0][1]="newslttr"; //unique id
+$Newsletter_cgr[0][2]=8; //no of items
+$Newsletter_cgr[0][3]="#"; //view more link
+$Newsletter_cgr[0][4]="1"; //size:(1=>full, 2=>1/2, 3=>1/3)
+
+$Newsletter_cgr[1][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[1][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[1][2]="#"; //Blog link
+
+$Newsletter_cgr[2][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[2][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[2][2]="#"; //Blog link
+
+$Newsletter_cgr[3][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[3][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[3][2]="#"; //Blog link
+
+$Newsletter_cgr[4][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[4][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[4][2]="#"; //Blog link
+
+$Newsletter_cgr[5][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[5][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[5][2]="#"; //Blog link
+
+$Newsletter_cgr[6][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[6][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[6][2]="#"; //Blog link
+
+$Newsletter_cgr[7][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[7][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[7][2]="#"; //Blog link
+
+$Newsletter_cgr[8][0]="Hello World, I am a Blog!!!"; //name
+$Newsletter_cgr[8][1]="elib_depend/graphics/page_graphics/example/showcase/showcase_plane_3.jpg"; //img link
+$Newsletter_cgr[8][2]="#"; //Blog link
+
+
+CGR_undertow($Newsletter_cgr);
+
+
+CGR_undertow_css();

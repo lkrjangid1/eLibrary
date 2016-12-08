@@ -1,0 +1,322 @@
+<?php
+function digilib_login(){
+    /*
+        $_POST["email-inp-Logfrm"]
+        $_POST["pass-inp-Logfrm"]
+        $_POST["remain-inp-Logfrm"]
+        $_SESSION["digierror_fxlogin"]
+    */
+    clr_login_frm();
+    
+    //check capatch first if there is any
+    if($_SESSION["std_utry_login_flag"] > 3){
+        if(!isset($_POST["capt-inp-Logfrm"])){
+            return "*Captcha Not Entered.";
+        }
+        elseif(clean_input($_POST["capt-inp-Logfrm"]) == ""){
+            return "*Captcha Not Entered.";
+        }
+        elseif(strcasecmp(" ".clean_input($_POST["capt-inp-Logfrm"]), $_SESSION["capcode"])){
+            return "*Captcha Incorrect";
+        }
+    }
+    
+    if(!($_POST["email-inp-Logfrm"] || 
+       $_POST["pass-inp-Logfrm"]
+      )){
+        return "*All Fields are Required.";
+    }
+    else{
+        $_LgnInp["EmailId"] = clean_input($_POST["email-inp-Logfrm"]);
+
+        if($_LgnInp["EmailId"]!=$_POST["email-inp-Logfrm"] ||
+          !filter_var($_LgnInp["EmailId"], FILTER_VALIDATE_EMAIL)){
+            return "*Invalid Email Address";
+        }
+        else{
+            $db = new mysqli($GLOBALS["db_MYSQL_SERVER"], 
+                $GLOBALS["db_MYSQL_USER"], 
+                $GLOBALS["db_MYSQL_Pass"], 
+                $GLOBALS["db_MYSQL_DB"]
+                );
+
+            if($db->connect_errno > 0){
+                return ('*Unable to connect to database. Try again later!');
+            }
+            else{
+                $sql ='SELECT `pass`, `registered` from `user_student_info` where `email_id`=\''.$_LgnInp["EmailId"].'\';';
+                if(!$result = $db->query($sql)){
+                    return ('*There was an error in the Server. Please try again later.');
+                }
+                elseif($result->num_rows == 0){
+                    return '*The given email id is not registered in our database.';
+                }
+                elseif($result->num_rows > 0){
+                    $dat = $result->fetch_assoc();
+                    if(!$dat['registered']){
+                        return '*Your Account is not activated. Verify your Email Address by clicking the link sent to you by us.';
+                    }
+                    elseif(!(digilib_twister128($_POST["pass-inp-Logfrm"]) == $dat['pass'])){
+                            return '*The email and password combination is incorrect.';
+                    }
+                    else{
+                        //get all user data and set login
+                        $loginQuery = 'SELECT `student_id`, `email_id`, `first_name`, `last_name`, `gender`, `dob`, `notifications`, `is_mod` from `user_student_info` where `email_id`=\''.$_LgnInp["EmailId"].'\';';
+                        if(!$resln = $db->query($loginQuery)){
+                            return ('*There was an error in the Server. Please try again later.');
+                        }
+                        elseif($resln->num_rows == 0){
+                            return '*The given email id is not registered in our database.';
+                        }
+                        else{
+                            
+                            $lgrow= $resln->fetch_assoc();
+                            $_SESSION['Std_dash'] = $lgrow;
+                            $_SESSION["user_login_status"]=1;
+                            
+                            if(isset($_POST["remain-inp-Logfrm"])){
+                                if($_POST["remain-inp-Logfrm"]==1){
+                                    $_SESSION["std_cookie_flag"]=1;
+                                }
+                            }
+                            
+                            echo '<script type="text/javascript"> document.location = "elib_bin/Account/Account.php";</script>';
+                            
+                        }
+                    }
+                    $result->free();
+                }
+                    $db->close();
+            }
+        }
+        
+    }
+    
+}
+function clr_login_frm(){
+    if(!isset($_POST["email-inp-Logfrm"])){$_POST["email-inp-Logfrm"]="";}
+    if(!isset($_POST["pass-inp-Logfrm"])){$_POST["pass-inp-Logfrm"]="";}
+}
+function digilib_signup(){
+    dev("signup func","()");
+/*
+    $_POST["firstName-inp-Signupfrm"]
+    $_POST["lastName-inp-Signupfrm"];
+
+    $_POST["email-inp-Signupfrm"];
+
+    $_POST["pass-inp-Signupfrm"];
+    $_POST["passc-inp-Signupfrm"];
+
+    $_POST["month-inp-Signupfrm"];
+    $_POST["day-inp-Signupfrm"];
+    $_POST["year-inp-Signupfrm"];
+
+    $_POST["gender-inp-Signupfrm"];
+
+    $_POST["capt-inp-Signupfrm"];
+    $_POST["terms-inp-Signupfrm"];
+*/
+    clr_signup_frm();
+
+    if($_POST["firstName-inp-Signupfrm"]=="" || 
+       $_POST["lastName-inp-Signupfrm"]=="" || 
+       $_POST["email-inp-Signupfrm"]=="" ||
+       $_POST["pass-inp-Signupfrm"]=="" ||
+       $_POST["passc-inp-Signupfrm"]=="" ||
+       $_POST["month-inp-Signupfrm"]=="" ||
+       $_POST["day-inp-Signupfrm"]=="" ||
+       $_POST["year-inp-Signupfrm"]=="" || 
+       $_POST["capt-inp-Signupfrm"]=="" ||
+       $_POST["gender-inp-Signupfrm"]=="" ||
+       $_POST["terms-inp-Signupfrm"]==""
+      ){
+        return "*All Fields are Required.";
+    }
+    else{
+        //all fields are filled
+        //now lets check each 1-by-1
+
+        //name
+        $_SignupInp["FirstName"] = clean_input($_POST["firstName-inp-Signupfrm"]);
+        $_SignupInp["LastName"] = clean_input($_POST["lastName-inp-Signupfrm"]);
+
+        if($_SignupInp["FirstName"]!=$_POST["firstName-inp-Signupfrm"] ||
+           $_SignupInp["LastName"]!=$_POST["lastName-inp-Signupfrm"] ||
+           !preg_match("/^[a-zA-Z]*$/",$_SignupInp["FirstName"]) ||
+           !preg_match("/^[a-zA-Z]*$/",$_SignupInp["LastName"])){
+            return "*Only English letters allowed in the 'Name Field'";
+        }else{
+
+        //email
+        $_SignupInp["EmailId"] = clean_input($_POST["email-inp-Signupfrm"]);
+
+        if($_SignupInp["EmailId"]!=$_POST["email-inp-Signupfrm"] ||
+          !filter_var($_SignupInp["EmailId"], FILTER_VALIDATE_EMAIL)){
+            return "*Invalid Email Address";
+        }
+        else{
+            //check if already exists
+            $db = new mysqli($GLOBALS["db_MYSQL_SERVER"], $GLOBALS["db_MYSQL_USER"], $GLOBALS["db_MYSQL_Pass"], $GLOBALS["db_MYSQL_DB"]);
+            if($db->connect_errno > 0){
+                return ('*Unable to connect to database. Try again later!');
+            }
+            $sql ='SELECT `student_id` from `user_student_info` where `email_id`=\''.$_SignupInp["EmailId"].'\';';
+            if(!$result = $db->query($sql)){
+                return ('*There was an error in the Server. Please try again later.');
+            }
+            if($result->num_rows > 0){
+                return ('*Given Email id is already associated with an digilib account.');
+            }
+            else{
+                //email is clear
+                $result->free();
+                $db->close();
+
+                //pass
+                $_SignupInp["Password"] = ($_POST["pass-inp-Signupfrm"]);//clean line was here but now gone
+
+                if($_SignupInp["Password"]!=$_POST["passc-inp-Signupfrm"]){
+                    return "*Password doesn't match.";
+                }
+                else{
+                //dob
+                $_SignupInp["DOB"] = array("month"=>clean_input($_POST["month-inp-Signupfrm"]),
+                                           "day"=>clean_input($_POST["day-inp-Signupfrm"]),
+                                           "year"=>clean_input($_POST["year-inp-Signupfrm"]));
+                if(!checkdate($_SignupInp["DOB"]["month"], $_SignupInp["DOB"]["day"],$_SignupInp["DOB"]["year"]) ||
+                   $_SignupInp["DOB"]["month"] != $_POST["month-inp-Signupfrm"] ||
+                   $_SignupInp["DOB"]["day"] != $_POST["day-inp-Signupfrm"] ||
+                   $_SignupInp["DOB"]["year"] != $_POST["year-inp-Signupfrm"]){
+                    return "*Invalid Date entry.";
+                }
+                    else{         
+
+                //gender
+                $_SignupInp["Gender"] = clean_input($_POST["gender-inp-Signupfrm"]);
+                if(!($_SignupInp["Gender"]=="Male" || $_SignupInp["Gender"]=="Female" || $_SignupInp["Gender"]=="Other")){
+                    return "*Invalid Gender entry.";
+                }
+                else{
+                    switch($_SignupInp["Gender"]){
+                        case "Male":$_SignupInp["Gender"]="1";break;
+                        case "Female":$_SignupInp["Gender"]="2";break;
+                        case "Other":$_SignupInp["Gender"]="3";break;
+                    }
+                //cap
+                $_SignupInp["Cap"] = clean_input($_POST["capt-inp-Signupfrm"]);
+                if($_SignupInp["Cap"] != $_POST["capt-inp-Signupfrm"]){
+                    echo "*Invalid Captcha entry.";
+                }
+                elseif(strcasecmp(" ".$_SignupInp["Cap"], $_SESSION["capcode"])){
+                    echo "*Incorrect Captcha code. Try again!";
+                }
+                else{
+                //terms
+                $_SignupInp["Terms"] = clean_input($_POST["terms-inp-Signupfrm"]);
+                if($_SignupInp["Terms"]!=$_POST["terms-inp-Signupfrm"] || $_SignupInp["Terms"]!="1"){
+                    echo "*You Have to agree Terms of Service and Privacy Policy of the website in order to proceed.";
+                }
+                else{
+                //everything is correct
+                //show the green light
+                
+                    $sql2 ='
+                    INSERT INTO `user_student_info` 
+                    (email_id, pass, first_name, last_name, gender, dob, notifications, history, is_mod, registered) 
+                    VALUES (\''.$_SignupInp["EmailId"].'\', \''.digilib_twister128($_SignupInp["Password"]).'\', \''.$_SignupInp["FirstName"].'\', \''.$_SignupInp["LastName"].'\', \''.$_SignupInp["Gender"].'\', \''.$_SignupInp["DOB"]["year"]."-".$_SignupInp["DOB"]["month"]."-".$_SignupInp["DOB"]["day"].'\', \'Welcome to BBPS DigitalLibrary|\', \'Joined Digilib on '.date("l Y/m/d").' at '.date("h:i:sa").'|\', \'0\', \'1\');';
+                        
+                    $sql2 = mysql_escape_string($sql2);
+                    //insert into unregis table and send verfiy email
+                    $email_id = $_SignupInp["EmailId"];
+                    $serialt = hash("ripemd128",bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)).$email_id);
+                    $sql3[1][0] = "INSERT INTO `user_passreset_temp` (onetime_serial, sql_data) VALUES ('$serialt' ,'$sql2' );";
+                    $sql3[0] = 1; 
+                    dev("temp_Sql", $sql3[1][0]);
+                        
+                    $insertResult = simonsays($sql3);
+                    
+                    if($insertResult[0][0]){
+                        die("Sorry, We can't register right now, Please try again later.");
+                    }
+                    $link = "http://".$_SERVER['HTTP_HOST']."/digilib_net/Digilib_net/elib_bin/Account/mail.php?DIVIJ=".$serialt;
+                    $dlink = "http://".$_SERVER['HTTP_HOST']."/digilib_net/Digilib_net/elib_bin/Account/dmail.php?DIVIJ=".$serialt;
+                    
+                    simonsends($_SignupInp["FirstName"].' '.$_SignupInp["LastName"], $email_id ,$serialt, $link, $dlink);
+                    echo 'Please Verify your Email, by clicking the link sent to you, to complete the Registration process.';
+                    
+                return 1;
+
+}}}}}}}}}}
+function create_cookie(){
+    $token = hash("ripemd128",bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)));
+    $sql[0] = 1;
+    $sql[1][0]="UPDATE `user_student_info` SET cookie_hash='$token' WHERE student_id='".$_SESSION['Std_dash']['student_id']."'";
+    $ret = simonsays($sql);
+    $cookie_value = $_SESSION['Std_dash']['student_id']."_".$token;
+    setcookie($GLOBALS["UserLoginCookie"] , $cookie_value, time() + (86400 * 30), '/', $_SERVER['SERVER_NAME'] ); 
+    // 86400 = 1 day
+}
+function log_cookie(){
+    dev("","");
+    dev("log_cookie","()");
+if(isset($_COOKIE[$GLOBALS["UserLoginCookie"]])){
+    dev("cookie detect","1");
+    $cookie_value = $_COOKIE[$GLOBALS["UserLoginCookie"]];
+    $cookie_arr = explode("_", $cookie_value);
+    $token = $cookie_arr[1];
+    $stud_id = $cookie_arr[0];
+    dev("cookie detect","2");
+    if($token && $stud_id){
+$db = new mysqli($GLOBALS["db_MYSQL_SERVER"], 
+    $GLOBALS["db_MYSQL_USER"], 
+    $GLOBALS["db_MYSQL_Pass"], 
+    $GLOBALS["db_MYSQL_DB"]
+    );
+    
+if($db->connect_errno > 0){
+    dev("error","can't connect to database");
+}
+else{
+    $sql ='SELECT `cookie_hash` from `user_student_info` where `student_id`=\''.$stud_id.'\';';
+    if(!$result = $db->query($sql)){
+        dev("error","can't connect to SQL");
+    }
+    elseif($result->num_rows == 0){
+        dev("error","can't get any match");
+        
+    }
+    elseif($result->num_rows > 0){
+        $dat = $result->fetch_assoc();
+        if($token == $dat['cookie_hash']){
+            //get all user data and set login
+            $loginQuery = 'SELECT `student_id`, `email_id`, `first_name`, `last_name`, `gender`, `dob`, `notifications`, `is_mod` from `user_student_info` where `student_id`=\''.$stud_id.'\';';
+            if(!$resln = $db->query($loginQuery)){
+                dev("error","can't process login query");
+                
+            }
+            elseif($resln->num_rows == 0){
+                dev("error","can't get any match");
+                
+            }
+            else{
+
+                $lgrow= $resln->fetch_assoc();
+                $_SESSION['Std_dash'] = $lgrow;
+                $_SESSION["user_login_status"]=1;
+                
+                echo '<script type="text/javascript"> document.location = "elib_bin/Account/Account.php";</script>';
+            }
+        }
+        $result->free();
+    }
+        $db->close();
+}
+}   
+}
+}
+function delete_cookie(){
+    setcookie($GLOBALS["UserLoginCookie"], "_", time() - 3600 , '/', $_SERVER['SERVER_NAME'] );
+}
+?>
+    

@@ -1,0 +1,107 @@
+.body-cont .paraBox{
+    position: relative; left: 0; top: 0;
+    width: auto; height:auto;
+    text-align: center;
+}
+.body-cont .paraBox .pB-elem{
+    position: relative;
+    display: inline-block;
+    vertical-align:top;
+    margin:5px; 
+    width: 300px;
+    height: 300px;
+    margin-bottom: 30px;
+    text-align:left;
+}
+.body-cont .paraBox .lnebrk{
+    position: relative;
+    display: inline-block;
+    width: 1px;
+    height:300px;
+    vertical-align:top;
+    background: #dedede;
+    box-shadow: inset 0px 3px 3px rgba(255, 255,255,0.5);
+}
+.body-cont .paraBox .pB-elem .title{
+    position: relative;
+    top: 0;
+    width: auto;
+    display: block;
+    font-size: 28px;
+    font-family: display_4_r;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .title::after{
+    content: "";
+    position: relative;
+    display: block;
+    width: auto; height: 5px;
+    margin-top:5px; margin-bottom:5px;
+    background: #3EC6EF;
+    box-shadow: inset 1px 1px 1px rgba(100,100,100,0.3);
+}
+.body-cont .paraBox .pB-elem .more{
+    position: absolute;
+    bottom: -15px; right: 5px;
+    font-size: 12px;
+    color: #FF8930;
+}
+.body-cont .paraBox .pB-elem .list{
+    position: relative;
+    display: block;
+    top: 0; left: 0;
+    width: auto;
+    height: 250px;
+    overflow-y: scroll; overflow-x: hidden;
+}
+.body-cont .paraBox .pB-elem .list .list-elem{
+    position: relative;
+    display: block;
+    width: auto;
+    padding-top:10px; height:100px;
+    padding-left:10px;
+    padding-right:10px;
+    text-decoration: none;
+    border-bottom: solid 1px #dedede;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .list .list-elem:last-of-type{
+    border-bottom: none;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .image{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px; height:80px;
+    border: solid 1px #dedede;
+    background: url(../../elib_depend/graphics/mics_graphics/bk_cover_1.jpeg) center no-repeat;
+    background-size: cover;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .txt{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    width: auto; height: auto;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .tit{
+    position: relative;
+    display: block;
+    margin-left: 5px;
+    font-size: 20px;
+    font-family: class_2_r;
+    color: #383838;
+}
+.body-cont .paraBox .pB-elem .list .list-elem .auth{
+    position: relative;
+    display: block;
+    margin-left: 5px;
+    font-size: 16px;
+    font-family: class_2_r;
+    color: #686868;
+}
+.body-cont .paraBox .pB-elem .list .list-elem:hover .txt .tit{
+    color: #FF8930;
+    text-decoration: underline;
+    text-shadow: 0px 1px 5px rgba(100,100,100,0.1);
+}

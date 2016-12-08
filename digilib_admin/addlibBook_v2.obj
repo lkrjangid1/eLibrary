@@ -1,0 +1,3166 @@
+<?php
+
+//navi
+function dbooks_navi(){
+    echo '      <a href="admin_Acctool.php?navi=1&tab=1" style="display:block">Add Book</a>
+                <a href="admin_Acctool.php?navi=1&tab=2" style="display:block">Change Book</a>
+                <a href="admin_Acctool.php?navi=1&tab=3" style="display:block">Delete Book</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=1&tab=4" style="display:block">Add Author</a>
+                <a href="admin_Acctool.php?navi=1&tab=5" style="display:block">Change Author</a>
+                <a href="admin_Acctool.php?navi=1&tab=6" style="display:block">Delete Author</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=1&tab=7" style="display:block">Add Genre</a>
+                <a href="admin_Acctool.php?navi=1&tab=8" style="display:block">Change Genre</a>
+                <a href="admin_Acctool.php?navi=1&tab=9" style="display:block">Delete Genre</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=1&tab=10" style="display:block">Update site</a>
+            ';
+}
+
+//ctrl
+function dbooks(){
+    
+    if(!isset($_GET["tab"])){
+        $_GET["tab"]=1;
+    } 
+    if($_GET["tab"]==1){
+        //Add book
+        addBook_lbookU();
+    }
+    elseif($_GET["tab"]==2){
+        //change book
+        changeBook_lbookU();
+    }
+    elseif($_GET["tab"]==3){
+        //delete book
+        deleteBook_lbookU();
+    }
+    elseif($_GET["tab"]==4){
+        //Add Author
+        addAuthor_lbookU();
+    }
+    elseif($_GET["tab"]==5){
+        //change Author
+        changeAuthor_lbookU();
+    }
+    elseif($_GET["tab"]==6){
+        //Delete Author
+        deleteAuthor_lbookU();
+    }
+    elseif($_GET["tab"]==7){
+        //Add Genre
+        addGenre_lbookU();
+    }
+    elseif($_GET["tab"]==8){
+        //change Genre
+        changeGenre_lbookU();
+    }
+    elseif($_GET["tab"]==9){
+        //delete Genre
+        deleteGenre_lbookU();
+    }
+    elseif($_GET["tab"]==10){
+        //update book page
+        updatepage_lbookU();
+    }
+    else{
+        //what am I supposed to do here?
+    }
+}
+
+//book
+function addBook_lbookU(){
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>"", "lBku_2"=>"", "lBku_3"=>"", "lBku_4"=>"",
+                    "lBku_5"=>"", "lBku_6"=>0, "lBku_7"=>0, "lBku_8"=>"",
+                    "lBku_9"=>"", "lBku_10"=>"", "lBku_11"=>"", "lBku_12"=>0,
+                    "lBku_13"=>"", "lBku_14"=>"", "lBku_15"=>""
+                );
+    
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:green"><i>Content Successfully Stored!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        dbooks_bookup_form_prt($_lBku);
+        die();  
+    }
+    
+    
+    
+    dbooks_bookup_form_chk($_lBku);
+    
+    dbooks_bookup_form_prt($_lBku);
+}
+function dbooks_bookup_form_prt($_lBku){
+    echo '
+    <form   id="lib_Add_Books_upfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=1" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Book title: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_POST["lBku_1"])?$_POST["lBku_1"]:"").'">
+        </p>
+        
+        <p>* Published(eg: 1952): <input    type="text" 
+                                            name="lBku_2" 
+                                            value="'.(isset($_POST["lBku_2"])?$_POST["lBku_2"]:"").'">
+        </p>
+        
+        <p>Rating(0-10): <input type="text" 
+                                name="lBku_3" 
+                                value="'.(isset($_POST["lBku_3"])?$_POST["lBku_3"]:"").'">
+        </p>
+        
+        <p>Chapters: <input type="text" 
+                            name="lBku_4" 
+                            value="'.(isset($_POST["lBku_4"])?$_POST["lBku_4"]:"").'">
+        </p>
+        
+        <p>Pages: <input    type="text" 
+                            name="lBku_5" 
+                            value="'.(isset($_POST["lBku_5"])?$_POST["lBku_5"]:"").'">
+        </p>
+        
+        <p>Is Available as Download: <input type="checkbox" 
+                                            value="1" 
+                                            name="lBku_6" 
+                                            '.(isset($_POST["lBku_6"])?($_POST["lBku_6"]==1?'checked':''):'').'>
+        </p>
+        
+        <p>Age Restrict(+16 only): <input   type="checkbox" 
+                                            value="1" 
+                                            name="lBku_7" 
+                                            '.(isset($_POST["lBku_7"])?($_POST["lBku_7"]==1?'checked':''):'').' >
+        </p>
+        
+        <p>Download link: <input    type="text" 
+                                    name="lBku_8" 
+                                    value="'.(isset($_POST["lBku_8"])?$_POST["lBku_8"]:"").'">
+        </p>
+        
+        
+        <p>Quote from Book(Will be highlighted on the Books Page): 
+                    <input  type="text" 
+                            name="lBku_9" 
+                            value=\''.e_sql(isset($_POST["lBku_9"])?$_POST["lBku_9"]:"").'\'>
+        </p>
+        
+        <p>Summery/Description:<br>
+                        <textarea   id="lBku_10_txtarea" 
+                                    name="lBku_10">
+                        </textarea>
+        
+        <script>
+            document.getElementById("lBku_10_txtarea").value = \''.e_sql(isset($_POST["lBku_10"])?$_POST["lBku_10"]:"").'\';
+        </script>
+
+        </p>
+        
+        <p>Charachters in the Book(helps in searches):<br>
+            <p style="white-space:nowrap">
+                E.g.: <pre >Oliver Twist, A, B</pre>
+            </p>
+            
+                        <textarea   id="lBku_11_txtarea" 
+                                    name="lBku_11">
+                        </textarea>
+                        
+        <script>
+            document.getElementById("lBku_11_txtarea").value = \''.e_sql(isset($_POST["lBku_11"])?$_POST["lBku_11"]:"").'\';
+        </script>
+        
+        </p>
+        
+        <p>Book Cover(less than 300x400, 75kb, jpg): 
+                            <input  type="file" 
+                                    name="lBku_12">
+        </p>
+        
+        <br>';
+    
+    $sql1 = array(2,array("SELECT `author_id`, `author_name`    FROM `author_info`;",
+                          "SELECT `genre_id`, `genre`           FROM `genre_info`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die( 'can\'t get author/genre list. Error:'.$ret1[0][1] );
+    }
+    echo '  <div class="authors" style="width:400px; 
+                                    height:600px;
+                                    border: solid 1px #ddd; 
+                                    display: inline-block; 
+                                    vertical-align:top;
+                                    position:relative;
+                                    padding:0;">
+        
+            <p>* Authors(atleast one)[TOTAL=>'.$ret1[1][0]->num_rows.']:</p>
+            <hr>
+            <ul style=" width:calc(100% - 20px);
+                        height:calc(100% - 51px);
+                        position:relative;
+                        overflow:scroll;
+                        padding:0;
+                        margin:0;
+                        padding-left:20px;
+                        top:-9px">';
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<li>
+            <input type="checkbox" value="'.$row1["author_id"].'" class="lbuk_auth_checklist"
+            onclick="lbuk_author_checklist_func('.intval($row1["author_id"]).')" style="display:inline-block">
+            <span style="display: inline-block">'.$row1["author_name"].'</span>
+            </li>';
+    }          
+                        
+    echo '</ul>
+            <input  type="text" 
+                    name="lBku_13" 
+                    id="lBku_13_author_list_arr"
+                    value="">
+        </div>
+        <script>
+            //author checklist set function
+            var lbuk_numAuthor = '.$ret1[1][0]->num_rows.';
+            var lbuk_numAuthor_counter = 0;
+            var lbuk_numAuthor_bulk = [];
+            var lbuk_numAuthor_hulk = document.getElementById("lBku_13_author_list_arr");
+            function lbuk_author_checklist_func(obj){
+            
+                if(lbuk_numAuthor_bulk[obj] == null){
+                    lbuk_numAuthor_bulk[obj] = 0;
+                }
+                
+                if(!lbuk_numAuthor_bulk[obj]){
+                    lbuk_numAuthor_bulk[obj] = 1;
+                    if(lbuk_numAuthor_counter==0){
+                        lbuk_numAuthor_hulk.value +=(obj);
+                    }
+                    else{
+                        lbuk_numAuthor_hulk.value +=(","+obj);
+                    }
+                    lbuk_numAuthor_counter++;
+                }
+                else{
+                    lbuk_numAuthor_bulk[obj] = 0;
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(","+obj,"");
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(obj+",","");
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(obj,"");
+                    --lbuk_numAuthor_counter;
+                    
+                }
+            }
+            </script>
+        
+        
+        <div class="genres"     style=" width:400px; 
+                                        height:600px;
+                                        border: solid 1px #ddd; 
+                                        display: inline-block; 
+                                        vertical-align:top">
+            <p>Genres[TOTAL=>'.$ret1[1][1]->num_rows.']:</p>
+            <hr>
+            
+            <ul style=" width:calc(100% - 20px);
+                        height:calc(100% - 51px);
+                        position:relative;
+                        overflow:scroll;
+                        padding:0;
+                        margin:0;
+                        padding-left:20px;
+                        top:-9px">';
+    for($i=0; $i<$ret1[1][1]->num_rows; $i++){
+        $row1 = $ret1[1][1]->fetch_assoc();
+        echo '<li>
+            <input type="checkbox" value="'.$row1["genre_id"].'" class="lbuk_genre_checklist"
+            onclick="lbuk_genre_checklist_func('.intval($row1["genre_id"]).')" style="display:inline-block">
+            <span style="display: inline-block">'.$row1["genre"].'</span>
+            </li>';
+    }
+            echo '</ul>
+            <input  type="text" 
+                    name="lBku_14" 
+                    id="lBku_14_genre_list_arr"
+                    value="">
+        </div>
+        <script>
+            //genre checklist set function
+            var lbuk_numGenre = '.$ret1[1][1]->num_rows.';
+            var lbuk_numGenre_counter = 0;
+            var lbuk_numGenre_bulk = [];
+            var lbuk_numGenre_hulk = document.getElementById("lBku_14_genre_list_arr");
+            function lbuk_genre_checklist_func(obj){
+            
+                if(lbuk_numGenre_bulk[obj] == null){
+                    lbuk_numGenre_bulk[obj] = 0;
+                }
+                
+                if(!lbuk_numGenre_bulk[obj]){
+                    lbuk_numGenre_bulk[obj] = 1;
+                    if(lbuk_numGenre_counter==0){
+                        lbuk_numGenre_hulk.value +=(obj);
+                    }
+                    else{
+                        lbuk_numGenre_hulk.value +=(","+obj);
+                    }
+                    lbuk_numGenre_counter++;
+                }
+                else{
+                    lbuk_numGenre_bulk[obj] = 0;
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(","+obj,"");
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(obj+",","");
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(obj,"");
+                    --lbuk_numGenre_counter;
+                    
+                }
+            }
+            </script>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>size(in Megabytes): <input   type="text" 
+                                        name="lBku_15" 
+                                        value="'.(isset($_POST["lBku_15"])?$_POST["lBku_15"]:"").'">
+        </p>
+                
+        <br>
+        <br>
+
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_bookup_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // title
+    if(!isset($_POST["lBku_2"])){$_POST["lBku_2"]="";}  // published
+    if(!isset($_POST["lBku_3"])){$_POST["lBku_3"]="";}  // rating
+    if(!isset($_POST["lBku_4"])){$_POST["lBku_4"]="";}  // chapters
+    if(!isset($_POST["lBku_5"])){$_POST["lBku_5"]="";}  // pages
+    if(!isset($_POST["lBku_6"])){$_POST["lBku_6"]=0;}   // is avil to down
+    if(!isset($_POST["lBku_7"])){$_POST["lBku_7"]=0;}   // age restrict
+    if(!isset($_POST["lBku_8"])){$_POST["lBku_8"]="";}  // download link
+    if(!isset($_POST["lBku_9"])){$_POST["lBku_9"]="";}  // quotes
+    if(!isset($_POST["lBku_10"])){$_POST["lBku_10"]="";}// summery
+    if(!isset($_POST["lBku_11"])){$_POST["lBku_11"]="";}// charaters
+                                                        // book cover
+    if(!isset($_POST["lBku_13"])){$_POST["lBku_13"]="";}// authors
+    if(!isset($_POST["lBku_14"])){$_POST["lBku_14"]="";}// genres
+    if(!isset($_POST["lBku_15"])){$_POST["lBku_15"]="";}// size
+   
+    //Form Handling
+    if($_POST["lBku_1"]=="" || $_POST["lBku_2"]=="" || $_POST["lBku_13"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Book title
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Book title.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    // Published year
+    if($_POST["lBku_2"]!=clean_input($_POST["lBku_2"]) || !is_numeric($_POST["lBku_2"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Published field.";
+        return;
+    }
+    elseif(!($_POST["lBku_2"] <= date("Y"))){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid year of publishing field.";
+        return;
+    }
+    $_lBku["lBku_2"] = clean_input($_POST["lBku_2"]);
+    
+    // author list
+    if($_POST["lBku_13"]!=clean_input($_POST["lBku_13"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid author list.";
+        return;
+    }
+    else{
+        $auth_lst = explode(",",clean_input($_POST["lBku_13"]));
+        $_lBku["lBku_13"]['b'] ="";
+        for($i = 0; $i<count($auth_lst); $i++){
+            if(is_numeric($auth_lst[$i])){
+                $_lBku["lBku_13"]['a'][$i]=$auth_lst[$i];
+                $_lBku["lBku_13"]['b'].=$auth_lst[$i];
+                if($i<count($auth_lst)-1){
+                    $_lBku["lBku_13"]['b'].=", ";
+                }
+            }else{
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Invalid author list.";
+                return;
+            }
+        }
+        // check for authors in sql
+        $query[0] = 'SELECT `author_id` FROM `author_info` WHERE `author_id` IN ( ';
+        for($i=0; $i<count($_lBku["lBku_13"]["a"]); $i++){
+            $query[0] .=$_lBku["lBku_13"]["a"][$i];
+            if($i<count($_lBku["lBku_13"]["a"])-1){
+                $query[0] .=", ";
+            }
+        }
+        $query[0] .=");";
+        $sql1 = array(1,array($query[0]));
+        $ret1 = simonsays($sql1);
+        if($ret1[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Can't connect/process sql to get author list. Error: ".$ret1[0][1];
+            return;
+        }
+        $row1 = $ret1[1][0]->num_rows;
+        if($row1!=count($_lBku["lBku_13"]["a"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid author entry in author list";
+            return;
+        }
+    }
+    
+    //rating
+    if($_POST["lBku_3"]!="" && is_numeric($_POST["lBku_3"]) && $_POST["lBku_3"]<=10 
+       && $_POST["lBku_3"]>=0 ){
+        $_lBku["lBku_3"]=clean_input($_POST["lBku_3"]);
+    }
+    elseif($_POST["lBku_3"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Rating field.";
+        return;
+    }
+    
+    //chapters
+    if($_POST["lBku_4"]!="" && is_numeric($_POST["lBku_4"]) && $_POST["lBku_4"]>=0){
+        $_lBku["lBku_4"]=clean_input($_POST["lBku_4"]);
+    }
+    elseif($_POST["lBku_4"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Chapters field.";
+        return;
+    }
+    
+    //pages
+    if($_POST["lBku_5"]!="" && is_numeric($_POST["lBku_5"]) && $_POST["lBku_5"]>=0){
+        $_lBku["lBku_5"]=clean_input($_POST["lBku_5"]);
+    }
+    elseif($_POST["lBku_5"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Pages field.";
+        return;
+    }
+    
+    //is avail to down
+    if($_POST["lBku_6"]=="1"){
+        $_lBku["lBku_6"]="1";
+    }
+    
+    //age restrict
+    if($_POST["lBku_7"]=="1"){
+        $_lBku["lBku_7"]="1";
+    }
+    
+    //download link
+    if($_POST["lBku_8"]!="" && 
+       preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+                  $_POST["lBku_8"])){
+        $_lBku["lBku_8"]=clean_input($_POST["lBku_8"]);
+    }
+    elseif($_POST["lBku_8"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Download link.";
+        return;
+    }
+    elseif($_POST["lBku_8"]=="" && $_lBku["lBku_6"]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="No Download link given.";
+        return;
+    }
+    
+    //size
+    if($_POST["lBku_15"]!="" && preg_match('#\d+(?:\.\d{1,2})?#',$_POST["lBku_15"])){
+        $_lBku["lBku_15"]=clean_input($_POST["lBku_15"]);
+    }
+    elseif($_POST["lBku_15"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid value in Size field.";
+        return;
+    }
+    elseif($_POST["lBku_15"]=="" && $_lBku["lBku_6"]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="No size given.";
+        return;
+    }
+    
+    //quotes
+    if($_POST["lBku_9"]!="" && $_POST["lBku_9"]==clean_input_l($_POST["lBku_9"]) ){
+        $_lBku["lBku_9"]=clean_input_l($_POST["lBku_9"]);
+    }
+    elseif($_POST["lBku_9"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid quotes field.";
+        return;
+    }
+    
+    //summery
+    if($_POST["lBku_10"]!="" && $_POST["lBku_10"]==clean_input_l($_POST["lBku_10"]) ){
+        $_lBku["lBku_10"]=clean_input_l($_POST["lBku_10"]);
+    }
+    elseif($_POST["lBku_10"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid summery field.";
+        return;
+    }
+    
+    //charaters
+    if($_POST["lBku_11"]!="" && $_POST["lBku_11"]==clean_input_l($_POST["lBku_11"]) ){
+        $_lBku["lBku_11"]=clean_input_l($_POST["lBku_11"]);
+    }
+    elseif($_POST["lBku_11"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid summery field.";
+        return;
+    }
+    
+    // genre list
+    if($_POST["lBku_14"]!=""){
+        if($_POST["lBku_14"]!=clean_input($_POST["lBku_14"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid genre list field.";
+            return;
+        }
+        else{
+            $auth_lst = explode(",",clean_input($_POST["lBku_14"]));
+            $_lBku["lBku_14"]['b'] ="";
+            for($i = 0; $i<count($auth_lst); $i++){
+                if(is_numeric($auth_lst[$i])){
+                    $_lBku["lBku_14"]['a'][$i]=$auth_lst[$i];
+                    $_lBku["lBku_14"]['b'].=$auth_lst[$i];
+                    if($i<count($auth_lst)-1){
+                        $_lBku["lBku_14"]['b'].=", ";
+                    }
+                }else{
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="Invalid genre list.";
+                    return;
+                }
+            }
+            // check for authors in sql
+            $query[1] = 'SELECT `genre_id` FROM `genre_info` WHERE `genre_id` IN ( ';
+            for($i=0; $i<count($_lBku["lBku_14"]["a"]); $i++){
+                $query[1] .=$_lBku["lBku_14"]["a"][$i];
+                if($i<count($_lBku["lBku_14"]["a"])-1){
+                    $query[1] .=", ";
+                }
+            }
+            $query[1] .=");";
+            $sql2 = array(1,array($query[1]));
+            $ret2 = simonsays($sql2);
+            if($ret2[0][0]){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Can't connect/process sql to get genre list. Error: ".$ret2[0][1];
+                return;
+            }
+            $row2 = $ret2[1][0]->num_rows;
+            if($row2!=count($_lBku["lBku_14"]["a"])){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Invalid genre entry in genre list";
+                return;
+            }
+        }
+    }
+   
+    //Bookcover
+    if(isset($_FILES["lBku_12"]["type"])){
+        $ext = "jpg";
+        $temp_loc="temp/temp_nbcs_01/";
+        $upload_exts = end(explode(".", $_FILES["lBku_12"]["name"]));
+        if ($_FILES["lBku_12"]["type"] === "image/jpeg" && 
+            $_FILES["lBku_12"]["size"] <= 76800 && $upload_exts==$ext)
+        {
+            if($_FILES["lBku_12"]["error"] > 0){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="File Upload Error:".$_FILES["lBku_12"]["error"];
+                return;
+            }
+            if (file_exists($temp_loc."LIBRARY_BOOK_COVER".session_id()."jpg")){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="SERVER UNDERWORK-file already exists: RESTART SESSION.";
+                return;
+            }
+            $_lBku["lBku_12"]=1;
+        }
+         elseif($_FILES["lBku_12"]["type"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Image format is invalid.";
+            return;
+         }
+    }
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_bookup_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_bookup_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    INSERT INTO 
+    `lib_book_info`( 
+                    `book_title`, `published`, 
+                    `rating`, `chapters`, `pages`, 
+                    `isAvailDown`, `download_link`, 
+                    `size`, `quote`, `description`, 
+                    `characters`, `img`, `author_list`, 
+                    `genre_list`, `age_restrict`
+                    ) 
+    VALUES  (
+            \''.e_sql($_lBku['lBku_1']).'\',        \''.$_lBku['lBku_2'].'\', 
+            \''.$_lBku['lBku_3'].'\',               \''.$_lBku['lBku_4'].'\', 
+            \''.$_lBku['lBku_5'].'\',               \''.$_lBku['lBku_6'].'\', 
+            \''.e_sql($_lBku['lBku_8']).'\',        \''.$_lBku['lBku_15'].'\',
+            \''.e_sql($_lBku['lBku_9']).'\',        \''.e_sql($_lBku['lBku_10']).'\',
+            \''.e_sql($_lBku['lBku_11']).'\',       \''.$_lBku['lBku_12'].'\',
+            \''.e_sql($_lBku['lBku_13']["b"]).'\',  \''.e_sql($_lBku['lBku_14']["b"]).'\',
+            \''.$_lBku['lBku_7'].'\'
+            );';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY BOOK INSERT QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+    #I('.$_lBku['lBku_12'].')
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lBook.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lBook_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Insert_Syn(lBook_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    $sql2 = array(1,array("SELECT book_id FROM `lib_book_info` 
+                                WHERE book_title='".$_lBku["lBku_1"]."';"));
+    $ret2=simonsays($sql2);
+    if($ret2[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info not added to SQL: contact admin
+                                    error: '.$ret2[0][1];
+            return 1;
+    }
+    
+    $row2 = $ret2[1][0]->fetch_assoc();
+    
+    $_lBku["sql"]["query_author_rel"] = 'INSERT INTO `author_book_rel`(`book_id`, `author_id`, `context`) VALUES ';
+    for($i=0; $i<count($_lBku["lBku_13"]["a"]); $i++){
+        $_lBku["sql"]["query_author_rel"] .= "( '".$row2["book_id"]."', '".$_lBku["lBku_13"]["a"][$i]."', '1')";
+        if($i<count($_lBku["lBku_13"]["a"])-1){
+            $_lBku["sql"]["query_author_rel"] .=", ";
+        }
+    }
+    $_lBku["sql"]["query_genre_rel"] = 'INSERT INTO `genre_book_rel`(`book_id`, `genre_id`) VALUES ';
+    for($i=0; $i<count($_lBku["lBku_14"]["a"]); $i++){
+        $_lBku["sql"]["query_genre_rel"] .= "( '".$row2["book_id"]."', '".$_lBku["lBku_14"]["a"][$i]."' )";
+        if($i<count($_lBku["lBku_14"]["a"])-1){
+            $_lBku["sql"]["query_genre_rel"] .=", ";
+        }
+    }
+    
+    $sql3 = array(2,array($_lBku["sql"]["query_author_rel"], $_lBku["sql"]["query_genre_rel"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1].' Query: '.$_lBku["sql"]["query_genre_rel"];
+            return 1;
+    }
+    
+    //Placing the cover
+    if($_lBku["lBku_12"]==1){
+        $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Books_cover/";
+        move_uploaded_file($_FILES["lBku_12"]["tmp_name"], $nbk_cvrloc.$row2["book_id"].".jpg");
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=1";</script>';
+    return 0;
+}
+
+function changeBook_lbookU(){
+    //Print the book list
+    dbooks_bookch_getbooklist();
+    
+    //Check if uploaded
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:blue"><i>Content Successfully Updated!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        $_lBku = null;
+        dbooks_bookch_getbook($_lBku);
+        dbooks_bookch_form_prt($_lBku);
+        die();  
+    }
+    
+    //Check for a book_id in url 
+    if(!isset($_GET["book_id"])){$_GET["book_id"]="";}
+    if($_GET["book_id"]=="" || !is_numeric($_GET["book_id"])){
+        echo '<-----Select a Book From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_bookch_getbook($_lBku);
+        dbooks_bookch_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_bookch_getbook($_lBku);
+    }
+    dbooks_bookch_form_prt($_lBku);
+}
+function dbooks_bookch_form_prt(&$_lBku){
+    echo '
+
+    <form   id="lib_Add_Books_chfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=2&book_id='.$_GET['book_id'].'" 
+            enctype="multipart/form-data"
+            style="display: inline-block; vertical-align: top; width: calc(100% - 300px)">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Book title: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <p>* Published(eg: 1952): <input    type="text" 
+                                            name="lBku_2" 
+                                            value="'.(isset($_lBku["lBku_2"])?$_lBku["lBku_2"]:"").'">
+        </p>
+        
+        <p>Chapters: <input type="text" 
+                            name="lBku_4" 
+                            value="'.(isset($_lBku["lBku_4"])?$_lBku["lBku_4"]:"").'">
+        </p>
+        
+        <p>Pages: <input    type="text" 
+                            name="lBku_5" 
+                            value="'.(isset($_lBku["lBku_5"])?$_lBku["lBku_5"]:"").'">
+        </p>
+        
+        <p>Is Available as Download: <input type="checkbox" 
+                                            value="1" 
+                                            name="lBku_6" 
+                                            '.(isset($_lBku["lBku_6"])?($_lBku["lBku_6"]==1?'checked':''):'').'>
+        </p>
+        
+        <p>Age Restrict(+16 only): <input   type="checkbox" 
+                                            value="1" 
+                                            name="lBku_7" 
+                                            '.(isset($_lBku["lBku_7"])?($_lBku["lBku_7"]==1?'checked':''):'').' >
+        </p>
+        
+        <p>Download link: <input    type="text" 
+                                    name="lBku_8" 
+                                    value="'.(isset($_lBku["lBku_8"])?$_lBku["lBku_8"]:"").'">
+        </p>
+        
+        
+        <p>Quote from Book(Will be highlighted on the Books Page): 
+                    <input  type="text" 
+                            name="lBku_9" 
+                            value="'.(isset($_lBku["lBku_9"])?$_lBku["lBku_9"]:"").'">
+        </p>
+        
+        <p>Summery/Description:<br>
+                        <textarea   id="lBku_10_txtarea" 
+                                    name="lBku_10">
+                        </textarea>
+        
+        <script>
+            document.getElementById("lBku_10_txtarea").value = \''.(isset($_lBku["lBku_10"])?$_lBku["lBku_10"]:"").'\';
+        </script>
+
+        </p>
+        
+        <p>Charachters in the Book(helps in searches):<br>
+            <p style="white-space:nowrap">
+                E.g.: <pre >Oliver Twist, A, B</pre>
+            </p>
+            
+                        <textarea   id="lBku_11_txtarea" 
+                                    name="lBku_11">
+                        </textarea>
+                        
+        <script>
+            document.getElementById("lBku_11_txtarea").value = "'.(isset($_lBku["lBku_11"])?$_lBku["lBku_11"]:"").'";
+        </script>
+        
+        </p>
+        ';
+    
+    if($_lBku["lBku_12"]==1){
+        echo '
+            <p>
+            <img src="../digilib_net/Digilib_net/elib_database/database_library/Books_cover/';
+            echo $_GET["book_id"].'.jpg">
+            </p>';
+    }
+            
+    echo '<p>Change Book Cover(less than 300x400, 75kb, jpg): 
+                            <input  type="file" 
+                                    name="lBku_12">
+        </p>
+        
+        <br>';
+    
+    $sql1 = array(2,array("SELECT `author_id`, `author_name`    FROM `author_info`;",
+                          "SELECT `genre_id`, `genre`           FROM `genre_info`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die( 'can\'t get author/genre list. Error:'.$ret1[0][1] );
+    }
+    echo '  <div class="authors" style="width:400px; 
+                                    height:600px;
+                                    border: solid 1px #ddd; 
+                                    display: inline-block; 
+                                    vertical-align:top;
+                                    position:relative;
+                                    padding:0;">
+        
+            <p>* Authors(atleast one)[TOTAL=>'.$ret1[1][0]->num_rows.']:</p>
+            <hr>
+            <ul style=" width:calc(100% - 20px);
+                        height:calc(100% - 51px);
+                        position:relative;
+                        overflow:scroll;
+                        padding:0;
+                        margin:0;
+                        padding-left:20px;
+                        top:-9px">';
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<li>
+            <input type="checkbox" id="lbuk_auth_checklist_'.$row1["author_id"].'" 
+            value="'.$row1["author_id"].'" class="lbuk_auth_checklist"
+            onclick="lbuk_author_checklist_func('.intval($row1["author_id"]).')" style="display:inline-block">
+            <span style="display: inline-block">'.$row1["author_name"].'</span>
+            </li>';
+    }          
+                        
+    echo '</ul>
+            <input  type="text" 
+                    name="lBku_13" 
+                    id="lBku_13_author_list_arr"
+                    value="">
+        </div>
+        <script>
+            //author checklist set function
+            var lbuk_numAuthor = '.$ret1[1][0]->num_rows.';
+            var lbuk_numAuthor_counter = 0;
+            var lbuk_numAuthor_bulk = [];
+            var lbuk_numAuthor_hulk = document.getElementById("lBku_13_author_list_arr");
+            function lbuk_author_checklist_func(obj){
+            
+                if(lbuk_numAuthor_bulk[obj] == null){
+                    lbuk_numAuthor_bulk[obj] = 0;
+                }
+                
+                if(!lbuk_numAuthor_bulk[obj]){
+                    lbuk_numAuthor_bulk[obj] = 1;
+                    if(lbuk_numAuthor_counter==0){
+                        lbuk_numAuthor_hulk.value +=(obj);
+                    }
+                    else{
+                        lbuk_numAuthor_hulk.value +=(","+obj);
+                    }
+                    lbuk_numAuthor_counter++;
+                }
+                else{
+                    lbuk_numAuthor_bulk[obj] = 0;
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(","+obj,"");
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(obj+",","");
+                    lbuk_numAuthor_hulk.value = lbuk_numAuthor_hulk.value.replace(obj,"");
+                    --lbuk_numAuthor_counter;
+                    
+                }
+            }';
+            
+    
+            
+    echo '</script>';
+        
+        
+        echo '<div class="genres"     style=" width:400px; 
+                                        height:600px;
+                                        border: solid 1px #ddd; 
+                                        display: inline-block; 
+                                        vertical-align:top">
+            <p>Genres[TOTAL=>'.$ret1[1][1]->num_rows.']:</p>
+            <hr>
+            
+            <ul style=" width:calc(100% - 20px);
+                        height:calc(100% - 51px);
+                        position:relative;
+                        overflow:scroll;
+                        padding:0;
+                        margin:0;
+                        padding-left:20px;
+                        top:-9px">';
+    for($i=0; $i<$ret1[1][1]->num_rows; $i++){
+        $row1 = $ret1[1][1]->fetch_assoc();
+        echo '<li>
+            <input type="checkbox" id="lbuk_genre_checklist_'.$row1["genre_id"].'" value="'.$row1["genre_id"].'" class="lbuk_genre_checklist"
+            onclick="lbuk_genre_checklist_func('.intval($row1["genre_id"]).')" style="display:inline-block">
+            <span style="display: inline-block">'.$row1["genre"].'</span>
+            </li>';
+    }
+            echo '</ul>
+            <input  type="text" 
+                    name="lBku_14" 
+                    id="lBku_14_genre_list_arr"
+                    value="">
+        </div>
+        <script>
+            //genre checklist set function
+            var lbuk_numGenre = '.$ret1[1][1]->num_rows.';
+            var lbuk_numGenre_counter = 0;
+            var lbuk_numGenre_bulk = [];
+            var lbuk_numGenre_hulk = document.getElementById("lBku_14_genre_list_arr");
+            function lbuk_genre_checklist_func(obj){
+            
+                console.log("obj pressed:"+obj);
+                if(lbuk_numGenre_bulk[obj] == null){
+                    lbuk_numGenre_bulk[obj] = 0;
+                }
+                
+                if(lbuk_numGenre_bulk[obj]==0){
+                    lbuk_numGenre_bulk[obj] = 1;
+                    if(lbuk_numGenre_counter==0){
+                        lbuk_numGenre_hulk.value +=(obj);
+                    }
+                    else{
+                        lbuk_numGenre_hulk.value +=(","+obj);
+                    }
+                    lbuk_numGenre_counter++;
+                }
+                else{
+                    lbuk_numGenre_bulk[obj] = 0;
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(","+obj,"");
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(obj+",","");
+                    lbuk_numGenre_hulk.value = lbuk_numGenre_hulk.value.replace(obj,"");
+                    --lbuk_numGenre_counter;
+                    
+                }
+            }';
+    
+    for($i=0; $i<$_lBku["lBku_13"]["c"]; $i++){
+        echo 'document.getElementById("lbuk_auth_checklist_'.$_lBku["lBku_13"]["a"][$i].'").click();';
+    }
+    for($i=0; $i<$_lBku["lBku_14"]["c"]; $i++){
+        echo 'document.getElementById("lbuk_genre_checklist_'.$_lBku["lBku_14"]["a"][$i].'").click();';
+    }
+            
+    echo '</script>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>size(in Megabytes): <input   type="text" 
+                                        name="lBku_15" 
+                                        value="'.(isset($_lBku["lBku_15"])?$_lBku["lBku_15"]:"").'">
+        </p>
+                
+        <br>
+        <br>
+
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_bookch_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // title
+    if(!isset($_POST["lBku_2"])){$_POST["lBku_2"]="";}  // published
+    if(!isset($_POST["lBku_3"])){$_POST["lBku_3"]="";}  // rating
+    if(!isset($_POST["lBku_4"])){$_POST["lBku_4"]="";}  // chapters
+    if(!isset($_POST["lBku_5"])){$_POST["lBku_5"]="";}  // pages
+    if(!isset($_POST["lBku_6"])){$_POST["lBku_6"]=0;}   // is avil to down
+    if(!isset($_POST["lBku_7"])){$_POST["lBku_7"]=0;}   // age restrict
+    if(!isset($_POST["lBku_8"])){$_POST["lBku_8"]="";}  // download link
+    if(!isset($_POST["lBku_9"])){$_POST["lBku_9"]="";}  // quotes
+    if(!isset($_POST["lBku_10"])){$_POST["lBku_10"]="";}// summery
+    if(!isset($_POST["lBku_11"])){$_POST["lBku_11"]="";}// charaters
+                                                        // book cover
+    if(!isset($_POST["lBku_13"])){$_POST["lBku_13"]="";}// authors
+    if(!isset($_POST["lBku_14"])){$_POST["lBku_14"]="";}// genres
+    if(!isset($_POST["lBku_15"])){$_POST["lBku_15"]="";}// size
+    
+    //Form Handling
+    if($_POST["lBku_1"]=="" || $_POST["lBku_2"]=="" || $_POST["lBku_13"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Book title
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Book title.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    // Published year
+    if($_POST["lBku_2"]!=clean_input($_POST["lBku_2"]) || !is_numeric($_POST["lBku_2"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Published field.";
+        return;
+    }
+    elseif(!($_POST["lBku_2"] <= date("Y"))){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid year of publishing field.";
+        return;
+    }
+    $_lBku["lBku_2"] = clean_input($_POST["lBku_2"]);
+    
+    // author list
+    if($_POST["lBku_13"]!=clean_input($_POST["lBku_13"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid author list.";
+        return;
+    }
+    else{
+        $auth_lst = explode(",",clean_input($_POST["lBku_13"]));
+        $_lBku["lBku_13"]['a'] = null;
+        $_lBku["lBku_13"]['b'] ="";
+        for($i = 0; $i<count($auth_lst); $i++){
+            if(is_numeric($auth_lst[$i])){
+                $_lBku["lBku_13"]['a'][$i]=$auth_lst[$i];
+                $_lBku["lBku_13"]['b'].=$auth_lst[$i];
+                if($i<count($auth_lst)-1){
+                    $_lBku["lBku_13"]['b'].=", ";
+                }
+            }else{
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Invalid author list.";
+                return;
+            }
+        }
+        // check for authors in sql
+        $query[0] = 'SELECT `author_id` FROM `author_info` WHERE `author_id` IN ( ';
+        for($i=0; $i<count($_lBku["lBku_13"]["a"]); $i++){
+            $query[0] .=$_lBku["lBku_13"]["a"][$i];
+            if($i<count($_lBku["lBku_13"]["a"])-1){
+                $query[0] .=", ";
+            }
+        }
+        $query[0] .=");";
+        $sql1 = array(1,array($query[0]));
+        $ret1 = simonsays($sql1);
+        if($ret1[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Can't connect/process sql to get author list. Error: ".$ret1[0][1];
+            return;
+        }
+        $row1 = $ret1[1][0]->num_rows;
+        if($row1!=count($_lBku["lBku_13"]["a"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid author entry in author list";
+            return;
+        }
+    }
+    
+    //rating
+    if($_POST["lBku_3"]!="" && is_numeric($_POST["lBku_3"]) && $_POST["lBku_3"]<=10 
+       && $_POST["lBku_3"]>=0 ){
+        $_lBku["lBku_3"]=clean_input($_POST["lBku_3"]);
+    }
+    elseif($_POST["lBku_3"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Rating field.";
+        return;
+    }
+    
+    //chapters
+    if($_POST["lBku_4"]!="" && is_numeric($_POST["lBku_4"]) && $_POST["lBku_4"]>=0){
+        $_lBku["lBku_4"]=clean_input($_POST["lBku_4"]);
+    }
+    elseif($_POST["lBku_4"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Chapters field.";
+        return;
+    }
+    
+    //pages
+    if($_POST["lBku_5"]!="" && is_numeric($_POST["lBku_5"]) && $_POST["lBku_5"]>=0){
+        $_lBku["lBku_5"]=clean_input($_POST["lBku_5"]);
+    }
+    elseif($_POST["lBku_5"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Pages field.";
+        return;
+    }
+    
+    //is avail to down
+    if($_POST["lBku_6"]=="1"){
+        $_lBku["lBku_6"]="1";
+    }
+    
+    //age restrict
+    if($_POST["lBku_7"]=="1"){
+        $_lBku["lBku_7"]="1";
+    }
+    
+    //download link
+    if($_POST["lBku_8"]!="" && 
+       preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+                  $_POST["lBku_8"])){
+        $_lBku["lBku_8"]=clean_input($_POST["lBku_8"]);
+    }
+    elseif($_POST["lBku_8"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Download link.";
+        return;
+    }
+    elseif($_POST["lBku_8"]=="" && $_lBku["lBku_6"]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="No Download link given.";
+        return;
+    }
+    
+    //size
+    if($_POST["lBku_15"]!="" && preg_match('#\d+(?:\.\d{1,2})?#',$_POST["lBku_15"])){
+        $_lBku["lBku_15"]=clean_input($_POST["lBku_15"]);
+    }
+    elseif($_POST["lBku_15"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid value in Size field.";
+        return;
+    }
+    elseif($_POST["lBku_15"]=="" && $_lBku["lBku_6"]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="No size given.";
+        return;
+    }
+    
+    //quotes
+    if($_POST["lBku_9"]!="" && $_POST["lBku_9"]==clean_input_l($_POST["lBku_9"]) ){
+        $_lBku["lBku_9"]=clean_input_l($_POST["lBku_9"]);
+    }
+    elseif($_POST["lBku_9"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid quotes field.";
+        return;
+    }
+    
+    //summery
+    if($_POST["lBku_10"]!="" && $_POST["lBku_10"]==clean_input_l($_POST["lBku_10"]) ){
+        $_lBku["lBku_10"]=clean_input_l($_POST["lBku_10"]);
+    }
+    elseif($_POST["lBku_10"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid summery field.";
+        return;
+    }
+    
+    //charaters
+    if($_POST["lBku_11"]!="" && $_POST["lBku_11"]==clean_input_l($_POST["lBku_11"]) ){
+        $_lBku["lBku_11"]=clean_input_l($_POST["lBku_11"]);
+    }
+    elseif($_POST["lBku_11"]!=""){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid summery field.";
+        return;
+    }
+    
+    // genre list
+    if($_POST["lBku_14"]!=""){
+        if($_POST["lBku_14"]!=clean_input($_POST["lBku_14"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid genre list field.";
+            return;
+        }
+        else{
+            $auth_lst = explode(",",clean_input($_POST["lBku_14"]));
+            $_lBku["lBku_14"]['a'] =null;
+            $_lBku["lBku_14"]['b'] ="";
+            for($i = 0; $i<count($auth_lst); $i++){
+                if(is_numeric($auth_lst[$i])){
+                    $_lBku["lBku_14"]['a'][$i]=$auth_lst[$i];
+                    $_lBku["lBku_14"]['b'].=$auth_lst[$i];
+                    if($i<count($auth_lst)-1){
+                        $_lBku["lBku_14"]['b'].=", ";
+                    }
+                }else{
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="Invalid genre list.";
+                    return;
+                }
+            }
+            // check for authors in sql
+            $query[1] = 'SELECT `genre_id` FROM `genre_info` WHERE `genre_id` IN ( ';
+            for($i=0; $i<count($_lBku["lBku_14"]["a"]); $i++){
+                $query[1] .=$_lBku["lBku_14"]["a"][$i];
+                if($i<count($_lBku["lBku_14"]["a"])-1){
+                    $query[1] .=", ";
+                }
+            }
+            $query[1] .=");";
+            $sql2 = array(1,array($query[1]));
+            $ret2 = simonsays($sql2);
+            if($ret2[0][0]){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Can't connect/process sql to get genre list. Error: ".$ret2[0][1];
+                return;
+            }
+            $row2 = $ret2[1][0]->num_rows;
+            if($row2!=count($_lBku["lBku_14"]["a"])){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Invalid author entry in genre list";
+                return;
+            }
+        }
+    }
+   
+    //Bookcover
+    
+    $_lBku["lBku_12"] = 0;
+    
+    if(isset($_FILES["lBku_12"]["type"])){
+        $ext = "jpg";
+        $temp_loc="temp/temp_nbcs_01/";
+        $upload_exts = end(explode(".", $_FILES["lBku_12"]["name"]));
+        if ($_FILES["lBku_12"]["type"] === "image/jpeg" && 
+            $_FILES["lBku_12"]["size"] <= 76800 && $upload_exts==$ext)
+        {
+            if($_FILES["file"]["error"] > 0){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="File Upload Error:".$_FILES["lBku_12"]["error"];
+                return;
+            }
+            if (file_exists($temp_loc."LIBRARY_BOOK_COVER".session_id()."jpg")){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="SERVER UNDERWORK-file already exists: RESTART SESSION.";
+                return;
+            }
+            $_lBku["lBku_12"]=1;
+        }
+         elseif($_FILES["lBku_12"]["type"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Image format is invalid.";
+            return;
+         }
+    }
+    
+    //checked everything: lets do the action
+    if(dbooks_bookch_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_bookch_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    UPDATE 
+    `lib_book_info`
+    SET 
+    `book_title`=\''.e_sql($_lBku['lBku_1']).'\',
+    `published`=\''.$_lBku['lBku_2'].'\', 
+    `chapters`=\''.$_lBku['lBku_4'].'\', 
+    `pages`=\''.$_lBku['lBku_5'].'\',           
+    `isAvailDown`=\''.$_lBku['lBku_6'].'\', 
+    `download_link`=\''.e_sql($_lBku['lBku_8']).'\', 
+    `size`=\''.$_lBku['lBku_15'].'\', 
+    `quote`=\''.e_sql($_lBku['lBku_9']).'\', 
+    `description`=\''.e_sql($_lBku['lBku_10']).'\', 
+    `characters`=\''.e_sql($_lBku['lBku_11']).'\', 
+    '.($_lBku['lBku_12']?'`img`=\''.$_lBku['lBku_12'].'\',':"").'
+    `author_list`=\''.($_lBku['lBku_13']["b"]).'\',
+    `genre_list`=\''.($_lBku['lBku_14']["b"]).'\',
+    `age_restrict`=\''.$_lBku['lBku_7'].'\'
+    
+    WHERE
+    `book_id` = \''.$_GET['book_id'].'\' ;';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY BOOK UPDATE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+    #I('.$_lBku['lBku_12'].')
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lBook.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lBook_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Insert_Syn(lBook_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    $sql2 = array(1,array("SELECT book_id FROM `lib_book_info` 
+                                WHERE book_title='".$_lBku["lBku_1"]."';"));
+    $ret2=simonsays($sql2);
+    if($ret2[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info not added to SQL: contact admin
+                                    error: '.$ret2[0][1];
+            return 1;
+    }
+    
+    $row2 = $ret2[1][0]->fetch_assoc();
+    $_lBku["sql"]["query_author_unrel"] = 'DELETE FROM `author_book_rel` WHERE `book_id`='.$_GET['book_id'].';';
+    $_lBku["sql"]["query_genre_unrel"] = 'DELETE FROM `genre_book_rel` WHERE `book_id`='.$_GET['book_id'].';';
+    
+    $sql3 = array(2,array($_lBku["sql"]["query_author_unrel"], $_lBku["sql"]["query_genre_unrel"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1];
+            return 1;
+    }
+    
+    $_lBku["sql"]["query_author_rel"] = 'INSERT INTO `author_book_rel`(`book_id`, `author_id`, `context`) VALUES ';
+    for($i=0; $i<count($_lBku["lBku_13"]["a"]); $i++){
+        $_lBku["sql"]["query_author_rel"] .= "( '".$row2["book_id"]."', '".$_lBku["lBku_13"]["a"][$i]."', '1')";
+        if($i<count($_lBku["lBku_13"]["a"])-1){
+            $_lBku["sql"]["query_author_rel"] .=", ";
+        }
+    }
+
+    $sql4 = array(1,array($_lBku["sql"]["query_author_rel"]));
+    $ret4=simonsays($sql4);
+    if($ret4[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret4[0][1];
+            return 1;
+    }
+                  
+    if(count($_lBku["lBku_14"]["a"])){
+        $_lBku["sql"]["query_genre_rel"] = 'INSERT INTO `genre_book_rel`(`book_id`, `genre_id`) VALUES ';
+        for($i=0; $i<count($_lBku["lBku_14"]["a"]); $i++){
+            $_lBku["sql"]["query_genre_rel"] .= "( '".$row2["book_id"]."', '".$_lBku["lBku_14"]["a"][$i]."' )";
+            if($i<count($_lBku["lBku_14"]["a"])-1){
+                $_lBku["sql"]["query_genre_rel"] .=", ";
+            }
+        }
+        $sql5 = array(1,array($_lBku["sql"]["query_genre_rel"]));
+        $ret5=simonsays($sql5);
+        if($ret5[0][0]){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                        additional info can\'t be added to SQL: contact admin
+                                        error: '.$ret5[0][1];
+                return 1;
+        }
+
+    }
+    
+    
+    
+    
+    //Placing the cover
+    if($_lBku["lBku_12"]==1){
+        $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Books_cover/";
+        unlink($nbk_cvrloc.$row2["book_id"].".jpg");
+        move_uploaded_file($_FILES["lBku_12"]["tmp_name"], $nbk_cvrloc.$row2["book_id"].".jpg");
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=2&book_id='.$_GET["book_id"].'";</script>';
+    return 0;
+}
+function dbooks_bookch_getbooklist(){
+    echo '<div id="ch_book-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `book_id`, `book_title` FROM `lib_book_info` ORDER BY `book_title`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive book list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=2&book_id='.$row1["book_id"].'">'.$row1["book_title"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_bookch_getbook(&$_lBku){
+    $sql1 = array(3,array(
+        'SELECT * FROM `lib_book_info` WHERE `book_id`=\''.$_GET["book_id"].'\';',
+        'SELECT * FROM `author_book_rel` WHERE `book_id`=\''.$_GET["book_id"].'\';',
+        'SELECT * FROM `genre_book_rel` WHERE `book_id`=\''.$_GET["book_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Book data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Book data from SQL: no such book Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["book_title"],      "lBku_2"=>$row1["published"], 
+                    "lBku_3"=>$row1["rating"],          "lBku_4"=>$row1["chapters"],
+                    "lBku_5"=>$row1["pages"],           "lBku_6"=>$row1["isAvailDown"], 
+                    "lBku_7"=>$row1["age_restrict"],    "lBku_8"=>$row1["download_link"],
+                    "lBku_9"=>clean_input($row1["quote"]),           "lBku_10"=>e_sql($row1["description"]), 
+                    "lBku_11"=>($row1["characters"]),     "lBku_12"=>$row1["img"],
+                    "lBku_15"=>$row1["size"]
+                );
+    
+    $_lBku["lBku_13"]["b"] = $row1["author_list"];
+    $_lBku["lBku_14"]["b"] = $row1["genre_list"];
+    $_lBku["lBku_13"]["c"] = $ret1[1][1]->num_rows;
+    $_lBku["lBku_14"]["c"] = $ret1[1][2]->num_rows;
+    
+    
+    for($i=0; $i<$ret1[1][1]->num_rows; $i++){
+        $row12 = $ret1[1][1]->fetch_assoc();
+        $_lBku["lBku_13"]["a"][$i]=$row12["author_id"];
+    }
+    
+    for($i=0; $i<$ret1[1][2]->num_rows; $i++){
+        $row12 = $ret1[1][2]->fetch_assoc();
+        $_lBku["lBku_14"]["a"][$i]=$row12["genre_id"];
+    }
+    
+    
+}
+
+function deleteBook_lbookU(){
+    //Print the book list
+    dbooks_bookdl_getbooklist();
+    
+    //Check if uploaded
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:red"><i>Content Successfully Deleted!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        die();  
+    }
+    
+    //Check for a book_id in url 
+    if(!isset($_GET["book_id"])){$_GET["book_id"]="";}
+    if($_GET["book_id"]=="" || !is_numeric($_GET["book_id"])){
+        echo '<-----Select a Book From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_bookdl_getbook($_lBku);
+        dbooks_bookdl_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_bookdl_getbook($_lBku);
+    }
+    dbooks_bookdl_form_prt($_lBku);
+    
+    
+}
+function dbooks_bookdl_getbooklist(){
+    echo '<div id="ch_book-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `book_id`, `book_title` FROM `lib_book_info` ORDER BY `book_title`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive book list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=3&book_id='.$row1["book_id"].'">'.$row1["book_title"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_bookdl_getbook(&$_lBku){
+    $sql1 = array(1,array(
+        'SELECT book_title FROM `lib_book_info` WHERE `book_id`=\''.$_GET["book_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Book data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Book data from SQL: no such book Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["book_title"]
+                );
+}
+function dbooks_bookdl_form_prt(&$_lBku){
+    echo '
+
+    <form   id="lib_Add_Books_chfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=3&book_id='.$_GET['book_id'].'" 
+            enctype="multipart/form-data"
+            style="display: inline-block; vertical-align: top; width: calc(100% - 300px)">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>Delete Book : <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <input type="submit" value="Delete" style="color:red">
+
+    </form>
+    ';
+}
+function dbooks_bookdl_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // title
+    
+    
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Nothing to delete.";
+        return;
+    }
+    
+    // Book title
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Book title.";
+        return;
+    }
+    
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    $sql1 = array(1,array('SELECT book_id from `lib_book_info` 
+                            WHERE book_id=\''.$_GET["book_id"].'\' 
+                            AND book_title=\''.$_lBku["lBku_1"].'\''));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access SQL.";
+        return;
+    }
+    
+    //checked everything: lets do the action
+    if(dbooks_bookdl_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_bookdl_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    DELETE FROM 
+    `lib_book_info`
+    WHERE
+    `book_id` = \''.$_GET['book_id'].'\' ;';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY BOOK DELETE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lBook.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lBook_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Delete_Syn(lBook_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $_lBku["sql"]["query_author_unrel"] = 'DELETE FROM `author_book_rel` WHERE `book_id`='.$_GET['book_id'].';';
+    $_lBku["sql"]["query_genre_unrel"] = 'DELETE FROM `genre_book_rel` WHERE `book_id`='.$_GET['book_id'].';';
+    
+    $sql3 = array(2,array($_lBku["sql"]["query_author_unrel"], $_lBku["sql"]["query_genre_unrel"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1];
+            return 1;
+    }
+    
+    //delete the cover
+    $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Books_cover/";
+    unlink($nbk_cvrloc.$_GET["book_id"].".jpg");
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=3&book_id='.$_GET["book_id"].'";</script>';
+    return 0;
+}
+
+//Author
+function addAuthor_lbookU(){
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>"", "lBku_2"=>0, "lBku_3"=>"", "lBku_4"=>"",
+                    "lBku_5"=>"", "lBku_6"=>0
+                );
+    
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:green"><i>Author Successfully Stored!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        dbooks_authorup_form_prt($_lBku);
+        die();  
+    }
+    
+    dbooks_authorup_form_chk($_lBku);
+
+    dbooks_authorup_form_prt($_lBku);
+}
+function dbooks_authorup_form_prt($_lBku){
+    echo '
+    <form   id="lib_Add_Author_upfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=4" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Author Name: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_POST["lBku_1"])?$_POST["lBku_1"]:"").'">
+        </p>
+        
+        <p>Is Detailed(has it\'s own Page): <input type="checkbox" 
+                                            value="1" 
+                                            name="lBku_2" 
+                                            '.(isset($_POST["lBku_2"])?($_POST["lBku_2"]==1?'checked':''):'').'>
+        </p>
+        
+        <fieldset>
+            <legend>Only Shown when `if Detailed` is true</legend>
+        <p>life("1940 to 1980"): <input    type="text" 
+                                            name="lBku_3" 
+                                            value="'.(isset($_POST["lBku_3"])?$_POST["lBku_3"]:"").'">
+        </p>
+        
+        <p>Summery/Description:<br>
+                        <textarea   id="lBku_4_txtarea" 
+                                    name="lBku_4">
+                        </textarea>
+        
+        <script>
+            document.getElementById("lBku_4_txtarea").value = \''.e_sql(isset($_POST["lBku_4"])?$_POST["lBku_4"]:"").'\';
+        </script>
+
+        </p>
+        
+        <p>Rating(0-10): <input type="text" 
+                                name="lBku_5" 
+                                value="'.(isset($_POST["lBku_5"])?$_POST["lBku_5"]:"").'">
+        </p>
+        
+        <p>Author Img(less than 300x400, 75kb, jpg): 
+                            <input  type="file" 
+                                    name="lBku_6">
+        </p>
+        
+        <br>
+        </fieldset>
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_authorup_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    if(!isset($_POST["lBku_2"])){$_POST["lBku_2"]=0;}   // is_detail
+    if(!isset($_POST["lBku_3"])){$_POST["lBku_3"]="";}  // life: from-to
+    if(!isset($_POST["lBku_4"])){$_POST["lBku_4"]="";}  // bio
+    if(!isset($_POST["lBku_5"])){$_POST["lBku_5"]="";}  // rating
+    if(!isset($_POST["lBku_6"])){$_POST["lBku_6"]=0;}   // img
+    
+   
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Name.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    //is detailed
+    if($_POST["lBku_2"]=="1"){
+        $_lBku["lBku_2"]=1;
+    }
+    
+    //rating
+    if($_lBku["lBku_2"]){
+        
+        if($_POST["lBku_5"]!="" && is_numeric($_POST["lBku_5"]) && $_POST["lBku_5"]<=10 
+           && $_POST["lBku_5"]>=0 ){
+            $_lBku["lBku_5"]=clean_input($_POST["lBku_5"]);
+        }
+        elseif($_POST["lBku_5"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid Rating field.";
+            return;
+        }
+        
+        //bio
+        if($_POST["lBku_4"]!="" && $_POST["lBku_4"]==clean_input_l($_POST["lBku_4"]) ){
+            $_lBku["lBku_4"]=clean_input_l($_POST["lBku_4"]);
+        }
+        elseif($_POST["lBku_4"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid bio field.";
+            return;
+        }
+        
+        //life
+        if($_POST["lBku_3"]!=clean_input($_POST["lBku_3"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid Life field.";
+            return;
+        }
+        else{
+            $_lBku["lBku_3"] = clean_input($_POST["lBku_3"]);
+        }
+        
+        //img
+        if(isset($_FILES["lBku_6"]["type"])){
+            $ext = "jpg";
+            $temp_loc="temp/temp_nbcs_01/";
+            $upload_exts = end(explode(".", $_FILES["lBku_6"]["name"]));
+            if ($_FILES["lBku_6"]["type"] === "image/jpeg" && 
+                $_FILES["lBku_6"]["size"] <= 76800 && $upload_exts==$ext)
+            {
+                if($_FILES["file"]["error"] > 0){
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="File Upload Error:".$_FILES["lBku_6"]["error"];
+                    return;
+                }
+                if (file_exists($temp_loc."LIBRARY_AUTHOR_COVER".session_id()."jpg")){
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="SERVER UNDERWORK-file already exists: RESTART SESSION.";
+                    return;
+                }
+                $_lBku["lBku_6"]=1;
+            }
+             elseif($_FILES["lBku_6"]["type"]!=""){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Image format is invalid.";
+                return;
+             }
+        }
+        
+    }
+    
+    
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_authorup_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_authorup_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    INSERT INTO 
+    `author_info`( `author_name`, `is_detailed`) 
+    VALUES  (\''.e_sql($_lBku['lBku_1']).'\', \''.$_lBku['lBku_2'].'\');';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY AUTHOR INSERT QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lBook.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lAuth_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Insert_Syn(lBook_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $sql2 = array(1,array("SELECT author_id FROM `author_info` 
+                                WHERE author_name='".$_lBku["lBku_1"]."';"));
+    $ret2=simonsays($sql2);
+    if($ret2[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info not added to SQL: contact admin
+                                    error: '.$ret2[0][1];
+            return 1;
+    }
+    
+    $row2 = $ret2[1][0]->fetch_assoc();
+    
+    
+    $_lBku["sql"]["query_2"] = '
+    INSERT INTO 
+    `author_dinfo`( `author_id`, `life`, `bio`, `rating`, `img`) 
+    VALUES  (   \''.$row2['author_id'].'\', \''.($_lBku['lBku_3']).'\', \''.e_sql($_lBku['lBku_4']).'\', 
+                \''.$_lBku['lBku_5'].'\', \''.$_lBku['lBku_6'].'\');';
+    
+    
+    $sql3 = array(1,array($_lBku["sql"]["query_2"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1].' Query: '.$_lBku["sql"]["query_genre_rel"];
+            return 1;
+    }
+    
+    //Placing the cover
+    if($_lBku["lBku_6"]==1){
+        $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Author_cover/";
+        move_uploaded_file($_FILES["lBku_6"]["tmp_name"], $nbk_cvrloc.$row2["author_id"].".jpg");
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=4";</script>';
+    return 0;
+}
+
+function changeAuthor_lbookU(){
+    //Print the book list
+    dbooks_authorch_getbooklist();
+    
+    //Check if uploaded
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:blue"><i>Content Successfully Updated!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        $_lBku = null;
+        dbooks_authorch_getbook($_lBku);
+        dbooks_authorch_form_prt($_lBku);
+        die();  
+    }
+    
+    //Check for a authro_id in url 
+    if(!isset($_GET["author_id"])){$_GET["author_id"]="";}
+    if($_GET["author_id"]=="" || !is_numeric($_GET["author_id"])){
+        echo '<-----Select a Author From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_authorch_getbook($_lBku);
+        dbooks_authorch_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_authorch_getbook($_lBku);
+    }
+    dbooks_authorch_form_prt($_lBku);
+}    
+function dbooks_authorch_form_prt(&$_lBku){
+    echo '
+    <form   id="lib_Add_Author_upfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=5&author_id='.$_GET['author_id'].'" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Author Name: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <p>Is Detailed(has it\'s own Page): <input type="checkbox" 
+                                            value="1" 
+                                            name="lBku_2" 
+                                            '.(isset($_lBku["lBku_2"])?($_lBku["lBku_2"]==1?'checked':''):'').'>
+        </p>
+        
+        <fieldset>
+            <legend>Only Shown when `if Detailed` is true</legend>
+        <p>life("1940 to 1980"): <input    type="text" 
+                                            name="lBku_3" 
+                                            value="'.(isset($_lBku["lBku_3"])?$_lBku["lBku_3"]:"").'">
+        </p>
+        
+        <p>Summery/Description:<br>
+                        <textarea   id="lBku_4_txtarea" 
+                                    name="lBku_4">
+                        </textarea>
+        
+        <script>
+            document.getElementById("lBku_4_txtarea").value = \''.e_sql(isset($_lBku["lBku_4"])?$_lBku["lBku_4"]:"").'\';
+        </script>
+
+        </p>
+        
+        <p>Rating(0-10): <input type="text" 
+                                name="lBku_5" 
+                                value="'.(isset($_lBku["lBku_5"])?$_lBku["lBku_5"]:"").'">
+        </p>';
+    
+    if($_lBku["lBku_6"]==1){
+        echo '
+            <p>
+            <img src="../digilib_net/Digilib_net/elib_database/database_library/Author_cover/';
+            echo $_GET["author_id"].'.jpg">
+            </p>';
+    }
+        
+    echo '<p>Author Img(less than 300x400, 75kb, jpg): 
+                            <input  type="file" 
+                                    name="lBku_6">
+        </p>
+        
+        <br>
+        </fieldset>
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_authorch_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    if(!isset($_POST["lBku_2"])){$_POST["lBku_2"]=0;}   // is_detail
+    if(!isset($_POST["lBku_3"])){$_POST["lBku_3"]="";}  // life: from-to
+    if(!isset($_POST["lBku_4"])){$_POST["lBku_4"]="";}  // bio
+    if(!isset($_POST["lBku_5"])){$_POST["lBku_5"]="";}  // rating
+    if(!isset($_POST["lBku_6"])){$_POST["lBku_6"]=0;}   // img
+    
+   
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Name.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    //is detailed
+    if($_POST["lBku_2"]=="1"){
+        $_lBku["lBku_2"]=1;
+    }
+    
+    //rating
+    if($_lBku["lBku_2"]){
+        
+        if($_POST["lBku_5"]!="" && is_numeric($_POST["lBku_5"]) && $_POST["lBku_5"]<=10 
+           && $_POST["lBku_5"]>=0 ){
+            $_lBku["lBku_5"]=clean_input($_POST["lBku_5"]);
+        }
+        elseif($_POST["lBku_5"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid Rating field.";
+            return;
+        }
+        
+        //bio
+        if($_POST["lBku_4"]!="" && $_POST["lBku_4"]==clean_input_l($_POST["lBku_4"]) ){
+            $_lBku["lBku_4"]=clean_input_l($_POST["lBku_4"]);
+        }
+        elseif($_POST["lBku_4"]!=""){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid bio field.";
+            return;
+        }
+        
+        //life
+        if($_POST["lBku_3"]!=clean_input($_POST["lBku_3"])){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]="Invalid Life field.";
+            return;
+        }
+        else{
+            $_lBku["lBku_3"] = clean_input($_POST["lBku_3"]);
+        }
+        
+        $_lBku["lBku_6"]=0;
+        //img
+        if(isset($_FILES["lBku_6"]["type"])){
+            $ext = "jpg";
+            $temp_loc="temp/temp_nbcs_01/";
+            $upload_exts = end(explode(".", $_FILES["lBku_6"]["name"]));
+            if ($_FILES["lBku_6"]["type"] === "image/jpeg" && 
+                $_FILES["lBku_6"]["size"] <= 76800 && $upload_exts==$ext)
+            {
+                if($_FILES["file"]["error"] > 0){
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="File Upload Error:".$_FILES["lBku_6"]["error"];
+                    return;
+                }
+                if (file_exists($temp_loc."LIBRARY_AUTHOR_COVER".session_id()."jpg")){
+                    $_lBku["frm"]["p_code"]=1;
+                    $_lBku["frm"]["err"]="SERVER UNDERWORK-file already exists: RESTART SESSION.";
+                    return;
+                }
+                $_lBku["lBku_6"]=1;
+            }
+             elseif($_FILES["lBku_6"]["type"]!=""){
+                $_lBku["frm"]["p_code"]=1;
+                $_lBku["frm"]["err"]="Image format is invalid.";
+                return;
+             }
+        }
+        
+    }
+    
+    
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_authorch_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_authorch_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    UPDATE 
+    `author_info`
+    SET
+    `author_name`=\''.e_sql($_lBku['lBku_1']).'\', 
+    `is_detailed`=\''.$_lBku['lBku_2'].'\'
+    WHERE `author_id`=\''.$_GET['author_id'].'\';';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY AUTHOR UPDATE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lAuth.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lAuth_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Update_Syn(lBook_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $_lBku["sql"]["query_2"] = '
+    UPDATE 
+    `author_dinfo`
+    SET
+    `life`=\''.($_lBku['lBku_3']).'\', 
+    `bio`=\''.e_sql($_lBku['lBku_4']).'\', 
+    `rating`=\''.$_lBku['lBku_5'].'\'
+    '.($_lBku["lBku_6"]?',`img`=\''.$_lBku['lBku_6'].'\'':"").'
+    WHERE `author_id`=\''.$_GET['author_id'].'\';';
+    
+    $sql3 = array(1,array($_lBku["sql"]["query_2"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1];
+            return 1;
+    }
+    
+    //Placing the cover
+    if($_lBku["lBku_6"]==1){
+        $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Author_cover/";
+        unlink($nbk_cvrloc.$_GET["author_id"].".jpg");
+        move_uploaded_file($_FILES["lBku_6"]["tmp_name"], $nbk_cvrloc.$_GET["author_id"].".jpg");
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=5&author_id='.$_GET['author_id'].'";</script>';
+    return 0;
+}
+function dbooks_authorch_getbooklist(){
+    echo '<div id="ch_author-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `author_id`, `author_name` FROM `author_info` ORDER BY `author_name`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive author list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=5&author_id='.$row1["author_id"].'">'.$row1["author_name"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_authorch_getbook(&$_lBku){
+    $sql1 = array(2,array(
+        'SELECT * FROM `author_info` WHERE `author_id`=\''.$_GET["author_id"].'\';',
+        'SELECT * FROM `author_dinfo` WHERE `author_id`=\''.$_GET["author_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Author data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Auhtor data from SQL: no match Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    $row2 = $ret1[1][1]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["author_name"],      "lBku_2"=>$row1["is_detailed"], 
+                    "lBku_3"=>$row2["life"],          "lBku_4"=>$row2["bio"],
+                    "lBku_5"=>$row2["rating"],           "lBku_6"=>$row2["img"]
+                );
+}
+
+function deleteAuthor_lbookU(){
+    //Print the book list
+    dbooks_authordl_getbooklist();
+    
+    //Check if deleted
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:red"><i>Content Successfully Deleted!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        die();  
+    }
+    
+    //Check for a author_id in url 
+    if(!isset($_GET["author_id"])){$_GET["author_id"]="";}
+    if($_GET["author_id"]=="" || !is_numeric($_GET["author_id"])){
+        echo '<-----Select a Author From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_authordl_getbook($_lBku);
+        dbooks_authordl_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_authordl_getbook($_lBku);
+    }
+    dbooks_authordl_form_prt($_lBku);
+    
+    
+}
+function dbooks_authordl_form_prt(&$_lBku){
+    echo '
+    <form   id="lib_Add_Author_dlfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=6&author_id='.$_GET['author_id'].'" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>Delete Author: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <input type="submit" value="Delete" style="color:red">
+
+    </form>
+    ';
+}
+function dbooks_authordl_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Author Name Required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Name.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    $sql1 = array(1,array('SELECT author_id from `author_info` 
+                            WHERE author_id=\''.$_GET["author_id"].'\' 
+                            AND author_name=\''.$_lBku["lBku_1"].'\''));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access SQL.";
+        return;
+    }
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_authordl_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_authordl_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    DELETE FROM 
+    `author_info`
+    WHERE
+    `author_id` = \''.$_GET['author_id'].'\' ;';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY AUTHOR DELETE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lAuth.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lAuth_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Delete_Syn(lAuth_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $_lBku["sql"]["query_author_unrel"] = 'DELETE FROM `author_book_rel` WHERE `author_id`='.$_GET['author_id'].';';
+    $_lBku["sql"]["query_genre_unrel"] = 'DELETE FROM `author_dinfo` WHERE `author_id`='.$_GET['author_id'].';';
+    
+    $sql3 = array(2,array($_lBku["sql"]["query_author_unrel"], $_lBku["sql"]["query_genre_unrel"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1];
+            return 1;
+    }
+    
+    //delete the cover
+    $nbk_cvrloc=$GLOBALS["rootdir"]."elib_database/database_library/Author_cover/";
+    unlink($nbk_cvrloc.$_GET["author_id"].".jpg");
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=6&author_id='.$_GET["author_id"].'";</script>';
+    return 0;
+}
+function dbooks_authordl_getbooklist(){
+    echo '<div id="ch_author-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `author_id`, `author_name` FROM `author_info` ORDER BY `author_name`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive author list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=6&author_id='.$row1["author_id"].'">'.$row1["author_name"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_authordl_getbook(&$_lBku){
+    $sql1 = array(1,array(
+        'SELECT author_name FROM `author_info` WHERE `author_id`=\''.$_GET["author_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Author data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Auhtor data from SQL: no match Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["author_name"]
+                );
+}
+
+//Genre
+function addGenre_lbookU(){
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>""
+                );
+    
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:green"><i>Genre Successfully Added!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        dbooks_genreup_form_prt($_lBku);
+        die();  
+    }
+    
+    dbooks_genreup_form_chk($_lBku);
+
+    dbooks_genreup_form_prt($_lBku);
+}
+function dbooks_genreup_form_prt($_lBku){
+    echo '
+    <form   id="lib_Add_Genre_upfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=7" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Genre Name: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_POST["lBku_1"])?$_POST["lBku_1"]:"").'">
+        </p>
+        
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_genreup_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    
+   
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Genre.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_genreup_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_genreup_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    INSERT INTO 
+    `genre_info`( `genre`) 
+    VALUES  (\''.e_sql($_lBku['lBku_1']).'\');';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY Genre INSERT QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lGenre.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lGenre_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Insert_Syn(lGenre_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=7";</script>';
+    return 0;
+}
+
+function changeGenre_lbookU(){
+    //Print the genre list
+    dbooks_genrech_getbooklist();
+    
+    //Check if uploaded
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:blue"><i>Content Successfully Updated!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        $_lBku = null;
+        dbooks_genrech_getbook($_lBku);
+        dbooks_genrech_form_prt($_lBku);
+        die();  
+    }
+    
+    //Check for a genre_id in url 
+    if(!isset($_GET["genre_id"])){$_GET["genre_id"]="";}
+    if($_GET["genre_id"]=="" || !is_numeric($_GET["genre_id"])){
+        echo '<-----Select a genre From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_genrech_getbook($_lBku);
+        dbooks_genrech_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_genrech_getbook($_lBku);
+    }
+    dbooks_genrech_form_prt($_lBku);
+}    
+function dbooks_genrech_form_prt(&$_lBku){
+    echo '
+    <form   id="lib_Add_Author_upfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=8&genre_id='.$_GET['genre_id'].'" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>* Genre Name: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <input type="submit" value="submit">
+
+    </form>
+    ';
+}
+function dbooks_genrech_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    
+   
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Genre Name.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_genrech_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_genrech_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    UPDATE 
+    `genre_info`
+    SET
+    `genre`=\''.e_sql($_lBku['lBku_1']).'\'
+    WHERE `genre_id`=\''.$_GET['genre_id'].'\';';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY Genre UPDATE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lGenre.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lGenre_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Update_Syn(lGenre_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=8&genre_id='.$_GET['genre_id'].'";</script>';
+    return 0;
+}
+function dbooks_genrech_getbooklist(){
+    echo '<div id="ch_author-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `genre_id`, `genre` FROM `genre_info` ORDER BY `genre_id`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive genre list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=8&genre_id='.$row1["genre_id"].'">'.$row1["genre"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_genrech_getbook(&$_lBku){
+    $sql1 = array(1,array(
+        'SELECT * FROM `genre_info` WHERE `genre_id`=\''.$_GET["genre_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Genre data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Genre data from SQL: no match Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["genre"]
+                );
+}
+
+function deleteGenre_lbookU(){
+    //Print the genre list
+    dbooks_genredl_getbooklist();
+    
+    //Check if deleted
+    if(!isset($_SESSION["lBookUp_arr"]["A_stat"])){$_SESSION["lBookUp_arr"]["A_stat"]=0;}
+    if($_SESSION["lBookUp_arr"]["A_stat"]==1){
+        echo '<b style="color:red"><i>Content Successfully Deleted!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        die();  
+    }
+    
+    //Check for a genre_id in url 
+    if(!isset($_GET["genre_id"])){$_GET["genre_id"]="";}
+    if($_GET["genre_id"]=="" || !is_numeric($_GET["genre_id"])){
+        echo '<-----Select a Genre From list on right(your left) [@ __ @]  ';
+        die();
+    }
+    
+    //See if we got a form to check
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        $_lBku = null;
+        dbooks_genredl_getbook($_lBku);
+        dbooks_genredl_form_chk($_lBku);
+    }
+    //Or Just get the book and print form
+    else{
+        $_lBku = null;
+        dbooks_genredl_getbook($_lBku);
+    }
+    dbooks_genredl_form_prt($_lBku);
+    
+    
+}
+function dbooks_genredl_form_prt(&$_lBku){
+    echo '
+    <form   id="lib_Add_Author_dlfrm" method="POST" 
+            action="admin_Acctool.php?navi=1&tab=9&genre_id='.$_GET['genre_id'].'" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_lBku["frm"]["err"].'</i></b></p>
+
+        <p>Delete Genre: <input type="text" 
+                                name="lBku_1" 
+                                value="'.(isset($_lBku["lBku_1"])?$_lBku["lBku_1"]:"").'">
+        </p>
+        
+        <input type="submit" value="Delete" style="color:red">
+
+    </form>
+    ';
+}
+function dbooks_genredl_form_chk(&$_lBku){
+    
+    //clean up
+    if(!isset($_POST["lBku_1"])){$_POST["lBku_1"]="";}  // Name
+    
+    //Form Handling
+    if($_POST["lBku_1"]==""){    
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Author Name Required.";
+        return;
+    }
+    
+    // Name
+    if($_POST["lBku_1"]!=clean_input($_POST["lBku_1"])){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Invalid Name.";
+        return;
+    }
+    $_lBku["lBku_1"] = clean_input($_POST["lBku_1"]);
+    
+    $sql1 = array(1,array('SELECT genre_id from `genre_info` 
+                            WHERE genre_id=\''.$_GET["genre_id"].'\' 
+                            AND genre=\''.$_lBku["lBku_1"].'\''));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access SQL.";
+        return;
+    }
+    
+    //checked everything: lets do the action
+    
+    if(dbooks_genredl_form_log($_lBku)){
+        return;
+    }
+}
+function dbooks_genredl_form_log(&$_lBku){
+    //updating data files
+    $_lBku["sql"]["query"] = '
+    DELETE FROM 
+    `genre_info`
+    WHERE
+    `genre_id` = \''.$_GET['genre_id'].'\' ;';
+    
+    $_lBku["sql"]["log"] = '
+    #LIBRARY Genre DELETE QUERY-------------------------------------------
+    #'.$_SESSION["USR_MOD"]["student_id"].'|'.$_SESSION["USR_MOD"]["email_id"].'
+    #'.$_SERVER['REMOTE_ADDR'].'|'.$_SERVER['HTTP_USER_AGENT'].'|'.$_SERVER['HTTP_REFERER'].'
+    #'.date("h:i:sa").'|'.date("Y.m.d").'
+
+    '.$_lBku["sql"]["query"].'
+
+    #------------------------------------------------------------------
+    ';
+    
+    //Writing to Backup file
+    $nBook_backupfile = fopen("Acc_log/books/lGenre.sql", "a");
+    if(!$nBook_backupfile){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc File";
+        return 1;
+    }
+    
+    fwrite($nBook_backupfile, $_lBku["sql"]["log"]);
+    fclose($nBook_backupfile);
+        
+    $nBook_usrBackup_file = fopen("Acc_log/backup/lGenre_".$_SESSION["USR_MOD"]["student_id"]."_".date("Y-m-d").'_'.date("h-is-a").".sql", "a");
+    if(!$nBook_usrBackup_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access Acc in log File";
+        return 1;
+    }
+    
+    fwrite($nBook_usrBackup_file, $_lBku["sql"]["log"]);
+    fclose($nBook_usrBackup_file);
+
+    $log_file = fopen("Acc_log/log/user.sql", "a");
+    if(!$log_file){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't access log File";
+        return 1;
+    }
+    
+    $log_txt=
+            '@'.$_SESSION["USR_MOD"]["student_id"]+
+            '>Delete_Syn(lGenre_'.$_SESSION["USR_MOD"]["student_id"].'_'+
+            date("Y-m-d").'_'.date("h-is-a").'.sql);';
+    
+    
+    fwrite($log_file, $log_txt);
+    fclose($log_file);
+       
+    //Running the sql
+    $sql1 = array(1,array($_lBku["sql"]["query"]));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        $_lBku["frm"]["p_code"]=1;
+        $_lBku["frm"]["err"]="Can't write to SQL, backed to Acc file";
+        return 1;
+    }
+    
+    $_lBku["sql"]["query_author_unrel"] = 'DELETE FROM `genre_book_rel` WHERE `genre_id`='.$_GET['genre_id'].';';
+    
+    $sql3 = array(1,array($_lBku["sql"]["query_author_unrel"]));
+    $ret3=simonsays($sql3);
+    if($ret3[0][0]){
+            $_lBku["frm"]["p_code"]=1;
+            $_lBku["frm"]["err"]='Can\'t reconnect to SQL-maybe data corruption, 
+                                    additional info can\'t be added to SQL: contact admin
+                                    error: '.$ret3[0][1];
+            return 1;
+    }
+    
+    $_SESSION["lBookUp_arr"]["A_stat"]=1;
+    echo '<script>window.location = "'.strtok($_SERVER["REQUEST_URI"],'?').'?navi=1&tab=9&genre_id='.$_GET["genre_id"].'";</script>';
+    return 0;
+}
+function dbooks_genredl_getbooklist(){
+    echo '<div id="ch_author-list" style="float: left; vertical-align: top; 
+                                    background: rgba(100,100,100,0.1); width: 200px; height: 100%; 
+                                    margin-right: 20px; overflow: scroll; padding:5px;">';
+    
+    $sql1 = array(1,array("SELECT `genre_id`, `genre` FROM `genre_info` ORDER BY `genre_id`;"));
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("can't retrive genre list from server-".$ret1[0][1]);
+    }
+    for($i=0; $i<$ret1[1][0]->num_rows; $i++){
+        $row1 = $ret1[1][0]->fetch_assoc();
+        echo '<a href="admin_Acctool.php?navi=1&tab=9&genre_id='.$row1["genre_id"].'">'.$row1["genre"].'</a>
+        <br>';
+    }
+    
+    echo '</div>';
+}
+function dbooks_genredl_getbook(&$_lBku){
+    $sql1 = array(1,array(
+        'SELECT genre FROM `genre_info` WHERE `genre_id`=\''.$_GET["genre_id"].'\';'
+                         ));
+    
+    $ret1 = simonsays($sql1);
+    if($ret1[0][0]){
+        die("Unable to retrive Genre data from SQL- ".$ret1[0][1]);
+    }
+    
+    if(!$ret1[1][0]->num_rows){
+        die("Unable to retrive Genre data from SQL: no match Exists!");
+    }
+    
+    $row1 = $ret1[1][0]->fetch_assoc();
+    
+    //main content array
+    $_lBku=array(   "frm"=>array("p_code"=>1, "err"=>""), 
+                    "lBku_1"=>$row1["genre"]
+                );
+}

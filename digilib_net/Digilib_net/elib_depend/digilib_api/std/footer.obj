@@ -1,0 +1,226 @@
+<?php
+/*footer.obj
+========================================
+Designed and Developed by Sal64dd
+contact: sal.uncd@gmail.com
+========================================
+*/
+global $std;
+echo '</div></div><div class="Footer"><div class="upper"><!--1--><div class="list"><span class="list-head">Contact Us</span><p class="list-elem">'.$std['footer']['upper']['list1_address'].'</p><p class="list-elem">'.$std['footer']['upper']['list1_number'].'</p><a class="list-elem" href="'.$std['footer']['upper']['list1_link'].'" target="_blank">More Contact Information...</a></div><!--2--><div class="list"><span class="list-head">Connect</span>';
+if($std['footer']['upper']['list2_facebk']){echo'<a class="list-elem" href="'.$std['footer']['upper']['list2_facebk'].'" target="_blank">Facebook</a>';}
+if($std['footer']['upper']['list2_twitter']){echo'<a class="list-elem" href="'.$std['footer']['upper']['list2_twitter'].'" target="_blank">Twitter</a>';}
+if($std['footer']['upper']['list2_schblog']){echo'<a class="list-elem" href="'.$std['footer']['upper']['list2_schblog'].'" target="_blank">SchoolBlog</a>';}
+if($std['footer']['upper']['list2_Instagram']){echo'<a class="list-elem" href="'.$std['footer']['upper']['list2_Instagram'].'" target="_blank">Instagram</a>';}
+echo '</div><!--3--><div class="list"><span class="list-head">Quicklinks</span><a class="list-elem" href="'.$std['footer']['upper']['list3_1_link'].'" target="_blank">'.$std['footer']['upper']['list3_1_text'].'</a><a class="list-elem" href="'.$std['footer']['upper']['list3_2_link'].'" target="_blank">'.$std['footer']['upper']['list3_2_text'].'</a><a class="list-elem" href="'.$std['footer']['upper']['list3_3_link'].'" target="_blank">'.$std['footer']['upper']['list3_3_text'].'</a><a class="list-elem" href="'.$std['footer']['upper']['list3_4_link'].'" target="_blank">'.$std['footer']['upper']['list3_4_text'].'</a>
+</div></div> <div class="lower"><div class="main"><div class="hate"><div class="logo"><span class="heada">Digital</span><span class="headb">Library</span><div class="bbps"><span class="bbpsHeadlogo logo-off-bbps"></span><span class="bbpsHeadtext">Bal Bharati Public School Ganga Ram Hospital Marg ©</div></div><div class="author"><span>Designed and Developed</span><span>By</span><span class="authora"><span class="name">Shaurya Singh</span></span><span>&</span><span class="authorb"><span class="name">Divij Jindal</span></span></div></div><div class="chem"><div class="swag">';
+if($std['footer']['lower']['links1_1_link']){echo '<a href="'.$std['footer']['lower']['links1_1_link'].'">'.$std['footer']['lower']['links1_1_text'].'</a>';}
+if($std['footer']['lower']['links1_2_link']){echo '<a href="'.$std['footer']['lower']['links1_2_link'].'">'.$std['footer']['lower']['links1_2_text'].'</a>';}
+if($std['footer']['lower']['links1_3_link']){echo '<a href="'.$std['footer']['lower']['links1_3_link'].'">'.$std['footer']['lower']['links1_3_text'].'</a>';}
+if($std['footer']['lower']['links1_4_link']){echo '<a href="'.$std['footer']['lower']['links1_4_link'].'">'.$std['footer']['lower']['links1_4_text'].'</a>';}
+echo '</div><div class="bro">';
+if($std['footer']['lower']['links2_1_link']){echo '<a href="'.$std['footer']['lower']['links2_1_link'].'" target="_blank">'.$std['footer']['lower']['links2_1_text'].'</a> ';}
+if($std['footer']['lower']['links2_2_link']){echo '<a href="'.$std['footer']['lower']['links2_2_link'].'" target="_blank">'.$std['footer']['lower']['links2_2_text'].'</a> ';}
+if($std['footer']['lower']['links2_3_link']){echo '<a href="'.$std['footer']['lower']['links2_3_link'].'" target="_blank">'.$std['footer']['lower']['links2_3_text'].'</a> ';}
+if($std['footer']['lower']['links2_4_link']){echo '<a href="'.$std['footer']['lower']['links2_4_link'].'" target="_blank">'.$std['footer']['lower']['links2_4_text'].'</a> ';}
+if($std['footer']['lower']['links2_5_link']){echo '<a href="'.$std['footer']['lower']['links2_5_link'].'" target="_blank">'.$std['footer']['lower']['links2_5_text'].'</a> ';}
+if($std['footer']['lower']['links2_6_link']){echo '<a href="'.$std['footer']['lower']['links2_6_link'].'" target="_blank">'.$std['footer']['lower']['links2_6_text'].'</a> ';}
+if($std['footer']['lower']['links2_7_link']){echo '<a href="'.$std['footer']['lower']['links2_7_link'].'" target="_blank">'.$std['footer']['lower']['links2_7_text'].'</a> ';}
+echo '</div></div></div></div></div><style>
+.Footer{
+    background: '.$std['footer']['bgcolor'].';
+    position: relative;
+    bottom: 0; width: 100%;
+    margin-bottom: 0;
+    box-shadow: 0px -1px 5px rgba(100,100,100,0.5);
+    
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.Footer .upper{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.Footer .upper .list{
+    display: inline-block;
+    width:250px;
+    vertical-align: text-top;
+    margin-left:50px; margin-right:50px;
+    margin-top:20px; margin-bottom:20px;
+    
+    cursor: default;
+}
+.Footer .upper .list .list-head{
+    font-family: display_4_b;
+    text-align: left;
+    display: block;
+    color: '.$std['footer']['uppertext_color'].';
+}
+.Footer .upper .list .list-elem{
+    font-family: display_4_r;
+    text-align: left;
+    display: block;
+    color: '.$std['footer']['uppertext_color'].';
+    text-decoration: none;
+    margin-top:15px;
+    margin-bottom:15px;
+    line-height: 25px;
+    font-size: 14px;
+}
+.Footer .lower{
+    position: relative;
+    bottom: 10px;
+    display: block;
+    width: 100%;
+    background: #383838;
+    text-align: center;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(100,100,100,1);
+}
+.Footer .lower .main{
+    position: relative;
+    left:0; width: 100%;
+    display: block;
+    text-align: right;
+}
+.Footer .lower .main .hate{
+    position: absolute;
+    left:30px;
+    top:0px;
+    bottom:0px;
+    width:450px;
+    font-size: 2px;
+    text-align: left;
+}
+.Footer .lower .main .hate .logo{
+    position: relative;
+    left: 0; top: 0;
+    width:210px; height:50px;
+    margin-top:15px;
+}
+.Footer .lower .main .hate .logo .heada{
+    display: inline-block;
+    color: #F7F7F7;
+    font-family: display_4_b;
+    font-size: 38px;
+}
+.Footer .lower .main .hate .logo .headb{
+    display: inline-block;
+    color: #F7F7F7;
+    font-family: display_4_r;
+    font-size: 22px;
+}
+.Footer .lower .main .hate .logo .bbps{
+    position: relative;
+    top: 8px;
+    display: block;
+    font-size: 8px;
+    text-align: center;
+    
+}
+.Footer .lower .main .hate .logo .bbps{
+    color: #d7d7d7;
+}
+.Footer .lower .main .hate .logo .bbps .bbpsHeadlogo{
+    position: relative;
+    bottom:-1px;
+    display: inline-block;
+    width: 8px; height:8px;
+}
+.Footer .lower .main .hate .author{
+    position: absolute;
+    left:210; right:0px; top:0;  bottom:0;
+    display: inline-block;
+    font-size: 18px;
+    color:#fff;
+    text-align: center;
+}
+.Footer .lower .main .hate .author>span:nth-of-type(1), .Footer .lower .main .hate .author>span:nth-of-type(2){
+    position: relative;
+    top: 3px; left:0;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    color: #d7d7d7;
+    font-family: display_4_r;   
+}
+.Footer .lower .main .hate .author .authora, .Footer .lower .main .hate .author .authorb{
+    position: relative;
+    top:3px; left:0;
+    display: inline-block;
+    margin-top: 5px;
+    width:100px; height:60px;
+    vertical-align: text-top;
+}
+.Footer .lower .main .hate .author .authora{
+    background: url(elib_depend/graphics/mics_graphics/John_McCain_Signature.PNG) center no-repeat;
+    background-size: contain;
+}
+.Footer .lower .main .hate .author .authorb{
+    background: url(elib_depend/graphics/mics_graphics/joe_jonas_signature.png) top no-repeat;
+    background-size: 80px 45px;
+    
+}
+.Footer .lower .main .hate .author .name{
+    position: relative;
+    font-size: 10px;
+    font-family: display_4_b;
+    position: absolute;
+    bottom: 3px; left:0; right:0;
+    text-align: center;
+    color: #fff;
+    
+}
+.Footer .lower .main .hate .author>span:nth-of-type(4){
+    position: relative;
+    top: 25px;
+    display: inline-block;
+    color: #d7d7d7;
+    font-family: display_4_r; 
+}
+.Footer .lower .main .chem{
+    position: relative;
+    display: inline-block;
+    right: 0; top:0;
+    
+    width: 500px;
+    margin: 30px;
+}
+.Footer .lower .main .chem .swag{
+    position: relative;
+    display: block;
+}
+.Footer .lower .main .chem .swag a{
+    text-decoration: none;
+    color: #F7F7F7;
+    
+    font-family: display_4_r;
+    font-size: 18px;
+    margin:5px;
+}
+.Footer .lower .main .chem .swag a:hover{
+    text-decoration: underline;
+}
+.Footer .lower .main .chem .bro{
+    position: relative;
+    display: block;
+}
+.Footer .lower .main .chem .bro a{ 
+    text-decoration: none;
+    color: #F7F7F7;
+    font-family: display_4_r;
+    font-size: 12px;
+}
+.Footer .lower .main .chem .bro a:hover{
+    text-decoration: underline;
+}
+</style>
+';
+?>

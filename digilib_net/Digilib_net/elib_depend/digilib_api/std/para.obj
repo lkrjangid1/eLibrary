@@ -1,0 +1,259 @@
+<?php
+/*para.obj
+========================================
+Designed and Developed by Sal64dd
+contact: sal.uncd@gmail.com
+========================================
+Style and Script of std media queries. 
+Note: Script is at end of file
+*/
+global $std;
+echo $std['meta']['bin']['scripts'].'
+</body></html>';
+?>
+<style type="text/css">
+	/*=========================Media Queries ==========================*/
+    
+@media only screen  and (max-width: 769px) {
+.body-cont .main{
+    width: calc(100% - 6px);
+    padding:3px;
+}
+.header .main{
+    width: 100%; height:100px;
+}
+.header .main .Ausi{
+    left:0; right:0; top:0;
+}
+.header .main .Rrox{
+    width:auto; left:15px; right:15px; bottom:-15px;
+}
+    
+.Navibar{
+    height:49px;
+    border-bottom: solid 1px #d7d7d7;
+}
+.Navibar .main{
+    position: relative; display: block;
+    width:100%;
+    padding:none;
+    height: auto;
+    margin-top:10px;
+}
+.Navibar .main .navi-elem{
+    display:block;
+    text-align:left;
+    border-top: solid 1px #e7e7e7;
+    padding:8px; padding-top:10px; padding-bottom:10px;
+    font-size: 28px;
+    text-indent: 20px;
+}
+.Navibar .main .navi-elem .icon{
+    width:30px; height:30px;
+    margin-left: 10px;
+}
+.Navibar .smallctrl{
+    display:block;
+}
+    
+.Footer .upper{
+    text-align: left;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.Footer .upper .list{
+    display: block;
+    margin:20px;
+}
+.Footer .upper .list .list-elem{
+    line-height:20px;
+    margin-left:20px;
+}
+.Footer .lower .main{
+    height:200px;
+    width:100%;
+}
+.Footer .lower .main .chem{
+    top:100px;
+    margin-bottom: 0px;
+    height: auto; width:auto;
+    margin-right:5px;
+}
+.Footer .lower .main .hate{
+    width:calc( 100% - 5px );
+    left:5px;
+    height:auto;
+}
+}
+@media only screen  and (max-width: 420px){
+.Footer .lower .main{
+    height:300px;
+    width:100%;
+}
+.Footer .lower .main .chem{
+    top:220px;
+    margin-bottom: 0px;
+    height: auto; width:auto;
+    margin-right:5px;
+}
+.Footer .lower .main .hate{
+    width:calc( 100% - 5px );
+    left:5px;
+    height:240px;
+}
+.Footer .lower .main .hate .author{
+    left:0;
+    top:100px;
+}
+}       
+@media only screen  and (min-width : 770px) and (max-width: 1000px) {
+.body-cont .main{
+   width: calc(100% - 20px);
+}
+.header .main{
+    width: 100%; height:35px;
+}
+.header .main .Ausi{
+    left:80px; top:-10px; bottom:-10px;
+}
+.header .main .Rrox{
+    right:80px; width: 250px;
+}
+.Navibar .main{
+    display:inline-block;
+}
+.Navibar{
+    height:30px;
+    border-bottom: none;
+}
+.Navibar .smallctrl{
+    display:none;
+}
+.Footer .upper{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding:none
+}
+.Footer .upper .list{
+    display: inline-block;
+    margin:none;
+    width:150px;
+}
+.Footer .upper .list .list-elem{
+    line-height:20px;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+.Footer .lower .main{
+    height:200px;
+}
+.Footer .lower .main .chem{
+    height:200px;
+    top:98px;
+    margin-bottom: 0px;
+    height: auto;
+}
+}
+        
+@media only screen  and (min-width : 1000px) and (max-width: 1200px){
+.body-cont .main{
+    width: calc(1000px - 20px);
+}
+.header .main{
+    width: 1000px; height:35px;
+} 
+.header .main .Ausi{
+    left:50px; top:-10px; bottom:-10px;
+}
+.header .main .Rrox{
+    right:50px; width: 250px;
+}
+.Navibar .main{
+    display:inline-block;
+}
+.Navibar{
+    height:30px;
+    border-bottom: none;
+}
+.Navibar .smallctrl{
+    display:none;
+}
+.Footer .upper{
+    text-align: center;
+    padding:none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Footer .upper .list{
+    display: inline-block;
+    margin-left:20px; margin-right:20px;
+    margin-top:30px; margin-bottom:30px;
+    width:250px;
+}
+.Footer .upper .list .list-elem{
+    line-height:25px;
+    margin:none;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+}
+        
+@media only screen  and (min-width : 1200px) {
+.body-cont .main{
+    width: calc(1000px - 20px);
+}
+.header .main{
+    width: 1000px; height:35px;
+}
+.header .main .Ausi{
+    left:0px; top:-10px; bottom:-10px;
+}
+.header .main .Rrox{
+    right:0px; width: 250px;
+}
+.Navibar .main{
+    display:inline-block;
+}
+.Navibar{
+    height:30px;
+    border-bottom: none;
+}
+.Navibar .smallctrl{
+    display:none;
+}
+.Footer .upper{
+    text-align: center;
+    padding:none;
+}
+.Footer .upper .list{
+    display: inline-block;
+    margin-left:50px; margin-right:50px;
+    margin-top:20px; margin-bottom:20px;
+    width:250px;
+}
+.Footer .upper .list .list-elem{
+    line-height:20px;
+    line-height: 25px;
+    margin-left:0;
+}
+}
+</style>
+<script>
+//Navbar slide down script for small devices
+var NaviList_small_semaphore = 0;
+$( ".smallctrl" ).click(function(){
+    if( NaviList_small_semaphore == 0 ){
+        NaviList_small_semaphore = 1;
+        TweenMax.to( $(".smallctrl") , 0.45 , { rotation:"135_cw", ease: Power4.easein} );
+        TweenMax.to( $(".Navibar") , 0.45 , {height:"400", ease: Power3.easein} );
+    }
+    else{
+        NaviList_small_semaphore = 0;
+        TweenMax.to( $(".smallctrl") , 0.45 , { rotation:"0_ccw", ease: Power4.easein} );
+        TweenMax.to( $(".Navibar") , 0.45 , {height:"49px", ease: Power3.easein} );
+    }
+});
+//fix for small to big resize
+$(window).on("resize",function(){if(NaviList_small_semaphore==1){$( ".smallctrl" ).click()}});
+</script>

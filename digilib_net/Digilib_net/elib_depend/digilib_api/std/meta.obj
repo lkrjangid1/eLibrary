@@ -1,0 +1,31 @@
+<?php
+/*meta.obj
+========================================
+Designed and Developed by Sal64dd
+contact: sal.uncd@gmail.com
+========================================
+*/
+global $std;
+echo '<!DOCTYPE html><html lang="en-US"><head><title>'.$std['meta']['title'].'</title><base href="'.$std['meta']['base'].'" target="_self"><meta charset="'.$std['meta']['charset'].'"><meta name="viewport" content="'.$std['meta']['viewport'].'"><meta name="keywords" content="'.$std['meta']['keywords'].'"><meta name="description" content="'.$std['meta']['descp'].'">'.$std['meta']['links'].$std['meta']['bin']['links'].'<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--></head><body>'.$std['meta']['scripts'];
+?>
+<style>
+.body-cont{
+    position: relative;
+    top:0px;
+    padding-top:10px; padding-bottom: 10px;
+    min-height:600px; width: 100%;
+    z-index: 2;
+    text-align: center;
+}
+.body-cont .main{
+    display: inline-block;
+    z-index: 1; 
+    position: relative;
+    top: 0; left: 0; 
+    width: calc(100% - 20px);
+    padding-left: 10px; padding-right: 10px;
+    padding-top:1px; padding-bottom:1px;
+    min-height: 600px; height: 100%;
+	
+}
+</style>

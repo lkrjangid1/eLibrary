@@ -1,0 +1,69 @@
+<?php
+/*navibar.obj
+========================================
+Designed and Developed by Sal64dd
+contact: sal.uncd@gmail.com
+========================================
+*/
+global $std;
+echo '<div class="Navibar"><div class="smallctrl"></div><div class="main" id="Navibar-Slide-List">';
+for($i = 1; $i <= $std['navibar'][0]['count']; $i++){
+	echo '<a class="navi-elem" href="'.$std['navibar'][$i]['link'].'" ><span class="icon" style="background: url(elib_depend/graphics/interface_graphics/icons/'.$std['navibar'][0]['icon_style'].'/'.$std['navibar'][$i]['image'].'.png) center no-repeat;background-size: '.$std['navibar'][$i]['img_style'].';" ></span><span class="text">'.$std['navibar'][$i]['name'].'</span></a>';
+}
+echo '</div></div><div class="body-cont"><div class="main">
+<style type="text/css">
+.Navibar{
+    position: relative; z-index: 100;
+    width: 100%; height: 30px; 
+    box-shadow: 0px -4px 4px 1px rgba(100,100,100,0.2);
+    text-align: center;
+    -webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;   
+    overflow: hidden;
+}
+.Navibar .smallctrl{
+    display: none;
+    position: relative;
+    left:20px; top:10px; bottom: 10px;
+    height:30px; width:35px;
+    background: url(elib_depend/graphics/interface_graphics/icons/'.$std['navibar'][0]['icon_style'].'/plusgrey.png) center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+.Navibar .main{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    top:0; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+.Navibar .main .navi-elem{
+    margin-left: 10px; margin-right: 10px;
+    position: relative;
+    text-decoration: none;
+    
+}
+.Navibar .main .navi-elem:hover .text{
+    color:'.$std['navibar'][0]['hover_color'].'; border-bottom: solid 1px;
+}
+.Navibar .main .navi-elem .text{
+    display: inline-block;
+    text-indent: 20px;
+    
+    font-size:18px;
+    color: '.$std['navibar'][0]['default_color'].';
+    font-family: '.$std['navibar'][0]['font'].';
+}
+.Navibar .main .navi-elem .icon{
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    width: 15px; height:15px; 
+}
+</style>
+';

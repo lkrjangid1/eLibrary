@@ -1,0 +1,70 @@
+<?php
+
+echo '
+    <div class="ls">
+        <span class="img"></span>
+        <span class="title">Guest Book</span>
+    </div>
+    <hr>
+
+    <div class="filler">
+        <span>"We Are Glad You Made It Here!"</span>
+        <p> Please take the time to write us a `Feedback` in this guestbook 
+            and show your support to the Volunteer Developers and the whole 
+            team behind the code. We are always encoraged and motivated by your 
+            support. Do mention your feedback of how you like a feature or you 
+            can even suggest for a change or a feature that we should include. 
+            This Page is what connects us with our audience and is truely the 
+            deciding factor for the Future of the Project.   
+        </p>
+    </div>
+
+    <form class="guestform" >
+
+    </form>
+    
+    <style>
+        .ls{
+            display: block;
+            text-align: left;
+        }
+        .ls .title{
+            text-align: left;
+            color:#373737;
+            font-family:display_4_r;
+            display: inline-block;
+            font-size: 42px;
+        }
+        .ls .img{
+            position: relative;
+            display:inline-block;
+            left:0;
+            width:40px;
+            height:40px;
+            background: url(elib_depend/graphics/interface_graphics/icons/black/bookgrey@High.png) center no-repeat;
+            background-size: contain;
+            top:8px;
+            
+        }
+        .filler{
+            display: block;
+            text-align: left;
+        }
+        .filler span{
+            display: block;
+            font-family: mics_2_r;
+            color:#686868;
+            font-size: 44px;
+            margin:30px;
+            text-align: center;
+        }
+        .filler p{
+            font-family: display_4_r;
+            color:#686868;
+            font-size: 18px;
+            margin:10px;
+            text-align: left;
+        }
+        }
+    </style>
+    ';

@@ -1,0 +1,9 @@
+
+    #NCERT BOOK CONTENT UPDATE QUERY-------------------------------------------
+    #00000010|Sal@gmail.com
+    #127.0.0.1|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10) AppleWebKit/600.1.25 (KHTML, like Gecko) Version/8.0 Safari/600.1.25|http://localhost/digilib_admin/admin_Acctool.php?navi=2&tab=2&book_id=00000001
+    #09:22:27pm|2015.08.26
+    UPDATE `ncert_book_info` SET `book_title`='Mathematics Part 1 Class XII', `book_link`='http://1drv.ms/1LD9FEP', `buy_link`='', `chapter_no`='6', `grade`='12', `chapter_info`='Chapter 1 Relations And Functions|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177629&authkey=AJmnD8jTbIg5xNE&em=2|Chapter 2 Inverse Trigonometric Functions|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177630&authkey=AFov8qjV5YoCZ-0&em=2|Chapter 3 Matrices|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177633&authkey=AHoF6wDg-Q7e-Rc&em=2|Chapter 4 Determinants|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177627&authkey=AHRWXyLGBKQRUWw&em=2|Chapter 5 Continuity and Diffrentiability|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177632&authkey=AE28Zp2tMbuFig0&em=2|Chapter 6 Application of Derivatives|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177631&authkey=ALJ3LgEN1ueHvXk&em=2|Answers|https://onedrive.live.com/embed?cid=36F70FF47AC92B61&resid=36F70FF47AC92B61%2177626&authkey=AHtL9wRgnJ3BbHE&em=2', `size`='16.36', `isAvailLib`='0', `isAvailDown`='1'
+    WHERE `book_id`="";
+    #------------------------------------------------------------------
+    

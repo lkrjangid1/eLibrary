@@ -1,0 +1,123 @@
+<?php
+// 1. Elibrary Flyer Search
+prt_flyer_elib();
+prt_flyer_elib_css();
+
+// 2. What's New ItemBox
+
+$elib_WhatsNew_itembox[0][0]="What's New";//title
+$elib_WhatsNew_itembox[0][1]=1;//Count of items inside
+$elib_WhatsNew_itembox[0][2]=3;//size
+$elib_WhatsNew_itembox[0][3]=1;//vertical scroll=>1, horizontal scroll=>2;
+$elib_WhatsNew_itembox[0][4]="#";//viewmore link
+$elib_WhatsNew_itembox[0][5]=1;//viewmore link
+
+$elib_WhatsNew_itembox[1][0]="Book"; //Book Name
+$elib_WhatsNew_itembox[1][1]="Author"; //Author Name
+$elib_WhatsNew_itembox[1][2]=""; //Book Link
+$elib_WhatsNew_itembox[1][3]=""; //Author Link
+$elib_WhatsNew_itembox[1][4]=""; //Image Link
+
+
+// 3. Digilib Recommends ItemBox
+
+$elib_Recomed_itembox[0][0]="Digilib Recommends";//title
+$elib_Recomed_itembox[0][1]=1;//Count of items inside
+$elib_Recomed_itembox[0][2]=3;//size
+$elib_Recomed_itembox[0][3]=1;//vertical scroll=>1, horizontal scroll=>2;
+$elib_Recomed_itembox[0][4]="#";//viewmore link
+$elib_Recomed_itembox[0][5]=1;//viewmore link
+
+$elib_Recomed_itembox[1][0]="title"; //Book Name
+$elib_Recomed_itembox[1][1]="author"; //Author Name
+$elib_Recomed_itembox[1][2]=""; //Book Link
+$elib_Recomed_itembox[1][3]=""; //Author Link
+$elib_Recomed_itembox[1][4]=""; //Image Link
+
+// 4. Most Popular ItemBox
+
+$elib_Popular_itembox[0][0]="Most Popular";//title
+$elib_Popular_itembox[0][1]=1;//Count of items inside
+$elib_Popular_itembox[0][2]=3;//size
+$elib_Popular_itembox[0][3]=1;//vertical scroll=>1, horizontal scroll=>2;
+$elib_Popular_itembox[0][4]="#";//viewmore link
+$elib_Popular_itembox[0][5]=1;//viewmore link
+
+$elib_Popular_itembox[1][0]="Book"; //Book Name
+$elib_Popular_itembox[1][1]="Author"; //Author Name
+$elib_Popular_itembox[1][2]=""; //Book Link
+$elib_Popular_itembox[1][3]=""; //Author Link
+$elib_Popular_itembox[1][4]=""; //Image Link
+
+echo '<div class="paraBox">';
+prt_para($elib_WhatsNew_itembox);
+prt_para($elib_Recomed_itembox);
+prt_para($elib_Popular_itembox);
+echo '</div>';
+prt_para_css();
+
+// 5. Category Block
+
+
+$img_1_list=array("","","","",""); // Image Links 
+$img_2_list=array("","","","",""); // for img5mix()
+$img_3_list=array("","","","",""); // function
+$img_4_list=array("","","","",""); //
+
+$elib_catBlock[0][0]=4; //No. of columns
+
+$elib_catBlock[1][0]="Literature"; //title
+$elib_catBlock[1][1]="#"; //view more link
+$elib_catBlock[1][3]=img5mix($img_1_list); //display image
+$elib_catBlock[1][4]=6; //no of lines
+$elib_catBlock[1][5]=array("Action & Adventure","#"); //text,link
+$elib_catBlock[1][6]=array("Drama","#"); //text,link
+$elib_catBlock[1][7]=array("Poetry","#"); //text,link
+$elib_catBlock[1][8]=array("Fantasy","#"); //text,link
+$elib_catBlock[1][9]=array("Horror/Thriller","#"); //text,link
+$elib_catBlock[1][10]=array("Indian Writing","#"); //text,link
+
+$elib_catBlock[2][0]="Non-Fiction"; //title
+$elib_catBlock[2][1]="#"; //view more link
+$elib_catBlock[2][3]=img5mix($img_2_list); //display image
+$elib_catBlock[2][4]=5; //no of lines
+$elib_catBlock[2][5]=array("Biographies","#"); //text,link
+$elib_catBlock[2][6]=array("Autobiographies","#"); //text,link
+$elib_catBlock[2][7]=array("Business & Investing","#"); //text,link
+$elib_catBlock[2][8]=array("Health & Fitness","#"); //text,link
+$elib_catBlock[2][9]=array("History & Politics","#"); //text,link
+
+$elib_catBlock[3][0]="Classics"; //title
+$elib_catBlock[3][1]="#"; //view more link
+$elib_catBlock[3][3]=img5mix($img_3_list); //display image
+$elib_catBlock[3][4]=5; //no of lines
+$elib_catBlock[3][5]=array("Sherlock Homes","#"); //text,link
+$elib_catBlock[3][6]=array("Pickwick Papers","#"); //text,link
+$elib_catBlock[3][7]=array("Little Women","#"); //text,link
+$elib_catBlock[3][8]=array("The Adventures of Huckleberry Finn","#"); //text,link
+$elib_catBlock[3][9]=array("To Kill an Mocking Bird","#"); //text,link
+
+$elib_catBlock[4][0]="Academic"; //title
+$elib_catBlock[4][1]="#"; //view more link
+$elib_catBlock[4][3]=img5mix($img_4_list); //display image
+$elib_catBlock[4][4]=5; //no of lines
+$elib_catBlock[4][5]=array("Entrance Exams","#"); //text,link
+$elib_catBlock[4][6]=array("Ncert Books","#"); //text,link
+$elib_catBlock[4][7]=array("Engineering","#"); //text,link
+$elib_catBlock[4][8]=array("Medicine","#"); //text,link
+$elib_catBlock[4][9]=array("Commerce","#"); //text,link
+            
+prt_catBlock($elib_catBlock);
+prt_catBlock_css();
+
+// 6. Top 10 Must Read Books focusBlock
+$elib_top10bk_fobck[0][0]="Top 10 Must Reads";//title
+$elib_top10bk_fobck[0][1]="top10_MSTRED";//unique_id
+$elib_top10bk_fobck[0][2]=1;//no of elements
+
+$elib_top10bk_fobck[1][0]=array("Hello","#");//book,link
+$elib_top10bk_fobck[1][1]=array("World","#");//author,link
+$elib_top10bk_fobck[1][2]="#";//img link
+$elib_top10bk_fobck[1][3]="Awsome";//summery
+
+focusBlock1($elib_top10bk_fobck);

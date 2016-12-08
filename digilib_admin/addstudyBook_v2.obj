@@ -1,0 +1,402 @@
+<?php
+
+//Navi
+function nbooks_navi(){
+    echo '      <a href="admin_Acctool.php?navi=2&tab=1" style="display:block">Add Ncert Book</a>
+                <a href="admin_Acctool.php?navi=2&tab=2" style="display:block">Change Ncert Book</a>
+                <a href="admin_Acctool.php?navi=2&tab=3" style="display:block">Delete Ncert Book</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=2&tab=4" style="display:block">Add Reference Book</a>
+                <a href="admin_Acctool.php?navi=2&tab=5" style="display:block">Change Reference Book</a>
+                <a href="admin_Acctool.php?navi=2&tab=6" style="display:block">Delete Refreence Book</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=2&tab=7" style="display:block">Add Assignment</a>
+                <a href="admin_Acctool.php?navi=2&tab=8" style="display:block">Change Assignment</a>
+                <a href="admin_Acctool.php?navi=2&tab=9" style="display:block">Delete Assignment</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=2&tab=10" style="display:block">Add Sample Papers</a>
+                <a href="admin_Acctool.php?navi=2&tab=11" style="display:block">Change Sample Papers</a>
+                <a href="admin_Acctool.php?navi=2&tab=12" style="display:block">Delete Sample Papers</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=2&tab=13" style="display:block">Add Old Question Papers</a>
+                <a href="admin_Acctool.php?navi=2&tab=14" style="display:block">Change Old Question Papers</a>
+                <a href="admin_Acctool.php?navi=2&tab=15" style="display:block">Delete Old Question Papers</a>
+                <hr>
+                <a href="admin_Acctool.php?navi=2&tab=16" style="display:block">Update site</a>
+            ';
+}
+
+//ctrl
+function nbooks(){
+    
+    if(!isset($_GET["tab"])){
+        $_GET["tab"]=1;
+    } 
+    
+    if($_GET["tab"]==1){
+        nbooks_addNCERT_nBkU();
+    }
+    elseif($_GET["tab"]==2){
+        nbooks_changeNCERT_nBkU();
+    }
+    elseif($_GET["tab"]==3){
+        nbooks_deleteNCERT_nBkU();
+    }
+    elseif($_GET["tab"]==4){
+        nbooks_addRef_nBkU();
+    }
+    elseif($_GET["tab"]==5){
+        nbooks_changeRef_nBkU();
+    }
+    elseif($_GET["tab"]==6){
+        nbooks_deleteRef_nBkU();
+    }
+    elseif($_GET["tab"]==7){
+        nbooks_addAss_nBkU();
+    }
+    elseif($_GET["tab"]==8){
+        nbooks_changeAss_nBkU();
+    }
+    elseif($_GET["tab"]==9){
+        nbooks_deleteAss_nBkU();
+    }
+    elseif($_GET["tab"]==10){
+        nbooks_addSAMP_nBkU();
+    }
+    elseif($_GET["tab"]==11){
+        nbooks_changeSAMP_nBkU();
+    }
+    elseif($_GET["tab"]==12){
+        nbooks_deleteSAMP_nBkU();
+    }
+    elseif($_GET["tab"]==13){
+        nbooks_addOldQuest_nBkU();
+    }
+    elseif($_GET["tab"]==14){
+        nbooks_changeOldQuest_nBkU();
+    }
+    elseif($_GET["tab"]==15){
+        nbooks_deleteOldQuest_nBkU();
+    }
+    elseif($_GET["tab"]==16){
+        nbooks_update_nBkU();
+    }
+    else{
+        //what am I supposed to do here?
+    }
+}
+
+//Ncert books
+function nbooks_addNCERT_nBkU(){
+    if(!isset($_SESSION["nBook_arr"]["A_stat"])){$_SESSION["nBook_arr"]["A_stat"]=0;}
+    
+    //main content array
+    $_nBk = array("frm"=>array("p_code"=>1, "err"=>""), 
+                  "NBk_1"=>"", "NBk_2"=>"", "NBk_3"=>"", "NBk_4"=>"",
+                  "NBk_5"=>"", "NBk_6"=>"", "NBk_7"=>"0", "NBk_8"=>"0",
+                  "NBk_9"=>"", "NBk_10"=>0);
+    
+    if($_SESSION["nBook_arr"]["A_stat"]==1){
+        echo '<b style="color:green"><i>Content Successfully Stored!</i></b><hr>';
+        $_SESSION["lBookUp_arr"]["A_stat"]=0;
+        nbooks_NCERTup_form_prt($_nBk);
+        die();  
+    }
+}
+function nbooks_NCERTup_form_prt(&$_nBk){
+    echo '
+    <form   id="NcertBooks_ctrl" 
+            method="POST" 
+            action="admin_Acctool.php?navi=2&tab=1" 
+            enctype="multipart/form-data">
+            
+        <input  type="text" 
+                hidden id="selectpage" 
+                name="navi" value="2">
+
+        <p><b><i>'.$_nBk["frm"]["err"].'</i></b></p>
+
+        <p>* Book title: 
+            <input  type="text" name="NBk_1" 
+                    value="'.(isset($_POST["NBk_1"])?$_POST["NBk_1"]:"").'">
+        </p>
+
+        <p>Download link: 
+            <input  type="text" name="NBk_2" 
+                    value="'.(isset($_POST["NBk_2"])?$_POST["NBk_2"]:"").'">
+        </p>
+        
+        <p>Buy link: 
+            <input  type="text" name="NBk_3" 
+                    value="'.(isset($_POST["NBk_3"])?$_POST["NBk_3"]:"").'">
+        </p>
+
+        <p>Chapters: 
+        <input      type="text" name="NBk_4" 
+                    value="'.(isset($_POST["NBk_4"])?$_POST["NBk_4"]:"").'">
+        </p>
+
+        <p>* Grade/Class: 
+                <select name="NBk_5" id="nfrm2_NBk5">
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <script>
+                    var nfrm2_NBk5 = document.getElementById("nfrm2_NBk5");';
+                    if(isset($_POST["NBk_1"])){
+                        echo 'nfrm2_NBk5.value='.$_POST["NBk_5"].';';
+                    }
+                    echo '
+                </script>      
+        </p>
+                
+                    
+        <p>Size(in Megabytes): 
+            <input  type="text" name="NBk_6" 
+                    value="'.(isset($_POST["NBk_6"])?$_POST["NBk_6"]:"").'">
+        </p>
+                
+        <p>Is Available as Download: 
+            <input type="checkbox" value="1" name="NBk_8" 
+                '.(isset($_POST["NBk_8"])?($_POST["NBk_8"]==1?'checked':''):'').' 
+                >
+        </p>
+
+        <p>Chapter Info: 
+            <p style="white-space:nowrap">
+                E.g.: 
+                <pre >
+                    Chapter 1 Relations And Functions|link|Chapter 2 Inverse Trigonometric Functions|link
+                </pre>
+            </p>
+                
+            <textarea id="nfrm2_NBk_9" name="NBk_9" form="NcertBooks_ctrl">
+            </textarea>
+            
+            <script>
+                document.getElementById("nfrm2_NBk_9").value = "'.(isset($_POST["NBk_9"])?$_POST["NBk_9"]:"").'";
+            </script>
+        </p>
+
+        <p>Book Cover(less than 300x400, 75kb, jpg): 
+            <input type="file" name="NBk_10" id="NBk_10">
+        </p>
+
+        <input type="submit">
+
+    </form>';
+}
+function nbooks_NCERTup_form_chk(&$_nBk){
+    
+    
+    //name
+    if($_POST["NBk_1"]=="" || $_POST["NBk_5"]==""){    
+        $_nBk["frm"]["p_code"]=1;
+        $_nBk["frm"]["err"]="Fields with `*` are required.";
+        return;
+    }
+    
+    if($_POST["NBk_1"]!=clean_input($_POST["NBk_1"])){
+        $_nBk["frm"]["p_code"]=1;
+        $_nBk["frm"]["err"]="Invalid Book title.";
+        return;
+    }
+    $_nBk["NBk_1"]=clean_input($_POST["NBk_1"]);
+    
+    //class
+    if($_POST["NBk_5"]!=clean_input($_POST["NBk_5"]) || 
+           !is_numeric($_POST["NBk_5"])){
+        $_nBk["frm"]["p_code"]=1;
+        $_nBk["frm"]["err"]="Invalid grade/class field.";
+        return;
+    }
+    if($_POST["NBk_5"] >12 || $_POST["NBk_5"]<9){
+        $_nBk["frm"]["p_code"]=1;
+        $_nBk["frm"]["err"]="Invalid grade/class field Set.";
+        return;
+    }   
+    $_nBk["NBk_5"]=clean_input($_POST["NBk_5"]);  
+
+    //download link
+    if(isset($_POST["NBk_2"])){
+        if($_POST["NBk_2"]!="" && 
+           preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+                      $_POST["NBk_2"])){
+            $_nfrm2["NBk_2"]=clean_input($_POST["NBk_2"]);
+        }
+        elseif($_POST["NBk_2"]!=""){
+            $_nfrm2["frm"]["p_code"]=1;
+            $_nfrm2["frm"]["err"]="Invalid Download link.";
+        }
+    }
+
+        //buy link
+        if(isset($_POST["NBk_3"])){
+            if($_POST["NBk_3"]!="" && 
+               preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+                          $_POST["NBk_3"])){
+                $_nfrm2["NBk_3"]=clean_input($_POST["NBk_3"]);
+            }
+            elseif($_POST["NBk_3"]!=""){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Invalid buy link.";
+            }
+        }
+
+        //chapters
+        if(isset($_POST["NBk_4"])){
+            if($_POST["NBk_4"]!="" && 
+               preg_match("/^[0-9]*$/",
+                          $_POST["NBk_4"])){
+                $_nfrm2["NBk_4"]=clean_input($_POST["NBk_4"]);
+            }
+            elseif($_POST["NBk_4"]!=""){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Invalid Chapters field.";
+            }
+        }
+
+        //size
+        if($_nfrm2["NBk_2"]!=""){
+            if(!isset($_POST["NBk_6"])){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Size field required if download link is provided.";
+            }
+            elseif($_POST["NBk_6"]=="" && !preg_match('#\d+(?:\.\d{1,2})?#',$_POST["NBk_6"])){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Invalid value in Size field.";
+            }
+            else{
+                $_nfrm2["NBk_6"]=clean_input($_POST["NBk_6"]);
+            }
+        }
+
+        //is avail
+        if(isset($_POST["NBk_7"])){
+            if($_POST["NBk_7"]=="1"){
+                $_nfrm2["NBk_7"]="1";
+            }
+        }
+        if(isset($_POST["NBk_8"])){
+            if($_POST["NBk_8"]=="1"){
+                $_nfrm2["NBk_8"]="1";
+            }
+        }
+
+        //chapter info
+        if(isset($_POST["NBk_9"])){
+            if($_POST["NBk_9"]!=""){
+                $_nfrm2["NBk_9"]=clean_input($_POST["NBk_9"]);
+            }
+            elseif($_POST["NBk_9"]!=""){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Invalid Chapters Info field.";
+            }
+        }
+
+        //Bookcover
+        if(isset($_FILES["NBk_10"]["type"])){
+            $ext = "jpg";
+            $temp_loc="temp/temp_nbcs_01/";
+            $upload_exts = end(explode(".", $_FILES["NBk_10"]["name"]));
+            if ($_FILES["NBk_10"]["type"] === "image/jpeg" && $_FILES["NBk_10"]["size"] <= 76800 && $upload_exts==$ext){
+                if($_FILES["file"]["error"] > 0){
+                    $_nfrm2["frm"]["p_code"]=1;
+                    $_nfrm2["frm"]["err"]="File Upload Error:".$_FILES["NBk_10"]["error"];}
+                else{
+                    if (file_exists($temp_loc."NCERT_BOOK_COVER".session_id()."jpg")){
+                        $_nfrm2["frm"]["p_code"]=1;
+                        $_nfrm2["frm"]["err"]="SERVER UNDERWORK-file already exists: RESTART SESSION.";}
+                    else{$_nfrm2["Nbk_10"]=1;}}}
+             elseif($_FILES["NBk_10"]["type"]!=""){
+                $_nfrm2["frm"]["p_code"]=1;
+                $_nfrm2["frm"]["err"]="Image format is invalid.";}
+        }
+}
+function nbooks_NCERTup_form_log(&$_nBk){
+
+}
+
+function nbooks_changeNCERT_nBkU(){
+
+}
+function nbooks_NCERTch_form_prt(&$_nBk){
+
+}
+function nbooks_NCERTch_form_chk(&$_nBk){
+
+}
+function nbooks_NCERTch_form_log(&$_nBk){
+
+}
+function nbooks_NCERTch_form_getlist(){
+
+}
+function nbooks_NCERTch_form_get(&$_nBk){
+
+}
+
+function nbooks_deleteNCERT_nBkU(){
+
+}
+function nbooks_NCERTdl_form_prt(&$_nBk){
+
+}
+function nbooks_NCERTdl_form_chk(&$_nBk){
+
+}
+function nbooks_NCERTdl_form_log(&$_nBk){
+
+}
+function nbooks_NCERTdl_form_getlist(){
+
+}
+function nbooks_NCERTdl_form_get(&$_nBk){
+
+}
+
+//Ref books
+function nbooks_addRef_nBkU(){
+
+}
+function nbooks_changeRef_nBkU(){
+
+}
+function nbooks_deleteRef_nBkU(){
+
+}
+
+//Reference books
+function nbooks_addAss_nBkU(){
+
+}
+function nbooks_changeAss_nBkU(){
+
+}
+function nbooks_deleteAss_nBkU(){
+
+}
+
+//Sample Question papers
+function nbooks_addSAMP_nBkU(){
+
+}
+function nbooks_changeSAMP_nBkU(){
+
+}
+function nbooks_deleteSAMP_nBkU(){
+
+}
+
+//Old Question papers
+function nbooks_addOldQuest_nBkU(){
+
+}
+function nbooks_changeOldQuest_nBkU(){
+
+}
+function nbooks_deleteOldQuest_nBkU(){
+
+}

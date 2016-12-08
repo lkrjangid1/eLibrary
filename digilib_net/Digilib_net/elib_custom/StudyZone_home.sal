@@ -1,0 +1,418 @@
+<?php
+
+// 1. sidebar settings
+$sidebar_arr[0] = 5; //No of sidebar tabs
+$sidebar_arr[1] = array("Ncert Books", 
+                        "Reference Books", 
+                        "Assignments", 
+                        "Sample Papers", 
+                        "Old Question Papers"); //title of all tabs
+$sidebar_arr[2] = array("NcertBooks_tab",
+                        "Refer_tab",
+                        "Ass_tab",
+                        "Sample_tab",
+                        "OldQuest_tab"); //Function Names for all tabs
+prt_studySidebar($sidebar_arr);
+
+// 2. Tab 1: Ncert Books
+function NcertBooks_tab(){
+    echo '<h1>Ncert Books</h1><hr>';
+
+    //Class 12 itemBox
+    //settings
+    $study_ncertClass12_itemBox[0][0]="Class XII";//title
+    $study_ncertClass12_itemBox[0][1]=1;//Count of items inside
+    $study_ncertClass12_itemBox[0][2]=1;//size
+    $study_ncertClass12_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_ncertClass12_itemBox[0][4]="#";//viewmore link
+    $study_ncertClass12_itemBox[0][5]=0;//viewmore link
+
+    $study_ncertClass12_itemBox[1][0]=""; //Book
+    $study_ncertClass12_itemBox[1][1]=""; //author
+    $study_ncertClass12_itemBox[1][2]=""; //link
+    $study_ncertClass12_itemBox[1][3]=""; //author link
+    $study_ncertClass12_itemBox[1][4]=""; //img link
+
+
+    //Class 11 itemBox
+    //settings
+    $study_ncertClass11_itemBox[0][0]="Class XI";//title
+    $study_ncertClass11_itemBox[0][1]=1;//Count of items inside
+    $study_ncertClass11_itemBox[0][2]=1;//size
+    $study_ncertClass11_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_ncertClass11_itemBox[0][4]="#";//viewmore link
+    $study_ncertClass11_itemBox[0][5]=0;//viewmore link
+    
+    $study_ncertClass11_itemBox[1][0]=""; //Book
+    $study_ncertClass11_itemBox[1][1]=""; //author
+    $study_ncertClass11_itemBox[1][2]=""; //link
+    $study_ncertClass11_itemBox[1][3]=""; //author link
+    $study_ncertClass11_itemBox[1][4]=""; //img link
+    
+    //Class 10 itemBox
+    //settings
+    $study_ncertClass10_itemBox[0][0]="Class X";//title
+    $study_ncertClass10_itemBox[0][1]=1;//Count of items inside
+    $study_ncertClass10_itemBox[0][2]=1;//size
+    $study_ncertClass10_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_ncertClass10_itemBox[0][4]="#";//viewmore link
+    $study_ncertClass10_itemBox[0][5]=0;//viewmore link
+    
+    $study_ncertClass10_itemBox[1][0]=""; //Book
+    $study_ncertClass10_itemBox[1][1]=""; //author
+    $study_ncertClass10_itemBox[1][2]=""; //link
+    $study_ncertClass10_itemBox[1][3]=""; //author link
+    $study_ncertClass10_itemBox[1][4]=""; //img link
+    
+    //Class 9 itemBox
+    //settings
+    $study_ncertClass9_itemBox[0][0]="Class IX";//title
+    $study_ncertClass9_itemBox[0][1]=1;//Count of items inside
+    $study_ncertClass9_itemBox[0][2]=1;//size
+    $study_ncertClass9_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_ncertClass9_itemBox[0][4]="#";//viewmore link
+    $study_ncertClass9_itemBox[0][5]=0;//viewmore link
+    
+    $study_ncertClass9_itemBox[1][0]=""; //Book
+    $study_ncertClass9_itemBox[1][1]=""; //author
+    $study_ncertClass9_itemBox[1][2]=""; //link
+    $study_ncertClass9_itemBox[1][3]=""; //author link
+    $study_ncertClass9_itemBox[1][4]=""; //img link
+
+    echo '<div class="paraBox">';
+    prt_para($study_ncertClass12_itemBox);
+    echo '</div>';
+
+    echo '<div class="paraBox">';
+    prt_para($study_ncertClass11_itemBox);
+    echo '</div>';
+
+    echo '<div class="paraBox">';
+    prt_para($study_ncertClass10_itemBox);
+    echo '</div>';
+
+    echo '<div class="paraBox">';
+    prt_para($study_ncertClass9_itemBox);
+    echo '</div>';
+    
+    echo '<hr>';
+    prt_para_css();
+}
+
+// 3. Tab 2: Reference Books
+function Refer_tab(){
+    echo '<h1>Reference Books</h1><hr>';
+        
+    //Class 12
+    //settings
+    $study_referClass12_itemBox[0][0]="Class XII";//title
+    $study_referClass12_itemBox[0][1]=1;//Count of items inside
+    $study_referClass12_itemBox[0][2]=1;//size
+    $study_referClass12_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_referClass12_itemBox[0][4]="#";//viewmore link
+    $study_referClass12_itemBox[0][5]=0;//viewmore link
+    //content
+    $study_referClass12_itemBox[1][0]=""; //book
+    $study_referClass12_itemBox[1][1]=""; //author
+    $study_referClass12_itemBox[1][2]=""; //book link
+    $study_referClass12_itemBox[1][3]=""; //author link
+    $study_referClass12_itemBox[1][4]=""; //img link
+    
+    //Class 12
+    //settings
+    $study_referClass11_itemBox[0][0]="Class XI";//title
+    $study_referClass11_itemBox[0][1]=1;//Count of items inside
+    $study_referClass11_itemBox[0][2]=1;//size
+    $study_referClass11_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_referClass11_itemBox[0][4]="#";//viewmore link
+    $study_referClass11_itemBox[0][5]=0;//viewmore link
+    //content
+    $study_referClass11_itemBox[1][0]=""; //book
+    $study_referClass11_itemBox[1][1]=""; //author
+    $study_referClass11_itemBox[1][2]=""; //book link
+    $study_referClass11_itemBox[1][3]=""; //author link
+    $study_referClass11_itemBox[1][4]=""; //img link
+    
+    //Class 12
+    //settings
+    $study_referClass10_itemBox[0][0]="Class X";//title
+    $study_referClass10_itemBox[0][1]=1;//Count of items inside
+    $study_referClass10_itemBox[0][2]=1;//size
+    $study_referClass10_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_referClass10_itemBox[0][4]="#";//viewmore link
+    $study_referClass10_itemBox[0][5]=0;//viewmore link
+    //content
+    $study_referClass10_itemBox[1][0]=""; //book
+    $study_referClass10_itemBox[1][1]=""; //author
+    $study_referClass10_itemBox[1][2]=""; //book link
+    $study_referClass10_itemBox[1][3]=""; //author link
+    $study_referClass10_itemBox[1][4]=""; //img link
+    
+    //Class 12
+    //settings
+    $study_referClass9_itemBox[0][0]="Class IX";//title
+    $study_referClass9_itemBox[0][1]=1;//Count of items inside
+    $study_referClass9_itemBox[0][2]=1;//size
+    $study_referClass9_itemBox[0][3]=2;//vertical scroll=>1, horizontal scroll=>2;
+    $study_referClass9_itemBox[0][4]="#";//viewmore link
+    $study_referClass9_itemBox[0][5]=0;//viewmore link
+    //content
+    $study_referClass9_itemBox[1][0]=""; //book
+    $study_referClass9_itemBox[1][1]=""; //author
+    $study_referClass9_itemBox[1][2]=""; //book link
+    $study_referClass9_itemBox[1][3]=""; //author link
+    $study_referClass9_itemBox[1][4]=""; //img link
+    
+    echo '<div class="paraBox">';
+    prt_para($study_referClass12_itemBox);
+    echo '</div>';
+    
+    echo '<div class="paraBox">';
+    prt_para($study_referClass11_itemBox);
+    echo '</div>';
+    
+    echo '<div class="paraBox">';
+    prt_para($study_referClass10_itemBox);
+    echo '</div>';
+    
+    echo '<div class="paraBox">';
+    prt_para($study_referClass9_itemBox);
+    echo '</div>';
+    
+    echo '<hr>';
+    prt_para_css();
+}
+
+// 4. Tab 3: Assignments
+function Ass_tab(){
+    echo '<h1>Assignments</h1><hr>';
+    
+    //Assignment Feeds
+    
+    //class
+    //settings
+    $study_AssignClass_feeds[0][0]=1; //width
+    $study_AssignClass_feeds[0][1]=0; //image 1=true, 0=false
+    $study_AssignClass_feeds[0][2]="Class"; //name
+    $study_AssignClass_feeds[0][3]=1; //index no
+    $study_AssignClass_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_AssignClass_feeds[1][0]="<input type='radio' name='StdZneAssnClass' value='12' > Class XII";
+    $study_AssignClass_feeds[1][2]=1;
+    $study_AssignClass_feeds[1][3]="";
+    $study_AssignClass_feeds[2][0]="<input type='radio' name='StdZneAssnClass' value='11' > Class XI";
+    $study_AssignClass_feeds[2][2]=1;
+    $study_AssignClass_feeds[2][3]="";
+    $study_AssignClass_feeds[3][0]="<input type='radio' name='StdZneAssnClass' value='10' > Class X";
+    $study_AssignClass_feeds[3][2]=1;
+    $study_AssignClass_feeds[3][3]="";
+    $study_AssignClass_feeds[4][0]="<input type='radio' name='StdZneAssnClass' value='9' > Class IX";
+    $study_AssignClass_feeds[4][2]=1;
+    $study_AssignClass_feeds[4][3]="";
+    
+    //Subject
+    //settings
+    $study_AssignSub_feeds[0][0]=1; //width
+    $study_AssignSub_feeds[0][1]=0; //image 1=true, 0=false
+    $study_AssignSub_feeds[0][2]="Subject"; //name
+    $study_AssignSub_feeds[0][3]=1; //index no
+    $study_AssignSub_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_AssignSub_feeds[1][0]="<input type='radio' name='StdZneAssnSub' value='1' > Maths";
+    $study_AssignSub_feeds[1][2]=1;
+    $study_AssignSub_feeds[1][3]="";
+    $study_AssignSub_feeds[2][0]="<input type='radio' name='StdZneAssnSub' value='2' > English";
+    $study_AssignSub_feeds[2][2]=1;
+    $study_AssignSub_feeds[2][3]="";
+    $study_AssignSub_feeds[3][0]="<input type='radio' name='StdZneAssnSub' value='3' > Chemistry";
+    $study_AssignSub_feeds[3][2]=1;
+    $study_AssignSub_feeds[3][3]="";
+    $study_AssignSub_feeds[4][0]="<input type='radio' name='StdZneAssnSub' value='4' > Physics";
+    $study_AssignSub_feeds[4][2]=1;
+    $study_AssignSub_feeds[4][3]="";
+    
+    //Selection
+    //settings
+    $study_AssignSel_feeds[0][0]=1; //width
+    $study_AssignSel_feeds[0][1]=0; //image 1=true, 0=false
+    $study_AssignSel_feeds[0][2]="Assignments"; //name
+    $study_AssignSel_feeds[0][3]=1; //index no
+    $study_AssignSel_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_AssignSel_feeds[1][0]="<input style=\"color:#000; background:none\" type='submit' value='Chapter 1'>";
+    $study_AssignSel_feeds[1][2]=1;
+    $study_AssignSel_feeds[1][3]="";
+    $study_AssignSel_feeds[2][0]="<input style=\"color:#000; background:none\" type='submit' value='Chapter 2'>";
+    $study_AssignSel_feeds[2][2]=1;
+    $study_AssignSel_feeds[2][3]="";
+    $study_AssignSel_feeds[3][0]="<input style=\"color:#000; background:none\" type='submit' value='Chapter 3'>";
+    $study_AssignSel_feeds[3][2]=1;
+    $study_AssignSel_feeds[3][3]="";
+    $study_AssignSel_feeds[4][0]="<input style=\"color:#000; background:none\" type='submit' value='Chapter 4'>";
+    $study_AssignSel_feeds[4][2]=1;
+    $study_AssignSel_feeds[4][3]="";
+    
+    echo '<form class="feed" method="get" action="elib_bin/Studyzone/study_home.php?stdtab=2">';
+    prt_feed($study_AssignClass_feeds);
+    prt_feed($study_AssignSub_feeds);
+    prt_feed($study_AssignSel_feeds);
+    echo '</form>';
+    echo '<hr>';
+    prt_feed_css();
+}
+
+// 5. Tab 4: Sample Papers
+function Sample_tab(){
+    echo '<h1>Sample Papers</h1><hr>';
+    
+    //Sample Paper Feeds
+    
+    //class
+    //settings
+    $study_SampClass_feeds[0][0]=1; //width
+    $study_SampClass_feeds[0][1]=0; //image 1=true, 0=false
+    $study_SampClass_feeds[0][2]="Class"; //name
+    $study_SampClass_feeds[0][3]=1; //index no
+    $study_SampClass_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_SampClass_feeds[1][0]="<input type='radio' name='StdZneAssnClass' value='12' > Class XII";
+    $study_SampClass_feeds[1][2]=1;
+    $study_SampClass_feeds[1][3]="";
+    $study_SampClass_feeds[2][0]="<input type='radio' name='StdZneAssnClass' value='11' > Class XI";
+    $study_SampClass_feeds[2][2]=1;
+    $study_SampClass_feeds[2][3]="";
+    $study_SampClass_feeds[3][0]="<input type='radio' name='StdZneAssnClass' value='10' > Class X";
+    $study_SampClass_feeds[3][2]=1;
+    $study_SampClass_feeds[3][3]="";
+    $study_SampClass_feeds[4][0]="<input type='radio' name='StdZneAssnClass' value='9' > Class IX";
+    $study_SampClass_feeds[4][2]=1;
+    $study_SampClass_feeds[4][3]="";
+    
+    //Subject
+    //settings
+    $study_SampSub_feeds[0][0]=1; //width
+    $study_SampSub_feeds[0][1]=0; //image 1=true, 0=false
+    $study_SampSub_feeds[0][2]="Subject"; //name
+    $study_SampSub_feeds[0][3]=1; //index no
+    $study_SampSub_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_SampSub_feeds[1][0]="<input type='radio' name='StdZneAssnSub' value='1' > Maths";
+    $study_SampSub_feeds[1][2]=1;
+    $study_SampSub_feeds[1][3]="";
+    $study_SampSub_feeds[2][0]="<input type='radio' name='StdZneAssnSub' value='2' > English";
+    $study_SampSub_feeds[2][2]=1;
+    $study_SampSub_feeds[2][3]="";
+    $study_SampSub_feeds[3][0]="<input type='radio' name='StdZneAssnSub' value='3' > Chemistry";
+    $study_SampSub_feeds[3][2]=1;
+    $study_SampSub_feeds[3][3]="";
+    $study_SampSub_feeds[4][0]="<input type='radio' name='StdZneAssnSub' value='4' > Physics";
+    $study_SampSub_feeds[4][2]=1;
+    $study_SampSub_feeds[4][3]="";
+    
+    //Selection
+    //settings
+    $study_SampSel_feeds[0][0]=1; //width
+    $study_SampSel_feeds[0][1]=0; //image 1=true, 0=false
+    $study_SampSel_feeds[0][2]="Sample Papers"; //name
+    $study_SampSel_feeds[0][3]=1; //index no
+    $study_SampSel_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_SampSel_feeds[1][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 1'>";
+    $study_SampSel_feeds[1][2]=1;
+    $study_SampSel_feeds[1][3]="";
+    $study_SampSel_feeds[2][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 2'>";
+    $study_SampSel_feeds[2][2]=1;
+    $study_SampSel_feeds[2][3]="";
+    $study_SampSel_feeds[3][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 3'>";
+    $study_SampSel_feeds[3][2]=1;
+    $study_SampSel_feeds[3][3]="";
+    $study_SampSel_feeds[4][0]="<input style=\"color:#000; background:none\" type='submit' value='paper 4'>";
+    $study_SampSel_feeds[4][2]=1;
+    $study_SampSel_feeds[4][3]="";
+    
+    echo '<form class="feed" method="get" action="elib_bin/Studyzone/study_home.php?stdtab=3">';
+    prt_feed($study_SampClass_feeds);
+    prt_feed($study_SampSub_feeds);
+    prt_feed($study_SampSel_feeds);
+    echo '</form>';
+    echo '<hr>';
+    prt_feed_css();
+}
+
+// 6. Tab 5: Old Question Papers
+function OldQuest_tab(){
+    echo '<h1>Old Question Papers</h1><hr>';
+    
+    //Sample Paper Feeds
+    
+    //class
+    //settings
+    $study_QuestClass_feeds[0][0]=1; //width
+    $study_QuestClass_feeds[0][1]=0; //image 1=true, 0=false
+    $study_QuestClass_feeds[0][2]="Class"; //name
+    $study_QuestClass_feeds[0][3]=1; //index no
+    $study_QuestClass_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_QuestClass_feeds[1][0]="<input type='radio' name='StdZneAssnClass' value='12' > Class XII";
+    $study_QuestClass_feeds[1][2]=1;
+    $study_QuestClass_feeds[1][3]="";
+    $study_QuestClass_feeds[2][0]="<input type='radio' name='StdZneAssnClass' value='11' > Class XI";
+    $study_QuestClass_feeds[2][2]=1;
+    $study_QuestClass_feeds[2][3]="";
+    $study_QuestClass_feeds[3][0]="<input type='radio' name='StdZneAssnClass' value='10' > Class X";
+    $study_QuestClass_feeds[3][2]=1;
+    $study_QuestClass_feeds[3][3]="";
+    $study_QuestClass_feeds[4][0]="<input type='radio' name='StdZneAssnClass' value='9' > Class IX";
+    $study_QuestClass_feeds[4][2]=1;
+    $study_QuestClass_feeds[4][3]="";
+    
+    //Subject
+    //settings
+    $study_QuestSub_feeds[0][0]=1; //width
+    $study_QuestSub_feeds[0][1]=0; //image 1=true, 0=false
+    $study_QuestSub_feeds[0][2]="Subject"; //name
+    $study_QuestSub_feeds[0][3]=1; //index no
+    $study_QuestSub_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_QuestSub_feeds[1][0]="<input type='radio' name='StdZneAssnSub' value='1' > Maths";
+    $study_QuestSub_feeds[1][2]=1;
+    $study_QuestSub_feeds[1][3]="";
+    $study_QuestSub_feeds[2][0]="<input type='radio' name='StdZneAssnSub' value='2' > English";
+    $study_QuestSub_feeds[2][2]=1;
+    $study_QuestSub_feeds[2][3]="";
+    $study_QuestSub_feeds[3][0]="<input type='radio' name='StdZneAssnSub' value='3' > Chemistry";
+    $study_QuestSub_feeds[3][2]=1;
+    $study_QuestSub_feeds[3][3]="";
+    $study_QuestSub_feeds[4][0]="<input type='radio' name='StdZneAssnSub' value='4' > Physics";
+    $study_QuestSub_feeds[4][2]=1;
+    $study_QuestSub_feeds[4][3]="";
+    
+    //Selection
+    //settings
+    $study_QuestSel_feeds[0][0]=1; //width
+    $study_QuestSel_feeds[0][1]=0; //image 1=true, 0=false
+    $study_QuestSel_feeds[0][2]="Old Question Papers"; //name
+    $study_QuestSel_feeds[0][3]=1; //index no
+    $study_QuestSel_feeds[0][4]=4; //count of feed elem
+    //content
+    $study_QuestSel_feeds[1][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 1'>";
+    $study_QuestSel_feeds[1][2]=1;
+    $study_QuestSel_feeds[1][3]="";
+    $study_QuestSel_feeds[2][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 2'>";
+    $study_QuestSel_feeds[2][2]=1;
+    $study_QuestSel_feeds[2][3]="";
+    $study_QuestSel_feeds[3][0]="<input style=\"color:#000; background:none\" type='submit' value='Paper 3'>";
+    $study_QuestSel_feeds[3][2]=1;
+    $study_QuestSel_feeds[3][3]="";
+    $study_QuestSel_feeds[4][0]="<input style=\"color:#000; background:none\" type='submit' value='paper 4'>";
+    $study_QuestSel_feeds[4][2]=1;
+    $study_QuestSel_feeds[4][3]="";
+    
+    echo '<form class="feed" method="get" action="elib_bin/Studyzone/study_home.php?stdtab=4">';
+    prt_feed($study_QuestClass_feeds);
+    prt_feed($study_QuestSub_feeds);
+    prt_feed($study_QuestSel_feeds);
+    echo '</form>';
+    echo '<hr>';
+    prt_feed_css();
+}
