@@ -1,0 +1,152 @@
+<?php
+function digilib_login(){
+    clr_login_frm();
+    
+}
+function clr_login_frm(){
+}
+function digilib_signup(){
+/*
+    $_POST["firstName-inp-Signupfrm"]
+    $_POST["lastName-inp-Signupfrm"];
+
+    $_POST["email-inp-Signupfrm"];
+
+    $_POST["pass-inp-Signupfrm"];
+    $_POST["passc-inp-Signupfrm"];
+
+    $_POST["month-inp-Signupfrm"];
+    $_POST["day-inp-Signupfrm"];
+    $_POST["year-inp-Signupfrm"];
+
+    $_POST["gender-inp-Signupfrm"];
+
+    $_POST["capt-inp-Signupfrm"];
+    $_POST["terms-inp-Signupfrm"];
+*/
+    clr_signup_frm();
+
+    if($_POST["firstName-inp-Signupfrm"]=="" || 
+       $_POST["lastName-inp-Signupfrm"]=="" || 
+       $_POST["email-inp-Signupfrm"]=="" ||
+       $_POST["pass-inp-Signupfrm"]=="" ||
+       $_POST["passc-inp-Signupfrm"]=="" ||
+       $_POST["month-inp-Signupfrm"]=="" ||
+       $_POST["day-inp-Signupfrm"]=="" ||
+       $_POST["year-inp-Signupfrm"]=="" || 
+       $_POST["capt-inp-Signupfrm"]=="" ||
+       $_POST["gender-inp-Signupfrm"]=="" ||
+       $_POST["terms-inp-Signupfrm"]==""
+      ){
+        return "*All Fields are Required.";
+    }
+    else{
+        //all fields are filled
+        //now lets check each 1-by-1
+
+        //name
+        $_SignupInp["FirstName"] = clean_input($_POST["firstName-inp-Signupfrm"]);
+        $_SignupInp["LastName"] = clean_input($_POST["lastName-inp-Signupfrm"]);
+
+        if($_SignupInp["FirstName"]!=$_POST["firstName-inp-Signupfrm"] ||
+           $_SignupInp["LastName"]!=$_POST["lastName-inp-Signupfrm"] ||
+           !preg_match("/^[a-zA-Z]*$/",$_SignupInp["FirstName"]) ||
+           !preg_match("/^[a-zA-Z]*$/",$_SignupInp["LastName"])){
+            return "*Only English letters allowed in the 'Name Field'";
+        }else{
+
+        //email
+        $_SignupInp["EmailId"] = clean_input($_POST["email-inp-Signupfrm"]);
+
+        if($_SignupInp["EmailId"]!=$_POST["email-inp-Signupfrm"] ||
+          !filter_var($_SignupInp["EmailId"], FILTER_VALIDATE_EMAIL)){
+            return "*Invalid Email Address";
+        }
+        else{
+            //check if already exists
+            $db = new mysqli($GLOBALS["db_MYSQL_SERVER"], $GLOBALS["db_MYSQL_USER"], $GLOBALS["db_MYSQL_Pass"], $GLOBALS["db_MYSQL_DB"]);
+            if($db->connect_errno > 0){
+                return ('*Unable to connect to database. Try again later!');
+            }
+            $sql ='SELECT `student_id` from `user_student_info` where `email_id`=\''.$_SignupInp["EmailId"].'\';';
+            if(!$result = $db->query($sql)){
+                return ('*There was an error in the Server. Please try again later.');
+            }
+            if($result->num_rows > 0){
+                return ('*Given Email id is already associated with an digilib account.');
+            }
+            else{
+                //email is clear
+                $result->free();
+                $db->close();
+
+                //pass
+                $_SignupInp["Password"] = clean_input($_POST["pass-inp-Signupfrm"]);
+
+                if($_SignupInp["Password"]!=$_POST["passc-inp-Signupfrm"]){
+                    return "*Password doesn't match.";
+                }
+                else{
+                //dob
+                $_SignupInp["DOB"] = array("month"=>clean_input($_POST["month-inp-Signupfrm"]),
+                                           "day"=>clean_input($_POST["day-inp-Signupfrm"]),
+                                           "year"=>clean_input($_POST["year-inp-Signupfrm"]));
+                if(!checkdate($_SignupInp["DOB"]["month"], $_SignupInp["DOB"]["day"],$_SignupInp["DOB"]["year"]) ||
+                   $_SignupInp["DOB"]["month"] != $_POST["month-inp-Signupfrm"] ||
+                   $_SignupInp["DOB"]["day"] != $_POST["day-inp-Signupfrm"] ||
+                   $_SignupInp["DOB"]["year"] != $_POST["year-inp-Signupfrm"]){
+                    return "*Invalid Date entry.";
+                }
+                    else{         
+
+                //gender
+                $_SignupInp["Gender"] = clean_input($_POST["gender-inp-Signupfrm"]);
+                if(!($_SignupInp["Gender"]=="Male" || $_SignupInp["Gender"]=="Female" || $_SignupInp["Gender"]=="Other")){
+                    return "*Invalid Gender entry.";
+                }
+                else{
+                    switch($_SignupInp["Gender"]){
+                        case "Male":$_SignupInp["Gender"]="1";break;
+                        case "Female":$_SignupInp["Gender"]="2";break;
+                        case "Other":$_SignupInp["Gender"]="3";break;
+                    }
+                //cap
+                $_SignupInp["Cap"] = clean_input($_POST["capt-inp-Signupfrm"]);
+                if($_SignupInp["Cap"] != $_POST["capt-inp-Signupfrm"]){
+                    echo "*Invalid Captcha entry.";
+                }
+                elseif(strcasecmp(" ".$_SignupInp["Cap"], $_SESSION["capcode"])){
+                    echo "*Incorrect Captcha code. Try again!";
+                }
+                else{
+                //terms
+                $_SignupInp["Terms"] = clean_input($_POST["terms-inp-Signupfrm"]);
+                if($_SignupInp["Terms"]!=$_POST["terms-inp-Signupfrm"] || $_SignupInp["Terms"]!="1"){
+                    echo "*You Have to agree Terms of Service and Privacy Policy of the website in order to proceed.";
+                }
+                else{
+                //everything is correct
+                //show the green light
+                $db2 = new mysqli($GLOBALS["db_MYSQL_SERVER"], $GLOBALS["db_MYSQL_USER"], $GLOBALS["db_MYSQL_Pass"], $GLOBALS["db_MYSQL_DB"]);
+                    if($db2->connect_errno > 0){
+                        return ('*Unable to connect to database. Try again later!');
+                    }
+                    else{
+                    $sql2 ='
+                    INSERT INTO `user_student_info` 
+                    (email_id, pass, first_name, last_name, gender, dob, notifications, history, is_mod, registered) 
+                    VALUES (\''.$_SignupInp["EmailId"].'\', \''.digilib_twister128($_SignupInp["Password"]).'\', \''.$_SignupInp["FirstName"].'\', \''.$_SignupInp["LastName"].'\', \''.$_SignupInp["Gender"].'\', \''.$_SignupInp["DOB"]["year"]."-".$_SignupInp["DOB"]["month"]."-".$_SignupInp["DOB"]["day"].'\', \'Welcome to BBPS DigitalLibrary|\', \'Joined Digilib on '.date("l Y/m/d").' at '.date("h:i:sa").'|\', \'0\', \'0\');';
+                    $result2 = $db2->query($sql2);
+                    if(!$result2){
+                        return ('*There was an error in the Server. Please try again later.');
+                    }
+                else{
+                    //email is clear
+                    //$result2->free(); //no need if isn't a select statement
+                    $db2->close();
+                echo 'Please Check your Email to complete the Registration process.';
+                return 1;
+
+}}}}}}}}}}}}//function
+?>
+    

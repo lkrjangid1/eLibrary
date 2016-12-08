@@ -1,0 +1,165 @@
+.body-cont .display{
+    position: relative;
+    display: block;
+    width: auto; height: auto;
+    text-align: left;
+}
+.body-cont .display .cover{
+    position: relative; 
+    display: inline-block; vertical-align: middle;
+    width: 300px; height: 380px;
+    border: solid 1px #dedede; border-radius: 5px;
+    box-shadow: 0px 0px 8px rgba(100,100,100,0.1);
+    margin-right: 10px;
+}
+.body-cont .display .info{
+    position: relative;
+    display: inline-block; vertical-align: middle;
+    width: calc(100% - 320px); height: auto;
+}
+.body-cont .display .info .book-name{
+    font-family: display_4_r;
+    font-size: 56px;
+    color: #686868;
+    height: auto; width: calc(100% - 30px);
+    white-space: normal;
+    text-shadow: 0px 0px 1px #686868;
+}
+.body-cont .display .info .author-name{
+    font-family: display_4_r;
+    font-size: 36px;
+    color: #cdcdcd;
+    height: auto; width: calc(100% - 30px);
+    white-space: normal;
+    margin-bottom: 30px;
+    color: #FF8930;
+    cursor: pointer;
+    text-shadow: 0px 0px 1px #FF8930
+}
+.body-cont .display .info .author-name:hover{
+    text-decoration: underline;
+}
+.body-cont .display .info .ttinfo{
+    font-family: display_4_r;
+    font-size: 16px;
+    padding: 5px;
+    color: #adadad;
+}
+.body-cont .display .info hr{
+    border: none;
+    border-top: solid 1px #dedede;
+}
+.body-cont .display .info .ttinfo .fullstar{
+    width: 15px; height: 15px; 
+    display: inline-block; vertical-align:top;
+    background: url(../../elib_depend/graphics/interface_graphics/icons/orgGrad/stargrey.png) center no-repeat;
+    background-size: contain;
+}
+.body-cont .display .info .ttinfo .halfstar{
+    width: 7px; height: 15px; 
+    display: inline-block; vertical-align:top;
+    background: url(../../elib_depend/graphics/interface_graphics/icons/orgGrad/stargrey.png) no-repeat;
+    background-size: 15px 15px;
+    background-position: -8px;
+    margin-left:3px;
+}
+.body-cont .display .info .Download{
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(to bottom, rgba(83,203,241,1) 0%,rgba(5,171,224,1) 100%);
+    font-family: display_4_r;
+    font-size: 20px;
+    color: #efefef;
+    display: inline-block;vertical-align: top;
+    width: auto; height: auto;
+    cursor: pointer;
+}
+.body-cont .display .info .Download div{
+    position: absolute;
+    top: 0; left:0; right:0; bottom: 0;
+    background: url("../../elib_depend/graphics/interface_graphics/icons/white/downgrey.png") right no-repeat;
+    background-size: 40px;
+    background-position: 122px 8px;
+}
+.body-cont .display .info .Buy{
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(to bottom, #ffa84c 0%,#ff7b0d 100%);
+    font-family: display_4_r;
+    font-size: 20px;
+    color: #efefef;
+    display: inline-block;vertical-align: top;
+    cursor: pointer;
+    
+}
+.body-cont .display .info .Download, .body-cont .display .info .Buy{
+    text-decoration: none;
+    padding-right:50px;
+    padding-left: 20px;
+}
+.body-cont .display .info .Buy div{
+    position: absolute;
+    top: 0; left:0; right:0; bottom: 0;
+    background: url("../../elib_depend/graphics/interface_graphics/icons/white/externLinksgrey.png") right no-repeat;
+    background-size: 40px;
+    background-position: 62px;
+}
+.body-cont .display .info .Download:hover{
+    background: linear-gradient(to bottom, rgba(100,223,261,1) 0%,rgba(5,171,224,1) 100%);
+    color: #fff;
+    text-shadow: 0px 0px 3px #fff;
+}
+.body-cont .display .info .Buy:hover{
+    background: linear-gradient(to bottom, #ffcf5f 10%,#ff7b0d 100%);
+    color: #fff;
+    text-shadow: 0px 0px 3px #fff;
+}
+.body-cont .hd_divs{
+    display: block; width: auto;
+    height: auto;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: left;
+    font-family: display_4_r;
+    color:#a8a8a8;
+    font-size: 14px;
+    line-height:18px; word-spacing: 3px; word-break: break-all;
+}
+.body-cont .hd_divs h1{
+    font-family: display_4_r;
+    font-size: 24px;
+    text-align: left;
+    color: #cdcdcd;
+}
+.body-cont .hd_divs hr{
+    border: none;
+    border-top: solid 1px #cdcdcd;
+}
+.body-cont .hd_divs .author_pic{
+    border: solid 1px #dedede;
+    border-radius: 5px;
+    width: 160px; height: 200px;
+    float: left;
+    margin: 10px;
+}
+.body-cont .hd_divs .More{
+    display: block;
+    position: relative;
+    text-align: right;
+    margin: 5px;
+    color: #FF8930;
+    font-size: 16px;
+    cursor: pointer;
+}
+.body-cont .hd_divs .More:hover{
+    text-decoration: underline;
+}
+@media only screen and (max-width: 770px){
+    .body-cont .display .cover, .body-cont .display .info{
+        display: block;
+        margin: 15px;
+    }
+    .body-cont .display .info{
+        width: auto;
+    }
+}

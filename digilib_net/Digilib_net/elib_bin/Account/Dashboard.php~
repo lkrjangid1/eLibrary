@@ -1,0 +1,38 @@
+<?php
+/*
+ *  Dashboard for Digilib_net
+ *      ver 1.0
+ *  Glasswid trifx
+ *
+ *  author: designed and developed by sal64dd 
+ *  contact: sal.uncd@gmail.com
+ */
+	
+ini_set("include_path", "../../");  //sets the path to root folder
+include "elib_depend/glasswindow/Glasswid_flwer.php";   //include glaswid-flower
+digilib_Meta("Digital Library | Dashboard", '
+<link rel="stylesheet" type="text/css" href="elib_bin/Account/Acc.css">');
+
+
+?>
+
+<body>
+    
+    <?php digilib_Header(); ?>
+    <div class="body-cont"> 
+        <div class="main">
+			
+<?php
+	
+include("elib_bin/Account/sign_in.inc");
+	
+
+?>
+			
+        </div>
+    </div>
+    <?php digilib_Footer() ?>
+    
+    <script src="elib_bin/Account/Acc.js"></script>
+</body>
+</html>

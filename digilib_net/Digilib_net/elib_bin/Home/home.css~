@@ -1,0 +1,155 @@
+.Sal{
+	position: relative;
+	display: block;
+	width: auto; height: auto;
+	border-radius:3px;
+	border: dashed 1px #dedede;
+	background: #fbfbfb;
+	text-align: left;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.Sal .Header{
+	position: relative;
+	display: inline-block;
+	width: auto; height: auto;
+	text-align: left;
+	vertical-align: middle;
+	margin-right:20px; margin-left:40px;
+	text-decoration:none;
+}
+.Sal .Header .imglogo{
+	position: relative;
+	display: inline-block;
+	margin:25px;
+	margin-left:0px;
+	width: 90px;
+	height:90px;
+	background: url(../../elib_depend/graphics/interface_graphics/icons/blueGrad/aboutusgrey@High.png) center no-repeat;
+	background-size: cover;
+	vertical-align: middle;
+}
+.Sal .Header .realtxt{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	height: auto;
+}
+.Sal .Header .realtxt .panasonic{
+	position: relative;
+	display: block;
+	font-size:16px;
+	color:#3ec6ef;
+	font-family: display_4_r;
+	margin-left:4px;
+}
+.Sal .Header .realtxt .panasonic b{
+	font-family: display_4_b;
+}
+.Sal .Header .realtxt .threedo{
+	position: relative;
+	display: block;
+	font-size:42px;
+	color:#3ec6ef;
+	font-family: display_4_r;
+}
+.Sal .feat{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: 300px; 
+	margin-left: 20px;
+}
+.Sal .feat .feat-list{
+	position: relative;
+	display: block;
+	font-family: display_4_r;
+	font-size:24px;
+	color:#3ec6ef;
+	margin-bottom: 10px;
+	
+}
+.Sal .feat .feat-list-elem{
+	position: relative;
+	display: block;
+	font-family: mics_4_r;
+	font-size:16px;
+	color:#a8a8a8;
+	margin:5px; margin-left:10px;
+}
+.Sal .feat .feat-list-elem::before{
+	content:">";
+	margin-right: 15px;
+}
+.Sal .now{	
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: 200px; height: auto;
+	text-align:center;
+	margin-left:10px;
+	
+}
+.Sal .now .jointit{
+	position: relative;
+	display: block;
+	font-size: 20px;
+	font-family: display_4_r;
+	margin:10px;
+	color:#3ec6ef;
+		
+}
+.Sal .now .divider{
+	position: relative;
+	display: block;
+	font-size: 16px;
+	font-family: display_4_r;
+	color:#a8a8a8;
+}
+.Sal .now a:hover{
+	background: #FF8930;
+}
+.Sal .now a{
+	position: relative;
+	display: inline-block;
+	padding: 6px;
+	color: #f7f7f7;
+	font-size: 18px;
+	font-family: display_4_r;
+	background: #3EC6EF;
+	text-decoration: none;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin:10px;
+}
+.Sal .lnebrk{
+	position: relative;
+	display: inline-block;
+	vertical-align:middle;
+	width:1px; height:150px;
+	background: #ededed;
+}
+@media only screen and (max-width: 999px){
+	.Sal .lnebrk{
+		display: none;
+	}
+	.Sal .Header{
+		display: block;
+		margin: 0;
+	}
+	.Sal .Header .imglogo{
+		margin: 10px;
+	}
+	.Sal .now{
+		width:auto;text-align:left;
+		display:block;
+	}
+	.Sal .now .divider{
+		margin-left:20px;
+	}
+	.Sal .feat{
+		width:auto;
+		
+	}
+}

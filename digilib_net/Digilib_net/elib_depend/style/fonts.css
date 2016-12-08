@@ -1,0 +1,99 @@
+/*====================================*/
+@font-face {
+    font-family: code_1_r;
+    src:url(fonts/code/gw_code_reg.otf);
+}
+@font-face {
+    font-family: code_1_m;
+    src:url(fonts/code/gw_code_med.otf);
+}
+@font-face {
+    font-family: code_1_b;
+    src:url(fonts/code/gw_code_bold.otf);
+}
+@font-face {
+    font-family: code_1_sb;
+    src:url(fonts/code/gwcode_sbold.otf);
+}
+@font-face {
+    font-family: code_1_l;
+    src:url(fonts/code/gw_code_light.otf);
+}
+@font-face {
+    font-family: code_1_el;
+    src:url(fonts/code/gw_code_elight.otf);
+}
+/*====================================*/
+@font-face {
+    font-family: display_1_r;
+    src:url(fonts/display/caver_reg.ttf);
+}
+@font-face {
+    font-family: display_1_i;
+    src:url(fonts/display/caver_italic.ttf);
+}
+@font-face {
+    font-family: display_2_r;
+    src:url(fonts/display/pt_reg.ttf);
+}
+@font-face {
+    font-family: display_3_r;
+    src:url(fonts/display/salbo_reg.ttf);
+}
+@font-face {
+    font-family: display_4_r;
+    src:url(fonts/display/sans_reg.ttf);
+}
+@font-face {
+    font-family: display_4_b;
+    src:url(fonts/display/sans_bold.ttf);
+}
+/*====================================*/
+@font-face {
+    font-family: class_1_ib;
+    src:url(fonts/class_text/Courier_Prime_Bold_Italic.ttf);
+}
+@font-face {
+    font-family: class_1_b;
+    src:url(fonts/class_text/Courier_Prime_Bold.ttf);
+}
+@font-face {
+    font-family: class_1_i;
+    src:url(fonts/class_text/Courier_Prime_Italic.ttf);
+}@font-face {
+    font-family: class_1_r;
+    src:url(fonts/class_text/Courier_Prime.ttf);
+}
+@font-face {
+    font-family: class_2_r;
+    src:url(fonts/class_text/Garogier_reg.ttf);
+}
+/*====================================*/
+@font-face {
+    font-family: mics_1_r;
+    src:url(fonts/mics/barrio_reg.otf);
+}
+@font-face {
+    font-family: mics_2_r;
+    src:url(fonts/mics/Bear_paw_reg.ttf);
+}
+@font-face {
+    font-family: mics_3_r;
+    src:url(fonts/mics/black_casper_reg.ttf);
+}
+@font-face {
+    font-family: mics_4_r;
+    src:url(fonts/mics/girl_reg.ttf);
+}
+@font-face {
+    font-family: mics_5_r;
+    src:url(fonts/mics/grutch_shaded_black.ttf);
+}
+@font-face {
+    font-family: mics_6_b;
+    src:url(fonts/mics/sketch_reg_border.ttf);
+}
+@font-face {
+    font-family: mics_6_r;
+    src:url(fonts/mics/sketch_reg.ttf);
+}

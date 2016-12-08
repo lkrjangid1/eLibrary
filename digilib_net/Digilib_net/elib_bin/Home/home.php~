@@ -1,0 +1,89 @@
+<?php
+session_start();
+/*
+ *  Homepage of Digilib_net
+ *      ver 6.12
+ *  Glasswid flwer
+ *
+ *  author: designed and developed by sal64dd & D...
+ *  contact: sal.uncd@gmail.com : divijjindal28@gmail.com
+ */
+
+ini_set("include_path", "../../");  //sets the path to root folder
+include "elib_depend/glasswindow/Glasswid_flwer.php";   //include glaswid-flower
+digilib_Meta("Digital Library | Home", '
+<link rel="stylesheet" type="text/css" href="elib_bin/Home/home.css">'); //name the page: needed
+
+if(!isset($_SESSION['UEI_S'])){
+$db = new mysqli($db_MYSQL_SERVER, $db_MYSQL_USER, $db_MYSQL_Pass,  $db_MYSQL_DB);
+if(!($db->connect_errno > 0)){
+	$query = 'INSERT INTO Z_USER (stat) VALUES (\''."|-|".$_SERVER['HTTP_HOST']."|-|".date('l jS \of F Y h:i:s A')."-".$_SERVER['HTTP_USER_AGENT'].'\')';
+	$result = $db->query($query);
+	$_SESSION['UEI_S']=1;
+}}
+//echo $_SERVER['HTTP_HOST'];
+?>
+
+<body>
+    
+    <?php digilib_Header() ?>
+    <div class="body-cont"> 
+        <div class="main">   
+        
+            <?php 
+                $Infoarr[1][1] = "#";
+                $Infoarr[1][2] = "Keepsakes: Australians and the Great War";
+                $Infoarr[1][3] = "Share in the personal stories of Australians who served during the First World War.";
+                $Infoarr[1][4] = "WATCH NOW";
+                $Infoarr[2][1] = "#";
+                $Infoarr[2][2] = "Revealing the Rothschild Prayer Book c.1505-1510 from the Kerry Stokes Collection";
+                $Infoarr[2][3] = "On show with the National Library’s medieval and Renaissance manuscripts.";
+                $Infoarr[2][4] = "ON NOW";
+                $Infoarr[3][1] = "#";
+                $Infoarr[3][2] = "Gems of History";
+                $Infoarr[3][3] = "See the behind the scenes of our latest Medieval Manuscript Project.";
+                $Infoarr[3][4] = "WATCH NOW";
+                digilib_Showcase(3,$Infoarr,"example", "38%");
+            ?>
+            
+            <div class="Sal">
+            	<a href="elib_bin/Account/Dashboard.php" class="Header">
+            		<span class="imglogo"></span>
+            		<span class="realtxt">
+            			<span class="panasonic"><b>Digital</b>Library</span>
+            			<span class="threedo">Dashboard</span>
+            		</span>
+            	</a>
+            	<div class="lnebrk"></div>
+            	<div class="feat">
+            		<span class="feat-list">Everything You Need, At Your Fingertips!</span>
+            		<span class="feat-list-elem">Make Favourites and Wishes</span>
+            		<span class="feat-list-elem">Review a Book or Post a Blog</span>
+            		<span class="feat-list-elem">Contribute to expand the Project</span>
+            		<span class="feat-list-elem">Manage Your Digilib Account</span>
+            		<span class="feat-list-elem">And Much More!!!</span>
+            	</div>
+            	<div class="lnebrk"></div>
+            	<div class="now">
+            		<span class="jointit">So, What Are You Waiting For?</span>
+            		<a href="elib_bin/Account/Signup.php" class="Signup">Signup</a>
+            		<span class="divider">Or</span>
+            		<a href="elib_bin/Account/Dashboard.php" class="Login">Login</a>
+            	</div>
+            </div>
+       		 
+       		<div class="highlights">
+       			<div class="bookhigh"></div>
+       			<div class="bloghigh"></div>
+       			<div class="studyhigh"></div>
+       			<div class="newsHeadlines"></div>
+       			<div class="socialfeeds"></div>
+       		</div>
+       			 
+        </div>
+    </div>
+    <?php digilib_Footer() ?>
+    
+    <script src="elib_bin/Home/home.js"></script>
+</body>
+</html>

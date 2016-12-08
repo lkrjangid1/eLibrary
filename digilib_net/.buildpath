@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="Digilib_net/elib_bin/Home"/>
+	<buildpathentry kind="src" path="Digilib_net/elib_config"/>
+	<buildpathentry kind="src" path="Digilib_net/elib_depend/dcq"/>
+	<buildpathentry kind="src" path="Digilib_net/elib_depend/glasswindow"/>
+	<buildpathentry kind="src" path="Digilib_net/elib_depend/triforce"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
